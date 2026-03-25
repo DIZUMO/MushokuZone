@@ -1,0 +1,256 @@
+html{     
+	background-image: url("../Image/mushoku-tensei6.jpg");
+	background-size: contain;
+	background-repeat: repeat;
+	background-position: top;
+	}
+
+body {
+    font-family: 'Georgia', sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+
+}
+
+.titre {
+    text-align: left;
+}
+.Autre_page {
+    text-align: justify;
+}
+
+header {
+    background-color: rgba(0, 0, 0, 0.6);
+    overflow: hidden;       /* permet de contenir les éléments flottants */
+    padding: 10px 20px;     /* padding top/bottom et left/right */
+    position: relative;     /* pour positionner éventuellement des éléments absolus */
+}
+
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+section {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin: top 0;
+    border-radius: 10px;
+}
+h2, h3, h4 {
+    font-family: 'Georgia', serif;
+}
+
+ul, ol {
+    padding-left: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid white;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 58.125%;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  
+
+/* état initial */
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+/* visible */
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* images = effet zoom léger */
+img.hidden {
+    transform: scale(0.95);
+}
+
+img.visible {
+    transform: scale(1);
+}
+
+/* table plus lente */
+table.hidden {
+    transform: scale(0.9);
+    transition: all 0.8s ease;
+}
+
+/* hover pour rendre vivant sans casser le cerveau */
+img:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffd700;
+    transition: color 0.2s ease;
+}
+
+/* iframe responsive déjà ok mais petit polish */
+iframe {
+    border-radius: 10px;
+}
+
+/* correction bug CSS */
+section {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-top: 0; /* correction de ton "margin: top 0;" qui ne sert à rien */
+    border-radius: 10px;
+}
+
+
+/* ========================= */
+/* Animation de base (scroll) */
+/* ========================= */
+
+.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================= */
+/* Effet underline animé (HubSpot style) */
+/* ========================= */
+
+nav ul li a {
+    position: relative;
+    text-decoration: none;
+}
+
+nav ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    left: 0;
+    bottom: -3px;
+    background-color: #ffd700;
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* ========================= */
+/* Hover bouton / lien */
+/* ========================= */
+
+a {
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #ffd700;
+}
+
+/* ========================= */
+/* Effet carte (section dynamique) */
+/* ========================= */
+
+section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+/* ========================= */
+/* Image hover amélioré */
+/* ========================= */
+
+img {
+    transition: transform 0.4s ease, filter 0.4s ease;
+    border-radius: 10px;
+}
+
+img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* ========================= */
+/* Effet pulse léger (important seulement) */
+/* ========================= */
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
+
+h1 {
+    animation: pulse 3s infinite;
+}
+
+/* ========================= */
+/* Tableau plus propre */
+/* ========================= */
+
+table {
+    transition: transform 0.4s ease;
+}
+
+table:hover {
+    transform: scale(1.02);
+}
+
+/* ========================= */
+/* Scroll smooth global */
+/* ========================= */
+
+html {
+    scroll-behavior: smooth;
+}
