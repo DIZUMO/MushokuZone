@@ -1,37 +1,40 @@
-html{     
-	background-image: url("../Image/mushoku-tensei8.jpg");
-	background-size: contain;
-	background-repeat: repeat;
-	background-position: top;
-	}
+html {
+    background-image: url("../Image/mushoku-tensei8.jpg");
+    background-size: contain;
+    background-repeat: repeat;
+    background-position: top;
+}
 
 body {
     font-family: 'Georgia', sans-serif;
     color: white;
     margin: 0;
     padding: 0;
-
 }
 
 .titre {
     text-align: left;
 }
+
 .Autre_page {
     text-align: justify;
 }
 
 header {
     background-color: rgba(0, 0, 0, 0.6);
-    overflow: hidden;       /* permet de contenir les éléments flottants */
-    padding: 10px 20px;     /* padding top/bottom et left/right */
-    position: relative;     /* pour positionner éventuellement des éléments absolus */
+    overflow: hidden;
+    /* permet de contenir les éléments flottants */
+    padding: 10px 20px;
+    /* padding top/bottom et left/right */
+    position: relative;
+    /* pour positionner éventuellement des éléments absolus */
 }
-
 
 nav ul {
     list-style-type: none;
     padding: 0;
 }
+
 nav ul li {
     display: inline;
     margin-right: 20px;
@@ -49,11 +52,15 @@ section {
     margin: top 0;
     border-radius: 10px;
 }
-h2, h3, h4 {
+
+h2,
+h3,
+h4 {
     font-family: 'Georgia', serif;
 }
 
-ul, ol {
+ul,
+ol {
     padding-left: 20px;
 }
 
@@ -63,14 +70,18 @@ table {
     margin-top: 20px;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid white;
 }
 
-th, td {
+th,
+td {
     padding: 10px;
     text-align: center;
 }
+
 .video-container {
     position: relative;
     width: 100%;
@@ -78,32 +89,36 @@ th, td {
     padding-bottom: 58.125%;
     overflow: hidden;
     display: inline-block;
-  }
-  
-  .video-container iframe {
+}
+
+.video-container iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-  }
-  
-  
+}
+
 
 /* état initial */
+
 .hidden {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.6s ease;
 }
 
+
 /* visible */
+
 .visible {
     opacity: 1;
     transform: translateY(0);
 }
 
+
 /* images = effet zoom léger */
+
 img.hidden {
     transform: scale(0.95);
 }
@@ -112,13 +127,17 @@ img.visible {
     transform: scale(1);
 }
 
+
 /* table plus lente */
+
 table.hidden {
     transform: scale(0.9);
     transition: all 0.8s ease;
 }
 
+
 /* hover pour rendre vivant sans casser le cerveau */
+
 img:hover {
     transform: scale(1.03);
     transition: transform 0.3s ease;
@@ -129,22 +148,31 @@ nav ul li a:hover {
     transition: color 0.2s ease;
 }
 
+
 /* iframe responsive déjà ok mais petit polish */
+
 iframe {
     border-radius: 10px;
 }
 
+
 /* correction bug CSS */
+
 section {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.4);
-    margin-top: 0; /* correction de ton "margin: top 0;" qui ne sert à rien */
+    margin-top: 0;
+    /* correction de ton "margin: top 0;" qui ne sert à rien */
     border-radius: 10px;
 }
 
 
 /* ========================= */
+
+
 /* Animation de base (scroll) */
+
+
 /* ========================= */
 
 .hidden {
@@ -158,8 +186,13 @@ section {
     transform: translateY(0);
 }
 
+
 /* ========================= */
+
+
 /* Effet underline animé (HubSpot style) */
+
+
 /* ========================= */
 
 nav ul li a {
@@ -182,8 +215,13 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
+
 /* ========================= */
+
+
 /* Hover bouton / lien */
+
+
 /* ========================= */
 
 a {
@@ -194,8 +232,13 @@ a:hover {
     color: #ffd700;
 }
 
+
 /* ========================= */
+
+
 /* Effet carte (section dynamique) */
+
+
 /* ========================= */
 
 section {
@@ -204,11 +247,16 @@ section {
 
 section:hover {
     transform: translateY(-40px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
 }
 
+
 /* ========================= */
+
+
 /* Image hover amélioré */
+
+
 /* ========================= */
 
 img {
@@ -221,22 +269,38 @@ img:hover {
     filter: brightness(0.92);
 }
 
+
 /* ========================= */
+
+
 /* Effet pulse léger (important seulement) */
+
+
 /* ========================= */
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 h1 {
     animation: pulse 3s infinite;
 }
 
+
 /* ========================= */
+
+
 /* Tableau plus propre */
+
+
 /* ========================= */
 
 table {
@@ -247,8 +311,13 @@ table:hover {
     transform: scale(1.02);
 }
 
+
 /* ========================= */
+
+
 /* Scroll smooth global */
+
+
 /* ========================= */
 
 html {
@@ -265,41 +334,39 @@ html {
     opacity: 1;
     transform: translateY(0);
 }
+
+
 /* Navigation par flèches */
+
 .nav-fleches {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  pointer-events: none; /* laisse passer les clics sur le reste du header */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    pointer-events: none;
+    /* laisse passer les clics sur le reste du header */
 }
 
 .fleche {
-  pointer-events: all;
-  font-size: 3rem;
-  color: white;
-  text-decoration: none;
-  padding: 0 20px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.2);
-  transition: background 0.2s;
-  user-select: none;
+    pointer-events: all;
+    font-size: 3rem;
+    color: white;
+    text-decoration: none;
+    padding: 0 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+    user-select: none;
 }
 
 .fleche:hover {
-  background: rgba(0, 0, 0, 0.5);
-  color: gold;
-}
-
-.page-actuelle {
-  font-size: 1rem;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 1px;
-  text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.5);
+    color: gold;
+    transition: 0.2s;
 }
