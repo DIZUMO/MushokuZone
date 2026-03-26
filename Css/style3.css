@@ -340,42 +340,63 @@ header {
     /* nécessaire pour que nav-fleches fonctionne */
 }
 
+
+/* ========================= */
+
+
+/* Navigation par flèches    */
+
+
+/* ========================= */
+
+header {
+    position: relative;
+}
+
+
+/* Supprime les anciens styles absolute qui couvrent tout le header */
+
 .nav-fleches {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    pointer-events: none;
+    gap: 14px;
+    position: static;
+    height: auto;
+    pointer-events: all;
+    margin-top: 10px;
+    padding: 0;
 }
 
 .fleche {
     pointer-events: all;
-    font-size: 3.5rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+    font-size: 1.4rem;
     line-height: 1;
-    color: rgba(255, 255, 255, 0.85);
-    text-decoration: none;
-    padding: 0 18px;
-    height: 100%;
     display: flex;
     align-items: center;
-    background: rgba(0, 0, 0, 0.25);
-    transition: background 0.25s ease, color 0.25s ease;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
     user-select: none;
+    padding: 0;
 }
 
 .fleche:hover {
-    background: rgba(0, 0, 0, 0.55);
-    color: #ffd700;
+    background: rgba(255, 215, 0, 0.85);
+    border-color: #ffd700;
+    color: #1a1a1a;
+    transform: scale(1.18);
+    box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
 }
 
 .page-actuelle {
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.65);
     letter-spacing: 2px;
     text-transform: uppercase;
-    pointer-events: none;
 }
