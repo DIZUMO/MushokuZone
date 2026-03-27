@@ -28,6 +28,9 @@ html {
 body {
     margin: 0;
     padding: 0;
+        text-shadow:
+        0 0 2px black,
+        0 0 3px black;
 }
 
 
