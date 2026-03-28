@@ -26,6 +26,9 @@ html {
 body {
     margin: 0;
     padding: 0;
+    text-shadow:
+        0 0 2px black,
+        0 0 3px black;
 }
 
 
@@ -38,6 +41,9 @@ header {
     overflow: hidden;
     padding: 10px 20px;
     position: relative;
+    top: 0;
+    z-index: 1000;
+
 }
 
 header img {
@@ -164,13 +170,27 @@ section:hover {
 
 h1 {
     animation: pulse 3s infinite;
+    font-size: 2.5rem;
 }
 
-h2,
+
+h2 {
+    font-family: 'Georgia', serif;
+    font-size: 1.8rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+
 h3,
 h4 {
     font-family: 'Georgia', serif;
-    margin-bottom: 10px;
+
+}
+
+p {
+    line-height: 1.6;
+    max-width: 800px;
 }
 
 ul,
