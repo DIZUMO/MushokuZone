@@ -211,13 +211,27 @@ function renderPlayer() {
     const list = currentList();
     const ep = list[state.epIndex];
 
+    document.getElementById('player-season-label').textContent = SEASON_LABELS[state.season];
     document.getElementById('player-ep-title').textContent = ep.title;
+    document.getElementById('player-ep-date').textContent = ep.date;
 
     const container = document.getElementById('player-video-container');
     container.innerHTML = ep.videoId
         ? `<iframe src="${sibnetSrc(ep.videoId)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`
         : 'Vidéo à venir';
+
+    renderEpisodeSelect(list);
     setTimeout(wrapDynamicIframes, 0);
+}
+
+function renderEpisodeSelect(list) {
+    const select = document.getElementById('ep-select');
+    if (!select) return;
+
+    select.innerHTML = list.map((ep, index) => {
+        const label = `Épisode ${ep.num} — ${ep.title}`;
+        return `<option value="${index}"${index === state.epIndex ? ' selected' : ''}>${label}</option>`;
+    }).join('');
 }
 
 function navigateEp(delta) {
