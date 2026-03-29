@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // Sélection des éléments à animer à l'apparition (scroll)
+    // .table-wrapper est ajouté pour cibler les tableaux enveloppés dans la page Épisodes
     const elements = document.querySelectorAll(
-        "header, section, .video-cell, table"
+        "header, section, .video-cell, table, .table-wrapper"
     );
 
     // Création de l'observateur d'intersection
+    // threshold à 0.05 : déclenche dès que 5% de l'élément est visible
+    // — nécessaire pour les grands tableaux qui ne peuvent pas atteindre 20%
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -21,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }, {
-        threshold: 0.2 // L'élément doit être visible à 20% pour déclencher l'animation
+        threshold: 0.05 // Abaissé de 0.2 à 0.05 pour les grands éléments (tableaux, sections longues)
     });
 
     // Initialisation : cache tous les éléments et ajoute un délai progressif (effet cascade)
@@ -32,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
 function loadBilibili(el) {
     el.innerHTML = `
         <iframe
