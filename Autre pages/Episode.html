@@ -157,12 +157,23 @@
 
             <!-- ===== MODE LECTEUR ===== -->
             <div id="view-player" class="view-panel" hidden>
+                
 
                 <!-- Titre de l'épisode en cours -->
                 <div class="player-header">
                     <span class="player-season-label" id="player-season-label"></span>
                     <h3 class="player-ep-title" id="player-ep-title"></h3>
                     <span class="player-ep-date"  id="player-ep-date"></span>
+                                    <div class="player-nav">
+                    <button class="player-nav-btn" id="btn-prev" onclick="navigateEp(-1)" aria-label="Épisode précédent">&#8249;</button>
+
+                    <!-- Select déroulant des épisodes -->
+                    <select class="ep-select" id="ep-select" onchange="goToEp(parseInt(this.value))" aria-label="Choisir un épisode">
+                        <!-- Options injectées dynamiquement -->
+                    </select>
+
+                    <button class="player-nav-btn" id="btn-next" onclick="navigateEp(1)"  aria-label="Épisode suivant">&#8250;</button>
+                </div>
                 </div>
 
                 <!-- Lecteur vidéo -->
@@ -173,16 +184,7 @@
                 </div>
 
                 <!-- Contrôles de navigation -->
-                <div class="player-nav">
-                    <button class="player-nav-btn" id="btn-prev" onclick="navigateEp(-1)" aria-label="Épisode précédent">&#8249;</button>
 
-                    <!-- Select déroulant des épisodes -->
-                    <select class="ep-select" id="ep-select" onchange="goToEp(parseInt(this.value))" aria-label="Choisir un épisode">
-                        <!-- Options injectées dynamiquement -->
-                    </select>
-
-                    <button class="player-nav-btn" id="btn-next" onclick="navigateEp(1)"  aria-label="Épisode suivant">&#8250;</button>
-                </div>
 
             </div><!-- /view-player -->
 
