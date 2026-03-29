@@ -7,7 +7,7 @@
     <meta name="description" content="Liste complète des épisodes de Mushoku Tensei : saison 1, saison 2, trailers et fan animations. Dates de diffusion et plateformes.">
     <meta name="keywords" content="Mushoku Tensei, épisodes, saison 1, saison 2, trailers, Crunchyroll, Wakanim, liste épisodes">
     <meta property="og:title" content="Mushoku Tensei – Épisodes et Trailers">
-    <meta property="og:description" content="Retrouvez tous les épisodes, trailers et teasers de Mushoku Tensei : Isekai Ittara Honki Dasu, par saison et par date de diffusion.">
+    <meta property="og:description" content="Retrouvez tous les épisodes de Mushoku Tensei en VO et VF, saison par saison.">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="fr_FR">
     <title>Mushoku Tensei — Épisodes et Trailers</title>
@@ -111,238 +111,86 @@
             </div>
         </section>
 
-        <!-- ========== SECTION LISTE DES ÉPISODES ========== -->
+        <!-- ========== SECTION ÉPISODES — NAVIGATEUR COMPLET ========== -->
         <section class="hidden" aria-labelledby="titre-liste">
             <h2 id="titre-liste">Liste des épisodes</h2>
 
-            <!-- Onglets VO / VF -->
-            <div class="tabs" role="tablist" aria-label="Choisir la version des épisodes">
-                <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel-vo" id="tab-vo" onclick="switchTab('vo')">
-                    Version Originale (VO)
-                </button>
-                <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-vf" id="tab-vf" onclick="switchTab('vf')">
-                    Version Française (VF)
-                </button>
+            <!-- ===== BARRE DE CONTRÔLES ===== -->
+            <div class="controls-bar" role="group" aria-label="Filtres de navigation des épisodes">
+
+                <!-- Choix de la saison -->
+                <div class="ctrl-group">
+                    <span class="ctrl-label">Saison</span>
+                    <div class="ctrl-btns" role="radiogroup" aria-label="Choisir la saison">
+                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-season="s1"   onclick="setSeason('s1')">Saison 1</button>
+                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-season="s2p1" onclick="setSeason('s2p1')">S2 — Cour 1</button>
+                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-season="s2p2" onclick="setSeason('s2p2')">S2 — Cour 2</button>
+                    </div>
+                </div>
+
+                <!-- Choix VO / VF -->
+                <div class="ctrl-group">
+                    <span class="ctrl-label">Version</span>
+                    <div class="ctrl-btns" role="radiogroup" aria-label="Choisir la version">
+                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-version="vo" onclick="setVersion('vo')">VO</button>
+                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-version="vf" onclick="setVersion('vf')">VF</button>
+                    </div>
+                </div>
+
+                <!-- Choix mode affichage -->
+                <div class="ctrl-group">
+                    <span class="ctrl-label">Affichage</span>
+                    <div class="ctrl-btns" role="radiogroup" aria-label="Choisir le mode d'affichage">
+                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-mode="table"  onclick="setMode('table')">&#9783; Tableau</button>
+                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-mode="player" onclick="setMode('player')">&#9654; Lecteur</button>
+                    </div>
+                </div>
+
+            </div><!-- /controls-bar -->
+
+            <!-- ===== MODE TABLEAU ===== -->
+            <div id="view-table" class="view-panel active">
+                <div class="table-wrapper" id="active-table-wrapper">
+                    <!-- Injecté dynamiquement par renderTable() -->
+                </div>
             </div>
 
-            <!-- ===== PANNEAU VO ===== -->
-            <div id="panel-vo" role="tabpanel" aria-labelledby="tab-vo" class="tab-panel active">
+            <!-- ===== MODE LECTEUR ===== -->
+            <div id="view-player" class="view-panel" hidden>
 
-                <!-- Saison 1 VO -->
-                <div class="table-wrapper">
-                    <table aria-label="Épisodes Saison 1 - Version Originale">
-                        <caption><h3>Saison 1 — Version Originale</h3></caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">N°</th>
-                                <th scope="col">Titre VO</th>
-                                <th scope="col">Diffusion</th>
-                                <th scope="col">Vidéo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="ep-num">01</td><td class="ep-title">Mushoku Tensei</td><td class="ep-date">11 jan. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670916&share=0" title="Mushoku Tensei S1 01 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">02</td><td class="ep-title">Isshun no Juryoku</td><td class="ep-date">18 jan. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670917&share=0" title="Mushoku Tensei S1 02 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">03</td><td class="ep-title">Doryoku no Saki ni</td><td class="ep-date">25 jan. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670918&share=0" title="Mushoku Tensei S1 03 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">04</td><td class="ep-title">Ushinawareta Mono</td><td class="ep-date">1 fév. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670919&share=0" title="Mushoku Tensei S1 04 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">05</td><td class="ep-title">Chiisana Hantai</td><td class="ep-date">8 fév. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670920&share=0" title="Mushoku Tensei S1 05 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">06</td><td class="ep-title">Hajimete no Shigoto</td><td class="ep-date">15 fév. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670922&share=0" title="Mushoku Tensei S1 06 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">07</td><td class="ep-title">Shojo no Kokoro</td><td class="ep-date">22 fév. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670923&share=0" title="Mushoku Tensei S1 07 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">08</td><td class="ep-title">Inochi no Kachi</td><td class="ep-date">1 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670925&share=0" title="Mushoku Tensei S1 08 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">09</td><td class="ep-title">Mirai wo Kaeru Te</td><td class="ep-date">8 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670926&share=0" title="Mushoku Tensei S1 09 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">10</td><td class="ep-title">Shirarezaru Otoko</td><td class="ep-date">15 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670927&share=0" title="Mushoku Tensei S1 10 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">11</td><td class="ep-title">Inochi no Fukami</td><td class="ep-date">22 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670928&share=0" title="Mushoku Tensei S1 11 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">12</td><td class="ep-title">Mamoritai Mono</td><td class="ep-date">29 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670929&share=0" title="Mushoku Tensei S1 12 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">13</td><td class="ep-title">Atarashii Sekai</td><td class="ep-date">5 avr. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670930&share=0" title="Mushoku Tensei S1 13 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">14</td><td class="ep-title">Yakusoku</td><td class="ep-date">12 avr. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670931&share=0" title="Mushoku Tensei S1 14 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">15</td><td class="ep-title">Murabito no Hazama</td><td class="ep-date">19 avr. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670932&share=0" title="Mushoku Tensei S1 15 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">16</td><td class="ep-title">Oya no Yasashisa</td><td class="ep-date">26 avr. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670933&share=0" title="Mushoku Tensei S1 16 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">17</td><td class="ep-title">Chichi no Isan</td><td class="ep-date">3 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670934&share=0" title="Mushoku Tensei S1 17 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">18</td><td class="ep-title">Eiyu no Modori</td><td class="ep-date">10 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670936&share=0" title="Mushoku Tensei S1 18 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">19</td><td class="ep-title">Akarui Mirai e no Ichibu</td><td class="ep-date">17 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670937&share=0" title="Mushoku Tensei S1 19 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">20</td><td class="ep-title">Mirai no Tatakai</td><td class="ep-date">24 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670938&share=0" title="Mushoku Tensei S1 20 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">21</td><td class="ep-title">Atarashii Ketsui</td><td class="ep-date">31 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670939&share=0" title="Mushoku Tensei S1 21 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">22</td><td class="ep-title">Chinmoku no Kusari</td><td class="ep-date">7 juin 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670940&share=0" title="Mushoku Tensei S1 22 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">23</td><td class="ep-title">Eiyu no Imi</td><td class="ep-date">14 juin 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670942&share=0" title="Mushoku Tensei S1 23 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <!-- Épisode spécial VOSTFR — corriger le titre si besoin -->
-                            <tr><td class="ep-num">24</td><td class="ep-title">Épisode Spécial</td><td class="ep-date">—</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4670943&share=0" title="Mushoku Tensei S1 24 VOSTFR 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                        </tbody>
-                    </table>
+                <!-- Titre de l'épisode en cours -->
+                <div class="player-header">
+                    <span class="player-season-label" id="player-season-label"></span>
+                    <h3 class="player-ep-title" id="player-ep-title"></h3>
+                    <span class="player-ep-date"  id="player-ep-date"></span>
                 </div>
 
-                <!-- Saison 2 Partie 1 VO -->
-                <div class="table-wrapper">
-                    <table aria-label="Épisodes Saison 2 Partie 1 - Version Originale">
-                        <caption><h3>Saison 2 — Partie 1 — Version Originale</h3></caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">N°</th>
-                                <th scope="col">Titre VO</th>
-                                <th scope="col">Diffusion</th>
-                                <th scope="col">Vidéo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="ep-num">01</td><td class="ep-title">Reunion</td><td class="ep-date">3 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">02</td><td class="ep-title">Koshaku no Noroi</td><td class="ep-date">10 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">03</td><td class="ep-title">Atarashii Tabidachi</td><td class="ep-date">17 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">04</td><td class="ep-title">Kako no Kioku</td><td class="ep-date">24 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">05</td><td class="ep-title">Okina Henka</td><td class="ep-date">31 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">06</td><td class="ep-title">Chikara no Test</td><td class="ep-date">7 nov. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">07</td><td class="ep-title">Kofu</td><td class="ep-date">14 nov. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">08</td><td class="ep-title">Mirai ni Taisho</td><td class="ep-date">21 nov. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">09</td><td class="ep-title">Kuroi Michi</td><td class="ep-date">28 nov. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">10</td><td class="ep-title">Hisshite</td><td class="ep-date">5 déc. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">11</td><td class="ep-title">Atarashii Keshiki</td><td class="ep-date">12 déc. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">12</td><td class="ep-title">Susumu Chikara</td><td class="ep-date">19 déc. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                        </tbody>
-                    </table>
+                <!-- Lecteur vidéo -->
+                <div class="player-video-wrapper">
+                    <div class="video-container" id="player-video-container">
+                        <!-- iframe injecté dynamiquement -->
+                    </div>
                 </div>
 
-                <!-- Saison 2 Partie 2 VO -->
-                <div class="table-wrapper">
-                    <table aria-label="Épisodes Saison 2 Partie 2 - Version Originale">
-                        <caption><h3>Saison 2 — Partie 2 — Version Originale</h3></caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">N°</th>
-                                <th scope="col">Titre VO</th>
-                                <th scope="col">Diffusion</th>
-                                <th scope="col">Vidéo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="ep-num">01</td><td class="ep-title">Sai no Michi</td><td class="ep-date">6 jan. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">02</td><td class="ep-title">Susumu Tabidachi</td><td class="ep-date">13 jan. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">03</td><td class="ep-title">Kismet no Henka</td><td class="ep-date">20 jan. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">04</td><td class="ep-title">Kako no Hibiki</td><td class="ep-date">27 jan. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">05</td><td class="ep-title">Unmei no Omosa</td><td class="ep-date">3 fév. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">06</td><td class="ep-title">Fuchi ni Sumu</td><td class="ep-date">10 fév. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">07</td><td class="ep-title">Sentaku to Kekka</td><td class="ep-date">17 fév. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">08</td><td class="ep-title">Sekai no Hashi</td><td class="ep-date">24 fév. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">09</td><td class="ep-title">Saigo no Tatta</td><td class="ep-date">2 mar. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">10</td><td class="ep-title">Saigo no Sho</td><td class="ep-date">9 mar. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">11</td><td class="ep-title">Hajimari no Owari</td><td class="ep-date">16 mar. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">12</td><td class="ep-title">Atarashii Hi</td><td class="ep-date">23 mar. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                        </tbody>
-                    </table>
+                <!-- Contrôles de navigation -->
+                <div class="player-nav">
+                    <button class="player-nav-btn" id="btn-prev" onclick="navigateEp(-1)" aria-label="Épisode précédent">&#8249;</button>
+
+                    <!-- Select déroulant des épisodes -->
+                    <select class="ep-select" id="ep-select" onchange="goToEp(parseInt(this.value))" aria-label="Choisir un épisode">
+                        <!-- Options injectées dynamiquement -->
+                    </select>
+
+                    <button class="player-nav-btn" id="btn-next" onclick="navigateEp(1)"  aria-label="Épisode suivant">&#8250;</button>
                 </div>
 
-            </div><!-- /panel-vo -->
-
-            <!-- ===== PANNEAU VF ===== -->
-            <div id="panel-vf" role="tabpanel" aria-labelledby="tab-vf" class="tab-panel" hidden>
-
-                <!-- Saison 1 VF -->
-                <div class="table-wrapper">
-                    <table aria-label="Épisodes Saison 1 - Version Française">
-                        <caption><h3>Saison 1 — Version Française</h3></caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">N°</th>
-                                <th scope="col">Titre VF</th>
-                                <th scope="col">Diffusion</th>
-                                <th scope="col">Vidéo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="ep-num">01</td><td class="ep-title">Réincarnation sans emploi</td><td class="ep-date">11 jan. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671027&share=0" title="Mushoku Tensei S1 01 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">02</td><td class="ep-title">Le Poids d'une Vie</td><td class="ep-date">18 jan. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671030&share=0" title="Mushoku Tensei S1 02 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">03</td><td class="ep-title">Au-delà de l'Effort</td><td class="ep-date">25 jan. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671032&share=0" title="Mushoku Tensei S1 03 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">04</td><td class="ep-title">Ce qui a été Perdu</td><td class="ep-date">1 fév. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671036&share=0" title="Mushoku Tensei S1 04 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">05</td><td class="ep-title">Une Petite Rébellion</td><td class="ep-date">8 fév. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671038&share=0" title="Mushoku Tensei S1 05 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">06</td><td class="ep-title">Le Premier Emploi</td><td class="ep-date">15 fév. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671041&share=0" title="Mushoku Tensei S1 06 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">07</td><td class="ep-title">Le Coeur d'une Jeune Fille</td><td class="ep-date">22 fév. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671047&share=0" title="Mushoku Tensei S1 07 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">08</td><td class="ep-title">La Valeur d'une Vie</td><td class="ep-date">1 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671052&share=0" title="Mushoku Tensei S1 08 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">09</td><td class="ep-title">Les Mains qui Changeront l'Avenir</td><td class="ep-date">8 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671058&share=0" title="Mushoku Tensei S1 09 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">10</td><td class="ep-title">L'Homme Inconnu</td><td class="ep-date">15 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671063&share=0" title="Mushoku Tensei S1 10 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">11</td><td class="ep-title">La Profondeur de la Vie</td><td class="ep-date">22 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671068&share=0" title="Mushoku Tensei S1 11 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">12</td><td class="ep-title">Ce que l'on Veut Protéger</td><td class="ep-date">29 mar. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671071&share=0" title="Mushoku Tensei S1 12 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">13</td><td class="ep-title">Un Nouveau Monde</td><td class="ep-date">5 avr. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671075&share=0" title="Mushoku Tensei S1 13 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">14</td><td class="ep-title">Une Promesse à Tenir</td><td class="ep-date">12 avr. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671078&share=0" title="Mushoku Tensei S1 14 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">15</td><td class="ep-title">Aux Marges du Village</td><td class="ep-date">19 avr. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671080&share=0" title="Mushoku Tensei S1 15 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">16</td><td class="ep-title">La Douceur d'un Parent</td><td class="ep-date">26 avr. 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671081&share=0" title="Mushoku Tensei S1 16 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">17</td><td class="ep-title">L'Héritage d'un Père</td><td class="ep-date">3 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671084&share=0" title="Mushoku Tensei S1 17 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">18</td><td class="ep-title">Le Retour du Héros</td><td class="ep-date">10 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671086&share=0" title="Mushoku Tensei S1 18 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">19</td><td class="ep-title">Le Premier Pas vers un Avenir Radieux</td><td class="ep-date">17 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671087&share=0" title="Mushoku Tensei S1 19 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">20</td><td class="ep-title">Le Combat pour l'Avenir</td><td class="ep-date">24 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671088&share=0" title="Mushoku Tensei S1 20 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">21</td><td class="ep-title">Une Nouvelle Résolution</td><td class="ep-date">31 mai 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671089&share=0" title="Mushoku Tensei S1 21 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">22</td><td class="ep-title">Briser les Chaînes</td><td class="ep-date">7 juin 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671092&share=0" title="Mushoku Tensei S1 22 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <tr><td class="ep-num">23</td><td class="ep-title">La Signification d'un Héros</td><td class="ep-date">14 juin 2021</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=4671095&share=0" title="Mushoku Tensei S1 23 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                            <!-- Épisode spécial VF — corriger le titre si besoin -->
-                            <tr><td class="ep-num">24</td><td class="ep-title">Épisode Spécial</td><td class="ep-date">—</td><td class="ep-video"><div class="video-container"><iframe src="https://video.sibnet.ru/shell.php?videoid=5114213&share=0" title="Mushoku Tensei S1 24 VF 1080p" loading="lazy" allowfullscreen></iframe></div></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Saison 2 Partie 1 VF -->
-                <div class="table-wrapper">
-                    <table aria-label="Épisodes Saison 2 Partie 1 - Version Française">
-                        <caption><h3>Saison 2 — Partie 1 — Version Française</h3></caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">N°</th>
-                                <th scope="col">Titre VF</th>
-                                <th scope="col">Diffusion</th>
-                                <th scope="col">Vidéo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="ep-num">01</td><td class="ep-title">Les Retrouvailles</td><td class="ep-date">3 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">02</td><td class="ep-title">La Malédiction du Noble</td><td class="ep-date">10 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">03</td><td class="ep-title">Un Nouveau Départ</td><td class="ep-date">17 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">04</td><td class="ep-title">Souvenirs du Passé</td><td class="ep-date">24 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">05</td><td class="ep-title">Le Grand Changement</td><td class="ep-date">31 oct. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">06</td><td class="ep-title">L'Épreuve de Force</td><td class="ep-date">7 nov. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">07</td><td class="ep-title">La Tempête Approche</td><td class="ep-date">14 nov. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">08</td><td class="ep-title">Face à l'Avenir</td><td class="ep-date">21 nov. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">09</td><td class="ep-title">Le Chemin Sombre</td><td class="ep-date">28 nov. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">10</td><td class="ep-title">Mesures Désespérées</td><td class="ep-date">5 déc. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">11</td><td class="ep-title">Nouveaux Horizons</td><td class="ep-date">12 déc. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">12</td><td class="ep-title">La Force d'Avancer</td><td class="ep-date">19 déc. 2023</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Saison 2 Partie 2 VF -->
-                <div class="table-wrapper">
-                    <table aria-label="Épisodes Saison 2 Partie 2 - Version Française">
-                        <caption><h3>Saison 2 — Partie 2 — Version Française</h3></caption>
-                        <thead>
-                            <tr>
-                                <th scope="col">N°</th>
-                                <th scope="col">Titre VF</th>
-                                <th scope="col">Diffusion</th>
-                                <th scope="col">Vidéo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="ep-num">01</td><td class="ep-title">Le Chemin de la Réincarnation</td><td class="ep-date">6 jan. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">02</td><td class="ep-title">Le Voyage Continue</td><td class="ep-date">13 jan. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">03</td><td class="ep-title">Destins Changeants</td><td class="ep-date">20 jan. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">04</td><td class="ep-title">Échos du Passé</td><td class="ep-date">27 jan. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">05</td><td class="ep-title">Le Poids du Destin</td><td class="ep-date">3 fév. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">06</td><td class="ep-title">Au Bord du Gouffre</td><td class="ep-date">10 fév. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">07</td><td class="ep-title">Choix et Conséquences</td><td class="ep-date">17 fév. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">08</td><td class="ep-title">Au Bout du Monde</td><td class="ep-date">24 fév. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">09</td><td class="ep-title">Le Dernier Bastion</td><td class="ep-date">2 mar. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">10</td><td class="ep-title">Le Chapitre Final</td><td class="ep-date">9 mar. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">11</td><td class="ep-title">La Fin du Commencement</td><td class="ep-date">16 mar. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                            <tr><td class="ep-num">12</td><td class="ep-title">Une Nouvelle Aube</td><td class="ep-date">23 mar. 2024</td><td class="ep-video"><div class="video-placeholder">Vidéo à venir</div></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div><!-- /panel-vf -->
+            </div><!-- /view-player -->
 
             <h4>Plus d'informations</h4>
             <p>
                 Consultez la page
                 <a href="https://fr.wikipedia.org/wiki/Mushoku_Tensei:_Isekai_Ittara_Honki_Dasu" target="_blank" rel="noopener noreferrer">Wikipedia dédiée à Mushoku Tensei</a>
                 pour plus de détails.
-            </p>
-            <p>
-                Regardez les épidoses sur <a href="https://anime-sama.to/catalogue/mushoku-tensei/" target="_blank" rel="noopener noreferrer">Anime-Sama</a>
             </p>
 
         </section>
@@ -351,7 +199,11 @@
     <script src="../Js/Jscripts2.js"></script>
     <script src="../Js/Jscripts.js"></script>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
+    <script>
+        function loadBilibili(el) {
+            el.innerHTML = '<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115200954998720&bvid=BV1miHfzEET2&cid=25861363351&p=1&autoplay=1" allowfullscreen></iframe>';
+        }
+    </script>
 
 </body>
 </html>

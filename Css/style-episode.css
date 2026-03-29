@@ -5,27 +5,57 @@ html {
 
 
 /* ================================================== */
-/*  ONGLETS VO / VF                                   */
+/*  BARRE DE CONTRÔLES                                */
 /* ================================================== */
 
-.tabs {
+/* Conteneur principal de la barre de filtres */
+.controls-bar {
     display: flex;
+    flex-wrap: wrap;
+    gap: 20px 32px;
+    margin: 22px 0 26px;
+    padding: 18px 22px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    backdrop-filter: blur(6px);
+}
+
+/* Groupe label + boutons */
+.ctrl-group {
+    display: flex;
+    flex-direction: column;
     gap: 8px;
-    margin: 22px 0 18px;
+}
+
+/* Label au-dessus du groupe */
+.ctrl-label {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+/* Rangée de boutons radio-style */
+.ctrl-btns {
+    display: flex;
+    gap: 6px;
     flex-wrap: wrap;
 }
 
-.tab-btn {
+/* Bouton individuel */
+.ctrl-btn {
     font-family: var(--font-display);
-    font-size: 0.82rem;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
     color: var(--color-text-muted);
     background: rgba(0, 0, 0, 0.3);
     border: 1.5px solid var(--color-border);
     border-radius: var(--radius-sm);
-    padding: 9px 20px;
+    padding: 7px 16px;
     cursor: pointer;
+    white-space: nowrap;
     transition:
         background var(--transition-fast),
         border-color var(--transition-fast),
@@ -33,15 +63,26 @@ html {
         box-shadow var(--transition-fast);
 }
 
-.tab-btn.active,
-.tab-btn:hover {
-    background: rgba(255, 215, 0, 0.12);
+/* Bouton actif */
+.ctrl-btn.active {
+    background: rgba(255, 215, 0, 0.14);
     border-color: var(--color-gold);
     color: var(--color-gold);
-    box-shadow: 0 0 14px var(--color-gold-glow);
+    box-shadow: 0 0 12px var(--color-gold-glow);
 }
 
-.tab-panel {
+.ctrl-btn:hover:not(.active) {
+    background: rgba(255, 215, 0, 0.06);
+    border-color: rgba(255, 215, 0, 0.4);
+    color: var(--color-text);
+}
+
+
+/* ================================================== */
+/*  PANNEAUX DE VUE (tableau / lecteur)               */
+/* ================================================== */
+
+.view-panel {
     animation: fadeInPanel 0.3s ease;
 }
 
@@ -59,13 +100,13 @@ html {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin-top: 28px;
+    margin-top: 8px;
     border-radius: var(--radius-md);
 }
 
 .table-wrapper table {
     margin-top: 0;
-    min-width: 560px;
+    min-width: 520px;
 }
 
 
@@ -135,20 +176,189 @@ tr:hover .video-placeholder {
 
 
 /* ================================================== */
+/*  MODE LECTEUR                                      */
+/* ================================================== */
+
+/* En-tête du lecteur : saison, titre, date */
+.player-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.player-season-label {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+}
+
+.player-ep-title {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.player-ep-date {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+}
+
+/* Wrapper de la vidéo en mode lecteur */
+.player-video-wrapper {
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--color-border);
+    background: #000;
+}
+
+/* Conteneur 16:9 de la vidéo (déjà dans style-common via .video-container) */
+.player-video-wrapper .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+}
+
+.player-video-wrapper .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Placeholder dans le lecteur quand pas de vidéo */
+.player-placeholder {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    background: rgba(255, 215, 0, 0.03);
+}
+
+.player-placeholder span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    border: 1.5px dashed rgba(255, 215, 0, 0.2);
+    padding: 16px 32px;
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+}
+
+/* Barre de navigation épisode : flèches + select */
+.player-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+/* Boutons flèche précédent / suivant */
+.player-nav-btn {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 215, 0, 0.4);
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--color-text);
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+}
+
+.player-nav-btn:hover:not(:disabled) {
+    background: var(--color-gold-dim);
+    border-color: var(--color-gold);
+    color: #12100a;
+    transform: scale(1.1);
+    box-shadow: 0 0 14px var(--color-gold-glow);
+}
+
+/* Bouton désactivé aux bornes */
+.player-nav-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Select déroulant des épisodes */
+.ep-select {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    color: var(--color-text);
+    background: rgba(0, 0, 0, 0.5);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    /* Chevron doré via SVG inline */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffd700' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 38px;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.ep-select:focus {
+    outline: none;
+    border-color: var(--color-gold);
+    box-shadow: 0 0 10px var(--color-gold-glow);
+}
+
+.ep-select option {
+    background: #12100a;
+    color: var(--color-text);
+}
+
+
+/* ================================================== */
 /*  RESPONSIVE SPÉCIFIQUE À CETTE PAGE                */
 /* ================================================== */
 
 @media (max-width: 768px) {
-    .tabs {
+
+    /* Barre de contrôles : chaque groupe prend toute la largeur */
+    .controls-bar {
         flex-direction: column;
+        gap: 16px;
+        padding: 14px 16px;
     }
 
-    .tab-btn {
-        width: 100%;
+    .ctrl-btns {
+        flex-wrap: wrap;
+    }
+
+    .ctrl-btn {
+        flex: 1;
         text-align: center;
-        padding: 11px 16px;
+        padding: 9px 10px;
     }
 
+    /* Colonne vidéo réduite dans le tableau */
     .ep-video {
         width: 200px;
         min-width: 160px;
@@ -164,11 +374,26 @@ tr:hover .video-placeholder {
         min-height: 44px;
         font-size: 0.65rem;
     }
+
+    /* Flèches du lecteur légèrement réduites */
+    .player-nav-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 1.3rem;
+    }
+
 }
 
 @media (max-width: 480px) {
     .ep-num {
         width: 36px;
         font-size: 0.78rem;
+    }
+
+    .player-placeholder span {
+        font-size: 0.7rem;
+        padding: 12px 18px;
+        white-space: normal;
+        text-align: center;
     }
 }
