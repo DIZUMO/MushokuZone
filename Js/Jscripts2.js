@@ -124,17 +124,17 @@ s2p2: {
 
     s3: {
     vo: [
-        { num:'01', title:'Épisode 1', date:'4 juil. 2026', videoId:'6234365' },
-        { num:'02', title:'Épisode 2', date:'4 juil. 2026', videoId:'6234379' },
-        { num:'03', title:'Épisode 3', date:'12 juil. 2026', videoId:'' },
+        { num:'01', title:'Épisode 1', date:'4 juil. 2026',  vvideoId'6234365' },
+        { num:'02', title:'Épisode 2', date:'4 juil. 2026',  videoId:'6234379' },
+        { num:'03', title:'Épisode 3', date:'12 juil. 2026', videoId:'6240509' },
         { num:'04', title:'Épisode 4', date:'19 juil. 2026', videoId:'' },
         { num:'05', title:'Épisode 5', date:'26 juil. 2026', videoId:'' },
-        { num:'06', title:'Épisode 6', date:'2 août. 2026', videoId:'' },
-        { num:'07', title:'Épisode 7', date:'9 août 2026', videoId:'' },
-        { num:'08', title:'Épisode 8', date:'16 août 2026', videoId:'' },
-        { num:'09', title:'Épisode 9', date:'23 août 2026', videoId:'' },
+        { num:'06', title:'Épisode 6', date:'2 août. 2026',  videoId:'' },
+        { num:'07', title:'Épisode 7', date:'9 août 2026',   videoId:'' },
+        { num:'08', title:'Épisode 8', date:'16 août 2026',  videoId '' },
+        { num:'09', title:'Épisode 9', date:'23 août 2026',  videoId ''  },
         { num:'10', title:'Épisode 10', date:'30 août 2026', videoId:'' },
-        { num:'11', title:'Épisode 11', date:'6 sep. 2026', videoId:'' },
+        { num:'11', title:'Épisode 11', date:'6 sep. 2026',  videoId:'' },
         { num:'12', title:'Épisode 12', date:'13 sep. 2026', videoId:'' }
     ],
     vf: [
