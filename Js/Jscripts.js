@@ -13,18 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
         if (el.dataset.loaderWrapped) return;
         el.dataset.loaderWrapped = 'true';
 
-        const wrapper = document.createElement('div');
-        wrapper.className = 'media-loader-wrapper';
+        // S'assurer que le parent est positionné
+        const parent = el.parentNode;
+        if (getComputedStyle(parent).position === 'static') {
+            parent.style.position = 'relative';
+        }
 
         const loaderEl = document.createElement('div');
         loaderEl.className = 'loader';
+        loaderEl.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;';
 
-        // Insère le wrapper avant l'élément dans le DOM
-        el.parentNode.insertBefore(wrapper, el);
-
-        // Met l'élément dans le wrapper, ajoute le loader
-        wrapper.appendChild(el);
-        wrapper.appendChild(loaderEl);
+        // Ajouter le loader directement au parent (pas de wrapper supplémentaire)
+        parent.appendChild(loaderEl);
 
         // Cache le média pendant son chargement
         el.style.opacity = '0';
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function onLoaded() {
             loaderEl.remove();
-            wrapper.style.background = 'none';
             el.style.opacity = '';
             el.style.position = '';
             el.style.zIndex   = '';
@@ -107,14 +106,15 @@ function wrapDynamicIframes() {
         if (iframe.dataset.loaderWrapped) return;
         iframe.dataset.loaderWrapped = 'true';
 
-        const loaderEl = document.createElement('div');
-        loaderEl.className = 'loader';
-        loaderEl.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;';
-
         const parent = iframe.closest('td, .video-container, #player-video-container') || iframe.parentNode;
         if (getComputedStyle(parent).position === 'static') {
             parent.style.position = 'relative';
         }
+
+        const loaderEl = document.createElement('div');
+        loaderEl.className = 'loader';
+        loaderEl.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;pointer-events:none;';
+
         parent.appendChild(loaderEl);
 
         iframe.style.opacity = '0';

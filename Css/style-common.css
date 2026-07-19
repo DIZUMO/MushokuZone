@@ -80,19 +80,7 @@ body {
 /*  ANIMATION DE CHARGEMENT (loader)                  */
 /* ================================================== */
 
-/* Loader utilisé comme placeholder pendant le chargement des médias */
-.media-loader-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.35);
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    min-height: 80px;
-}
-
-/* Le loader lui-même (injecté par JS) */
+/* Le loader lui-même (injecté par JS) - CENTRÉ AVEC TRANSFORM */
 .loader {
     width: fit-content;
     font-weight: bold;
@@ -526,13 +514,6 @@ nav ul li a:hover { color: var(--color-gold); }
     height: 100%;
     top: 0;
     left: 0;
-}
-
-/* Loader centré dans le conteneur vidéo 16:9 */
-.video-container .media-loader-wrapper {
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius-sm);
 }
 
 .video-preview {
