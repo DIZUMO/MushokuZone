@@ -399,6 +399,8 @@ iframe {
     aspect-ratio: 16 / 9;
     border: none;
     box-shadow: 0 6px 24px rgba(0,0,0,0.5);
+    image-rendering: high-quality;
+    -webkit-font-smoothing: antialiased;
 }
 
 
@@ -460,7 +462,7 @@ nav ul li a:hover { color: var(--color-gold); }
 
 .video-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 22px;
     margin-top: 18px;
 }
@@ -506,6 +508,7 @@ nav ul li a:hover { color: var(--color-gold); }
     padding-bottom: 56.25%;
     border-radius: var(--radius-sm);
     overflow: hidden;
+    background: #000;
 }
 
 .video-container iframe {
@@ -527,6 +530,15 @@ nav ul li a:hover { color: var(--color-gold); }
 .video-preview img {
     width: 100%;
     display: block;
+    object-fit: cover;
+    image-rendering: high-quality;
+    filter: brightness(1.05) contrast(1.1) saturate(1.15);
+    transition: filter var(--transition-fast), transform var(--transition-fast);
+}
+
+.video-preview:hover img {
+    filter: brightness(1.15) contrast(1.2) saturate(1.25);
+    transform: scale(1.05);
 }
 
 .play-button {
@@ -534,11 +546,23 @@ nav ul li a:hover { color: var(--color-gold); }
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: white;
-    background: rgba(0,0,0,0.6);
-    padding: 10px 16px;
+    background: rgba(0, 0, 0, 0.6);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
+    transition: all var(--transition-fast);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+}
+
+.video-preview:hover .play-button {
+    background: rgba(0, 0, 0, 0.8);
+    transform: translate(-50%, -50%) scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -575,6 +599,12 @@ nav ul li a:hover { color: var(--color-gold); }
 /* ================================================== */
 /*  RESPONSIVE                                        */
 /* ================================================== */
+
+@media (max-width: 1200px) {
+    .video-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
 @media (max-width: 900px) {
     .video-grid {
