@@ -107,21 +107,17 @@
                     <h4>Spoil la suite de la série</h4>
                 </div>
                 <div class="video-cell hidden">
-                    <blockquote class="twitter-tweet" data-media-max-width="560">
-                        <p lang="de" dir="ltr">
-                            Mushoku Tensei Fan animation OP Full Ver
-                            <a href="https://t.co/OJVxI5ptUT">pic.twitter.com/OJVxI5ptUT</a>
-                        </p>
-                        &mdash; Lanwen Tuzi Studio (@LanwenTuzStudio)
-                        <a href="https://twitter.com/LanwenTuzStudio/status/1758375753543266369">February 16, 2024</a>
-                    </blockquote>
+                    <div class="video-preview" onclick="loadTwitterEmbed(this)">
+                        <img src="../Image/mushoku-tensei9.jpg" alt="Aperçu de la fan animation opening par Lanwen Tuzi Studio" loading="lazy">
+                        <div class="play-button" aria-label="Lancer la vidéo">&#9654;</div>
+                    </div>
                     <p>Mushoku Tensei Fan animation opening par Lanwen Tuzi Studio</p>
                     <p>16 février 2024</p>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECTION ÉPISODES — NAVIGATEUR COMPLET ========== -->
+        <!-- ========== SECTION ÉPISODES — LECTEUR ========== -->
         <section class="hidden" aria-labelledby="titre-liste">
             <h2 id="titre-liste">Liste des épisodes</h2>
 
@@ -148,26 +144,19 @@
                     </div>
                 </div>
 
-                <!-- Choix mode affichage -->
+                <!-- Choix du lecteur -->
                 <div class="ctrl-group">
-                    <span class="ctrl-label">Affichage</span>
-                    <div class="ctrl-btns" role="radiogroup" aria-label="Choisir le mode d'affichage">
-                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-mode="table"  onclick="setMode('table')">&#9783; Tableau</button>
-                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-mode="player" onclick="setMode('player')">&#9654; Lecteur</button>
+                    <span class="ctrl-label">Lecteur</span>
+                    <div class="ctrl-btns" role="radiogroup" aria-label="Choisir le lecteur vidéo">
+                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-player="sibnet" onclick="setPlayer('sibnet')">Sibnet</button>
+                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-player="uqload" onclick="setPlayer('uqload')">Uqload</button>
                     </div>
                 </div>
 
             </div><!-- /controls-bar -->
 
-            <!-- ===== MODE TABLEAU ===== -->
-            <div id="view-table" class="view-panel active">
-                <div class="table-wrapper" id="active-table-wrapper">
-                    <!-- Injecté dynamiquement par renderTable() -->
-                </div>
-            </div>
-
-            <!-- ===== MODE LECTEUR DUAL PLAYER ===== -->
-            <div id="view-player" class="view-panel" hidden>
+            <!-- ===== LECTEUR ===== -->
+            <div id="view-player" class="view-panel">
 
                 <!-- Titre de l'épisode en cours -->
                 <div class="player-header">
@@ -176,23 +165,12 @@
                     <span class="player-ep-date"  id="player-ep-date"></span>
                 </div>
 
-                <!-- Dual Player Container -->
+                <!-- Lecteur vidéo -->
                 <div class="players-container">
-                    <!-- Lecteur Sibnet (gauche) -->
                     <div>
-                        <div class="player-wrapper-title">Sibnet (Primaire)</div>
+                        <div class="player-wrapper-title" id="player-source-label">Sibnet</div>
                         <div class="player-video-wrapper">
-                            <div class="video-container" id="player-video-sibnet">
-                                <!-- iframe injecté dynamiquement -->
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Lecteur Uqload (droite) -->
-                    <div>
-                        <div class="player-wrapper-title">Uqload (Alternatif)</div>
-                        <div class="player-video-wrapper">
-                            <div class="video-container" id="player-video-uqload">
+                            <div class="video-container" id="player-video-active">
                                 <!-- iframe injecté dynamiquement -->
                             </div>
                         </div>
@@ -203,12 +181,17 @@
                 <div class="player-nav">
                     <button class="player-nav-btn" id="btn-prev" onclick="navigateEp(-1)" aria-label="Épisode précédent">&#8249;</button>
 
-                    <!-- Select déroulant des épisodes -->
-                    <select class="ep-select" id="ep-select" onchange="goToEp(parseInt(this.value))" aria-label="Choisir un épisode">
+                    <!-- Select déroulant des épisodes disponibles -->
+                    <select class="ep-select" id="ep-select" onchange="goToEp(this.value)" aria-label="Choisir un épisode">
                         <!-- Options injectées dynamiquement -->
                     </select>
 
                     <button class="player-nav-btn" id="btn-next" onclick="navigateEp(1)"  aria-label="Épisode suivant">&#8250;</button>
+                </div>
+
+                <!-- Actions supplémentaires -->
+                <div class="player-extra-actions">
+                    <button class="ctrl-btn" onclick="goToLastAvailable()">&#9197; Dernier épisode disponible</button>
                 </div>
 
             </div><!-- /view-player -->
