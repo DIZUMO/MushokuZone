@@ -10,7 +10,7 @@ const EPISODES = {
             { num:'02', title:'Isshun no Jūryoku', date:'18 jan. 2021', sibnet:'4670917', uqload:'' },
             { num:'03', title:'Doryoku no Saki ni', date:'25 jan. 2021', sibnet:'4670918', uqload:'' },
             { num:'04', title:'Ushinawareta Mono', date:'1 fév. 2021', sibnet:'4670919', uqload:'' },
-            { num:'05', title:'Chīsana Hantai', date:'8 fév. 2021', sibnet:'4670920', uqload:'' },
+            { num:'05', title:'Chīsama Hantai', date:'8 fév. 2021', sibnet:'4670920', uqload:'' },
             { num:'06', title:'Hajimete no Shigoto', date:'15 fév. 2021', sibnet:'4670922', uqload:'' },
             { num:'07', title:'Shōjo no Kokoro', date:'22 fév. 2021', sibnet:'4670923', uqload:'' },
             { num:'08', title:'Inochi no Kachi', date:'1 mar. 2021', sibnet:'4670925', uqload:'' },
@@ -60,98 +60,99 @@ const EPISODES = {
     },
 
     s2p1: {
-    vo: [
-        { num:'00', title:'Épisode Spécial', date:'2 juil. 2023', sibnet:'5186353', uqload:'' },
-        { num:'01', title:'Épisode 1', date:'9 juil. 2023', sibnet:'5193243', uqload:'' },
-        { num:'02', title:'Épisode 2', date:'16 juil. 2023', sibnet:'5199557', uqload:'' },
-        { num:'03', title:'Épisode 3', date:'23 juil. 2023', sibnet:'5205966', uqload:'' },
-        { num:'04', title:'Épisode 4', date:'30 juil. 2023', sibnet:'5212670', uqload:'' },
-        { num:'05', title:'Épisode 5', date:'6 août 2023', sibnet:'5220585', uqload:'' },
-        { num:'06', title:'Épisode 6', date:'13 août 2023', sibnet:'5226751', uqload:'' },
-        { num:'07', title:'Épisode 7', date:'20 août 2023', sibnet:'5231211', uqload:'' },
-        { num:'08', title:'Épisode 8', date:'27 août 2023', sibnet:'5235472', uqload:'' },
-        { num:'09', title:'Épisode 9', date:'3 sep. 2023', sibnet:'5242251', uqload:'' },
-        { num:'10', title:'Épisode 10', date:'10 sep. 2023', sibnet:'5249351', uqload:'' },
-        { num:'11', title:'Épisode 11', date:'17 sep. 2023', sibnet:'5255407', uqload:'' },
-        { num:'12', title:'Épisode 12', date:'24 sep. 2023', sibnet:'5260491', uqload:'' }
-    ],
-    vf: [
-        { num:'00', title:'Épisode Spécial', date:'—', sibnet:'5243279', uqload:'' },
-        { num:'01', title:'Épisode 1', date:'—', sibnet:'5243289', uqload:'' },
-        { num:'02', title:'Épisode 2', date:'—', sibnet:'5249507', uqload:'' },
-        { num:'03', title:'Épisode 3', date:'—', sibnet:'5249510', uqload:'' },
-        { num:'04', title:'Épisode 4', date:'—', sibnet:'5255614', uqload:'' },
-        { num:'05', title:'Épisode 5', date:'—', sibnet:'5255616', uqload:'' },
-        { num:'06', title:'Épisode 6', date:'—', sibnet:'5277735', uqload:'' },
-        { num:'07', title:'Épisode 7', date:'—', sibnet:'5260626', uqload:'' },
-        { num:'08', title:'Épisode 8', date:'—', sibnet:'5277737', uqload:'' },
-        { num:'09', title:'Épisode 9', date:'—', sibnet:'5277740', uqload:'' },
-        { num:'10', title:'Épisode 10', date:'—', sibnet:'5277751', uqload:'' },
-        { num:'11', title:'Épisode 11', date:'—', sibnet:'5277762', uqload:'' },
-        { num:'12', title:'Épisode 12', date:'—', sibnet:'5282423', uqload:'' }
-    ]
-},
-s2p2: {
-    vo: [
-        { num:'01', title:'Épisode 1', date:'7 avr. 2024', sibnet:'5496999', uqload:'' },
-        { num:'02', title:'Épisode 2', date:'14 avr. 2024', sibnet:'5504610', uqload:'' },
-        { num:'03', title:'Épisode 3', date:'21 avr. 2024', sibnet:'5512013', uqload:'' },
-        { num:'04', title:'Épisode 4', date:'28 avr. 2024', sibnet:'5518678', uqload:'' },
-        { num:'05', title:'Épisode 5', date:'5 mai 2024', sibnet:'5526402', uqload:'' },
-        { num:'06', title:'Épisode 6', date:'12 mai 2024', sibnet:'5533510', uqload:'' },
-        { num:'07', title:'Épisode 7', date:'19 mai 2024', sibnet:'5546187', uqload:'' },
-        { num:'08', title:'Épisode 8', date:'26 mai 2024', sibnet:'5552364', uqload:'' },
-        { num:'09', title:'Épisode 9', date:'2 juin 2024', sibnet:'5558087', uqload:'' },
-        { num:'10', title:'Épisode 10', date:'9 juin 2024', sibnet:'5565055', uqload:'' },
-        { num:'11', title:'Épisode 11', date:'16 juin 2024', sibnet:'5573405', uqload:'' },
-        { num:'12', title:'Épisode 12', date:'30 juin 2024', sibnet:'5581041', uqload:'' }
-    ],
-    vf: [
-        { num:'01', title:'Épisode 1', date:'—', sibnet:'5519873', uqload:'' },
-        { num:'02', title:'Épisode 2', date:'—', sibnet:'5527541', uqload:'' },
-        { num:'03', title:'Épisode 3', date:'—', sibnet:'5534589', uqload:'' },
-        { num:'04', title:'Épisode 4', date:'—', sibnet:'5540510', uqload:'' },
-        { num:'05', title:'Épisode 5', date:'—', sibnet:'5547436', uqload:'' },
-        { num:'06', title:'Épisode 6', date:'—', sibnet:'5552697', uqload:'' },
-        { num:'07', title:'Épisode 7', date:'—', sibnet:'5565322', uqload:'' },
-        { num:'08', title:'Épisode 8', date:'—', sibnet:'5574499', uqload:'' },
-        { num:'09', title:'Épisode 9', date:'—', sibnet:'5582205', uqload:'' },
-        { num:'10', title:'Épisode 10', date:'—', sibnet:'5589753', uqload:'' },
-        { num:'11', title:'Épisode 11', date:'—', sibnet:'5597254', uqload:'' },
-        { num:'12', title:'Épisode 12', date:'—', sibnet:'5605561', uqload:'' }
-    ]
-},
+        vo: [
+            { num:'00', title:'Épisode Spécial', date:'2 juil. 2023', sibnet:'5186353', uqload:'' },
+            { num:'01', title:'Épisode 1', date:'9 juil. 2023', sibnet:'5193243', uqload:'' },
+            { num:'02', title:'Épisode 2', date:'16 juil. 2023', sibnet:'5199557', uqload:'' },
+            { num:'03', title:'Épisode 3', date:'23 juil. 2023', sibnet:'5205966', uqload:'' },
+            { num:'04', title:'Épisode 4', date:'30 juil. 2023', sibnet:'5212670', uqload:'' },
+            { num:'05', title:'Épisode 5', date:'6 août 2023', sibnet:'5220585', uqload:'' },
+            { num:'06', title:'Épisode 6', date:'13 août 2023', sibnet:'5226751', uqload:'' },
+            { num:'07', title:'Épisode 7', date:'20 août 2023', sibnet:'5231211', uqload:'' },
+            { num:'08', title:'Épisode 8', date:'27 août 2023', sibnet:'5235472', uqload:'' },
+            { num:'09', title:'Épisode 9', date:'3 sep. 2023', sibnet:'5242251', uqload:'' },
+            { num:'10', title:'Épisode 10', date:'10 sep. 2023', sibnet:'5249351', uqload:'' },
+            { num:'11', title:'Épisode 11', date:'17 sep. 2023', sibnet:'5255407', uqload:'' },
+            { num:'12', title:'Épisode 12', date:'24 sep. 2023', sibnet:'5260491', uqload:'' }
+        ],
+        vf: [
+            { num:'00', title:'Épisode Spécial', date:'—', sibnet:'5243279', uqload:'' },
+            { num:'01', title:'Épisode 1', date:'—', sibnet:'5243289', uqload:'' },
+            { num:'02', title:'Épisode 2', date:'—', sibnet:'5249507', uqload:'' },
+            { num:'03', title:'Épisode 3', date:'—', sibnet:'5249510', uqload:'' },
+            { num:'04', title:'Épisode 4', date:'—', sibnet:'5255614', uqload:'' },
+            { num:'05', title:'Épisode 5', date:'—', sibnet:'5255616', uqload:'' },
+            { num:'06', title:'Épisode 6', date:'—', sibnet:'5277735', uqload:'' },
+            { num:'07', title:'Épisode 7', date:'—', sibnet:'5260626', uqload:'' },
+            { num:'08', title:'Épisode 8', date:'—', sibnet:'5277737', uqload:'' },
+            { num:'09', title:'Épisode 9', date:'—', sibnet:'5277740', uqload:'' },
+            { num:'10', title:'Épisode 10', date:'—', sibnet:'5277751', uqload:'' },
+            { num:'11', title:'Épisode 11', date:'—', sibnet:'5277762', uqload:'' },
+            { num:'12', title:'Épisode 12', date:'—', sibnet:'5282423', uqload:'' }
+        ]
+    },
+
+    s2p2: {
+        vo: [
+            { num:'01', title:'Épisode 1', date:'7 avr. 2024', sibnet:'5496999', uqload:'' },
+            { num:'02', title:'Épisode 2', date:'14 avr. 2024', sibnet:'5504610', uqload:'' },
+            { num:'03', title:'Épisode 3', date:'21 avr. 2024', sibnet:'5512013', uqload:'' },
+            { num:'04', title:'Épisode 4', date:'28 avr. 2024', sibnet:'5518678', uqload:'' },
+            { num:'05', title:'Épisode 5', date:'5 mai 2024', sibnet:'5526402', uqload:'' },
+            { num:'06', title:'Épisode 6', date:'12 mai 2024', sibnet:'5533510', uqload:'' },
+            { num:'07', title:'Épisode 7', date:'19 mai 2024', sibnet:'5546187', uqload:'' },
+            { num:'08', title:'Épisode 8', date:'26 mai 2024', sibnet:'5552364', uqload:'' },
+            { num:'09', title:'Épisode 9', date:'2 juin 2024', sibnet:'5558087', uqload:'' },
+            { num:'10', title:'Épisode 10', date:'9 juin 2024', sibnet:'5565055', uqload:'' },
+            { num:'11', title:'Épisode 11', date:'16 juin 2024', sibnet:'5573405', uqload:'' },
+            { num:'12', title:'Épisode 12', date:'30 juin 2024', sibnet:'5581041', uqload:'' }
+        ],
+        vf: [
+            { num:'01', title:'Épisode 1', date:'—', sibnet:'5519873', uqload:'' },
+            { num:'02', title:'Épisode 2', date:'—', sibnet:'5527541', uqload:'' },
+            { num:'03', title:'Épisode 3', date:'—', sibnet:'5534589', uqload:'' },
+            { num:'04', title:'Épisode 4', date:'—', sibnet:'5540510', uqload:'' },
+            { num:'05', title:'Épisode 5', date:'—', sibnet:'5547436', uqload:'' },
+            { num:'06', title:'Épisode 6', date:'—', sibnet:'5552697', uqload:'' },
+            { num:'07', title:'Épisode 7', date:'—', sibnet:'5565322', uqload:'' },
+            { num:'08', title:'Épisode 8', date:'—', sibnet:'5574499', uqload:'' },
+            { num:'09', title:'Épisode 9', date:'—', sibnet:'5582205', uqload:'' },
+            { num:'10', title:'Épisode 10', date:'—', sibnet:'5589753', uqload:'' },
+            { num:'11', title:'Épisode 11', date:'—', sibnet:'5597254', uqload:'' },
+            { num:'12', title:'Épisode 12', date:'—', sibnet:'5605561', uqload:'' }
+        ]
+    },
 
     s3: {
-    vo: [
-        { num:'01', title:'Épisode 1', date:'4 juil. 2026', sibnet:'6234365', uqload:'' },
-        { num:'02', title:'Épisode 2', date:'4 juil. 2026', sibnet:'6234379', uqload:'' },
-        { num:'03', title:'Épisode 3', date:'12 juil. 2026', sibnet:'6240509', uqload:'' },
-        { num:'04', title:'Épisode 4', date:'19 juil. 2026', sibnet:'6246320', uqload:'' },
-        { num:'05', title:'Épisode 5', date:'26 juil. 2026', sibnet:'', uqload:'qzlvgp9xxz8c' },
-        { num:'06', title:'Épisode 6', date:'2 août. 2026', sibnet:'', uqload:'' },
-        { num:'07', title:'Épisode 7', date:'9 août 2026', sibnet:'', uqload:'' },
-        { num:'08', title:'Épisode 8', date:'16 août 2026', sibnet:'', uqload:'' },
-        { num:'09', title:'Épisode 9', date:'23 août 2026', sibnet:'', uqload:'' },
-        { num:'10', title:'Épisode 10', date:'30 août 2026', sibnet:'', uqload:'' },
-        { num:'11', title:'Épisode 11', date:'6 sep. 2026', sibnet:'', uqload:'' },
-        { num:'12', title:'Épisode 12', date:'13 sep. 2026', sibnet:'', uqload:'' }
-    ],
-    vf: [
-        { num:'01', title:'Épisode 1', date:'—', sibnet:'', uqload:'' },
-        { num:'02', title:'Épisode 2', date:'—', sibnet:'', uqload:'' },
-        { num:'03', title:'Épisode 3', date:'—', sibnet:'', uqload:'' },
-        { num:'04', title:'Épisode 4', date:'—', sibnet:'', uqload:'' },
-        { num:'05', title:'Épisode 5', date:'—', sibnet:'', uqload:'' },
-        { num:'06', title:'Épisode 6', date:'—', sibnet:'', uqload:'' },
-        { num:'07', title:'Épisode 7', date:'—', sibnet:'', uqload:'' },
-        { num:'08', title:'Épisode 8', date:'—', sibnet:'', uqload:'' },
-        { num:'09', title:'Épisode 9', date:'—', sibnet:'', uqload:'' },
-        { num:'10', title:'Épisode 10', date:'—', sibnet:'', uqload:'' },
-        { num:'11', title:'Épisode 11', date:'—', sibnet:'', uqload:'' },
-        { num:'12', title:'Épisode 12', date:'—', sibnet:'', uqload:'' }
-    ]
-}
+        vo: [
+            { num:'01', title:'Épisode 1', date:'4 juil. 2026', sibnet:'6234365', uqload:'' },
+            { num:'02', title:'Épisode 2', date:'4 juil. 2026', sibnet:'6234379', uqload:'' },
+            { num:'03', title:'Épisode 3', date:'12 juil. 2026', sibnet:'6240509', uqload:'' },
+            { num:'04', title:'Épisode 4', date:'19 juil. 2026', sibnet:'6246320', uqload:'' },
+            { num:'05', title:'Épisode 5', date:'26 juil. 2026', sibnet:'', uqload:'qzlvgp9xxz8c' },
+            { num:'06', title:'Épisode 6', date:'2 août. 2026', sibnet:'', uqload:'' },
+            { num:'07', title:'Épisode 7', date:'9 août 2026', sibnet:'', uqload:'' },
+            { num:'08', title:'Épisode 8', date:'16 août 2026', sibnet:'', uqload:'' },
+            { num:'09', title:'Épisode 9', date:'23 août 2026', sibnet:'', uqload:'' },
+            { num:'10', title:'Épisode 10', date:'30 août 2026', sibnet:'', uqload:'' },
+            { num:'11', title:'Épisode 11', date:'6 sep. 2026', sibnet:'', uqload:'' },
+            { num:'12', title:'Épisode 12', date:'13 sep. 2026', sibnet:'', uqload:'' }
+        ],
+        vf: [
+            { num:'01', title:'Épisode 1', date:'—', sibnet:'', uqload:'' },
+            { num:'02', title:'Épisode 2', date:'—', sibnet:'', uqload:'' },
+            { num:'03', title:'Épisode 3', date:'—', sibnet:'', uqload:'' },
+            { num:'04', title:'Épisode 4', date:'—', sibnet:'', uqload:'' },
+            { num:'05', title:'Épisode 5', date:'—', sibnet:'', uqload:'' },
+            { num:'06', title:'Épisode 6', date:'—', sibnet:'', uqload:'' },
+            { num:'07', title:'Épisode 7', date:'—', sibnet:'', uqload:'' },
+            { num:'08', title:'Épisode 8', date:'—', sibnet:'', uqload:'' },
+            { num:'09', title:'Épisode 9', date:'—', sibnet:'', uqload:'' },
+            { num:'10', title:'Épisode 10', date:'—', sibnet:'', uqload:'' },
+            { num:'11', title:'Épisode 11', date:'—', sibnet:'', uqload:'' },
+            { num:'12', title:'Épisode 12', date:'—', sibnet:'', uqload:'' }
+        ]
+    }
 };
 
 const SEASON_LABELS = {
@@ -225,7 +226,7 @@ function showTableView() {
 
     let rows = '';
     list.forEach(ep => {
-        let videoCell = 'Vidéo à venir';
+        let videoCell = '<div class="video-placeholder">Vidéo à venir</div>';
         
         if (ep.sibnet) {
             videoCell = `<div class="video-sources">
@@ -240,14 +241,14 @@ function showTableView() {
         }
 
         rows += `<tr>
-            <td>${ep.num}</td>
-            <td>${ep.title}</td>
-            <td>${ep.date}</td>
-            <td>${videoCell}</td>
+            <td class="ep-num">${ep.num}</td>
+            <td class="ep-title">${ep.title}</td>
+            <td class="ep-date">${ep.date}</td>
+            <td class="ep-video">${videoCell}</td>
         </tr>`;
     });
 
-    wrapper.innerHTML = `<table><tbody>${rows}</tbody></table>`;
+    wrapper.innerHTML = `<table><thead><tr><th scope="col">N°</th><th scope="col">Titre</th><th scope="col">Date</th><th scope="col">Vidéo</th></tr></thead><tbody>${rows}</tbody></table>`;
     setTimeout(wrapDynamicIframes, 0);
 }
 
@@ -286,6 +287,7 @@ function renderPlayer() {
     }
 
     renderEpisodeSelect(list);
+    updateNavButtons(list);
     setTimeout(wrapDynamicIframes, 0);
 }
 
@@ -299,275 +301,12 @@ function renderEpisodeSelect(list) {
     }).join('');
 }
 
-function navigateEp(delta) {
-    const list = currentList();
-    const next = state.epIndex + delta;
-    if (next >= 0 && next < list.length) {
-        state.epIndex = next;
-        renderPlayer();
-    }
-}
-
-function goToEp(index) {
-    state.epIndex = index;
-    renderPlayer();
-}
-
-function loadBilibili(el) {
-    el.innerHTML = '<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115200954998720&bvid=BV1miHfzEET2&cid=25861363351&p=1&autoplay=1" allowfullscreen></iframe>';
-}
-
-function switchTab(version) {
-    document.querySelectorAll('.tab-panel').forEach(panel => {
-        if (panel.id === 'panel-' + version) {
-            panel.removeAttribute('hidden');
-            panel.classList.add('active');
-        } else {
-            panel.setAttribute('hidden', '');
-            panel.classList.remove('active');
-        }
-    });
-
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        const isActive = btn.id === 'tab-' + version;
-        btn.classList.toggle('active', isActive);
-        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-    refresh();
-});
-            { num:'03', title:"Au-delà de l'Effort", date:'—', videoId:'4671032' },
-            { num:'04', title:'Ce qui a été Perdu', date:'—', videoId:'4671036' },
-            { num:'05', title:'Une Petite Rébellion', date:'—', videoId:'4671038' },
-            { num:'06', title:'Le Premier Emploi', date:'—', videoId:'4671041' },
-            { num:'07', title:"Le Cœur d'une Jeune Fille", date:'—', videoId:'4671047' },
-            { num:'08', title:"La Valeur d'une Vie", date:'—', videoId:'4671052' },
-            { num:'09', title:"Les Mains qui Changeront l'Avenir", date:'—', videoId:'4671058' },
-            { num:'10', title:"L'Homme Inconnu", date:'—', videoId:'4671063' },
-            { num:'11', title:'La Profondeur de la Vie', date:'—', videoId:'4671068' },
-            { num:'12', title:"Ce que l'on Veut Protéger", date:'—', videoId:'4671071' },
-            { num:'13', title:'Un Nouveau Monde', date:'—', videoId:'4671075' },
-            { num:'14', title:'Une Promesse à Tenir', date:'—', videoId:'4671078' },
-            { num:'15', title:'Aux Marges du Village', date:'—', videoId:'4671080' },
-            { num:'16', title:"La Douceur d'un Parent", date:'—', videoId:'4671081' },
-            { num:'17', title:"L'Héritage d'un Père", date:'—', videoId:'4671084' },
-            { num:'18', title:'Le Retour du Héros', date:'—', videoId:'4671086' },
-            { num:'19', title:'Le Premier Pas vers un Avenir Radieux', date:'—', videoId:'4671087' },
-            { num:'20', title:"Le Combat pour l'Avenir", date:'—', videoId:'4671088' },
-            { num:'21', title:'Une Nouvelle Résolution', date:'—', videoId:'4671089' },
-            { num:'22', title:'Briser les Chaînes', date:'—', videoId:'4671092' },
-            { num:'23', title:"La Signification d'un Héros", date:'—', videoId:'4671095' },
-            { num:'24', title:'Épisode Spécial', date:'—', videoId:'5114213' }
-        ]
-    },
-
-    s2p1: {
-    vo: [
-        { num:'00', title:'Épisode Spécial', date:'2 juil. 2023', videoId:'5186353' },
-        { num:'01', title:'Épisode 1', date:'9 juil. 2023', videoId:'5193243' },
-        { num:'02', title:'Épisode 2', date:'16 juil. 2023', videoId:'5199557' },
-        { num:'03', title:'Épisode 3', date:'23 juil. 2023', videoId:'5205966' },
-        { num:'04', title:'Épisode 4', date:'30 juil. 2023', videoId:'5212670' },
-        { num:'05', title:'Épisode 5', date:'6 août 2023', videoId:'5220585' },
-        { num:'06', title:'Épisode 6', date:'13 août 2023', videoId:'5226751' },
-        { num:'07', title:'Épisode 7', date:'20 août 2023', videoId:'5231211' },
-        { num:'08', title:'Épisode 8', date:'27 août 2023', videoId:'5235472' },
-        { num:'09', title:'Épisode 9', date:'3 sep. 2023', videoId:'5242251' },
-        { num:'10', title:'Épisode 10', date:'10 sep. 2023', videoId:'5249351' },
-        { num:'11', title:'Épisode 11', date:'17 sep. 2023', videoId:'5255407' },
-        { num:'12', title:'Épisode 12', date:'24 sep. 2023', videoId:'5260491' }
-    ],
-    vf: [
-        { num:'00', title:'Épisode Spécial', date:'—', videoId:'5243279' },
-        { num:'01', title:'Épisode 1', date:'—', videoId:'5243289' },
-        { num:'02', title:'Épisode 2', date:'—', videoId:'5249507' },
-        { num:'03', title:'Épisode 3', date:'—', videoId:'5249510' },
-        { num:'04', title:'Épisode 4', date:'—', videoId:'5255614' },
-        { num:'05', title:'Épisode 5', date:'—', videoId:'5255616' },
-        { num:'06', title:'Épisode 6', date:'—', videoId:'5277735' },
-        { num:'07', title:'Épisode 7', date:'—', videoId:'5260626' },
-        { num:'08', title:'Épisode 8', date:'—', videoId:'5277737' },
-        { num:'09', title:'Épisode 9', date:'—', videoId:'5277740' },
-        { num:'10', title:'Épisode 10', date:'—', videoId:'5277751' },
-        { num:'11', title:'Épisode 11', date:'—', videoId:'5277762' },
-        { num:'12', title:'Épisode 12', date:'—', videoId:'5282423' }
-    ]
-},
-s2p2: {
-    vo: [
-        { num:'01', title:'Épisode 1', date:'7 avr. 2024', videoId:'5496999' },
-        { num:'02', title:'Épisode 2', date:'14 avr. 2024', videoId:'5504610' },
-        { num:'03', title:'Épisode 3', date:'21 avr. 2024', videoId:'5512013' },
-        { num:'04', title:'Épisode 4', date:'28 avr. 2024', videoId:'5518678' },
-        { num:'05', title:'Épisode 5', date:'5 mai 2024', videoId:'5526402' },
-        { num:'06', title:'Épisode 6', date:'12 mai 2024', videoId:'5533510' },
-        { num:'07', title:'Épisode 7', date:'19 mai 2024', videoId:'5546187' },
-        { num:'08', title:'Épisode 8', date:'26 mai 2024', videoId:'5552364' },
-        { num:'09', title:'Épisode 9', date:'2 juin 2024', videoId:'5558087' },
-        { num:'10', title:'Épisode 10', date:'9 juin 2024', videoId:'5565055' },
-        { num:'11', title:'Épisode 11', date:'16 juin 2024', videoId:'5573405' },
-        { num:'12', title:'Épisode 12', date:'30 juin 2024', videoId:'5581041' }
-    ],
-    vf: [
-        { num:'01', title:'Épisode 1', date:'—', videoId:'5519873' },
-        { num:'02', title:'Épisode 2', date:'—', videoId:'5527541' },
-        { num:'03', title:'Épisode 3', date:'—', videoId:'5534589' },
-        { num:'04', title:'Épisode 4', date:'—', videoId:'5540510' },
-        { num:'05', title:'Épisode 5', date:'—', videoId:'5547436' },
-        { num:'06', title:'Épisode 6', date:'—', videoId:'5552697' },
-        { num:'07', title:'Épisode 7', date:'—', videoId:'5565322' },
-        { num:'08', title:'Épisode 8', date:'—', videoId:'5574499' },
-        { num:'09', title:'Épisode 9', date:'—', videoId:'5582205' },
-        { num:'10', title:'Épisode 10', date:'—', videoId:'5589753' },
-        { num:'11', title:'Épisode 11', date:'—', videoId:'5597254' },
-        { num:'12', title:'Épisode 12', date:'—', videoId:'5605561' }
-    ]
-},
-
-    s3: {
-    vo: [
-        { num:'01', title:'Épisode 1', date:'4 juil. 2026', videoId:'6234365' },
-        { num:'02', title:'Épisode 2', date:'4 juil. 2026', videoId:'6234379' },
-        { num:'03', title:'Épisode 3', date:'12 juil. 2026', videoId:'6240509' },
-        { num:'04', title:'Épisode 4', date:'19 juil. 2026', videoId:'6246320' },
-        { num:'05', title:'Épisode 5', date:'26 juil. 2026', videoId:'' },
-        { num:'06', title:'Épisode 6', date:'2 août. 2026',  videoId:'' },
-        { num:'07', title:'Épisode 7', date:'9 août 2026',   videoId:'' },
-        { num:'08', title:'Épisode 8', date:'16 août 2026',  videoId:'' },
-        { num:'09', title:'Épisode 9', date:'23 août 2026', videoId:'' },
-        { num:'10', title:'Épisode 10', date:'30 août 2026', videoId:'' },
-        { num:'11', title:'Épisode 11', date:'6 sep. 2026', videoId:'' },
-        { num:'12', title:'Épisode 12', date:'13 sep. 2026', videoId:'' }
-    ],
-    vf: [
-        { num:'01', title:'Épisode 1', date:'—', videoId:'' },
-        { num:'02', title:'Épisode 2', date:'—', videoId:'' },
-        { num:'03', title:'Épisode 3', date:'—', videoId:'' },
-        { num:'04', title:'Épisode 4', date:'—', videoId:'' },
-        { num:'05', title:'Épisode 5', date:'—', videoId:'' },
-        { num:'06', title:'Épisode 6', date:'—', videoId:'' },
-        { num:'07', title:'Épisode 7', date:'—', videoId:'' },
-        { num:'08', title:'Épisode 8', date:'—', videoId:'' },
-        { num:'09', title:'Épisode 9', date:'—', videoId:'' },
-        { num:'10', title:'Épisode 10', date:'—', videoId:'' },
-        { num:'11', title:'Épisode 11', date:'—', videoId:'' },
-        { num:'12', title:'Épisode 12', date:'—', videoId:'' }
-    ]
-}
-};
-
-const SEASON_LABELS = {
-    s1:   'Saison 1',
-    s2p1: 'Saison 2 — Cour 1',
-    s2p2: 'Saison 2 — Cour 2',
-    s3:   'Saison 3'
-};
-
-let state = {
-    season:  's1',
-    version: 'vo',
-    mode:    'table',
-    epIndex: 0
-};
-
-function currentList() {
-    return EPISODES[state.season][state.version];
-}
-
-function sibnetSrc(videoId) {
-    return 'https://video.sibnet.ru/shell.php?videoid=' + videoId + '&share=0';
-}
-
-function setSeason(season) {
-    state.season  = season;
-    state.epIndex = 0;
-    activateCtrlBtn('[data-season]', '[data-season="' + season + '"]');
-    refresh();
-}
-
-function setVersion(version) {
-    state.version = version;
-    state.epIndex = 0;
-    activateCtrlBtn('[data-version]', '[data-version="' + version + '"]');
-    refresh();
-}
-
-function setMode(mode) {
-    state.mode = mode;
-    activateCtrlBtn('[data-mode]', '[data-mode="' + mode + '"]');
-    refresh();
-}
-
-function activateCtrlBtn(groupSel, targetSel) {
-    document.querySelectorAll(groupSel).forEach(btn => {
-        const isTarget = btn.matches(targetSel);
-        btn.classList.toggle('active', isTarget);
-        btn.setAttribute('aria-checked', isTarget ? 'true' : 'false');
-    });
-}
-
-function refresh() {
-    if (state.mode === 'table') {
-        showTableView();
-    } else {
-        showPlayerView();
-    }
-}
-
-function showTableView() {
-    document.getElementById('view-table').removeAttribute('hidden');
-    document.getElementById('view-player').setAttribute('hidden', '');
-
-    const list = currentList();
-    const wrapper = document.getElementById('active-table-wrapper');
-
-    let rows = '';
-    list.forEach(ep => {
-        rows += `<tr>
-            <td>${ep.num}</td>
-            <td>${ep.title}</td>
-            <td>${ep.date}</td>
-            <td>${ep.videoId ? `<iframe src="${sibnetSrc(ep.videoId)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>` : 'Vidéo à venir'}</td>
-        </tr>`;
-    });
-
-    wrapper.innerHTML = `<table><tbody>${rows}</tbody></table>`;
-    setTimeout(wrapDynamicIframes, 0);
-}
-
-function showPlayerView() {
-    document.getElementById('view-player').removeAttribute('hidden');
-    document.getElementById('view-table').setAttribute('hidden', '');
-    renderPlayer();
-}
-
-function renderPlayer() {
-    const list = currentList();
-    const ep = list[state.epIndex];
-
-    document.getElementById('player-season-label').textContent = SEASON_LABELS[state.season];
-    document.getElementById('player-ep-title').textContent = ep.title;
-    document.getElementById('player-ep-date').textContent = ep.date;
-
-    const container = document.getElementById('player-video-container');
-    container.innerHTML = ep.videoId
-        ? `<iframe src="${sibnetSrc(ep.videoId)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`
-        : 'Vidéo à venir';
-
-    renderEpisodeSelect(list);
-    setTimeout(wrapDynamicIframes, 0);
-}
-
-function renderEpisodeSelect(list) {
-    const select = document.getElementById('ep-select');
-    if (!select) return;
-
-    select.innerHTML = list.map((ep, index) => {
-        const label = `Épisode ${ep.num} — ${ep.title}`;
-        return `<option value="${index}"${index === state.epIndex ? ' selected' : ''}>${label}</option>`;
-    }).join('');
+function updateNavButtons(list) {
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    
+    if (btnPrev) btnPrev.disabled = state.epIndex === 0;
+    if (btnNext) btnNext.disabled = state.epIndex === list.length - 1;
 }
 
 function navigateEp(delta) {
@@ -580,12 +319,13 @@ function navigateEp(delta) {
 }
 
 function goToEp(index) {
-    state.epIndex = index;
+    state.epIndex = parseInt(index);
     renderPlayer();
 }
 
 function loadBilibili(el) {
     el.innerHTML = '<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115200954998720&bvid=BV1miHfzEET2&cid=25861363351&p=1&autoplay=1" allowfullscreen></iframe>';
+    setTimeout(wrapDynamicIframes, 0);
 }
 
 function switchTab(version) {
