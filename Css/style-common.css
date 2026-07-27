@@ -611,11 +611,15 @@ nav ul li a:hover { color: var(--color-gold); }
         grid-template-columns: repeat(2, 1fr);
     }
 }
+html {
+    background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+}
 
 @media (max-width: 768px) {
 
     html {
         background-attachment: scroll;
+        background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
     }
 
     header {
@@ -679,6 +683,7 @@ nav ul li a:hover { color: var(--color-gold); }
     html {
         background-attachment: scroll !important;
         background-position: top center;
+        background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
     }
 
     body {
@@ -689,6 +694,7 @@ nav ul li a:hover { color: var(--color-gold); }
 
 @media (max-width: 480px) {
     html {
+        background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
         background-attachment: scroll !important;
         background-size: cover;
         background-repeat: no-repeat;
