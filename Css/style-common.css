@@ -612,14 +612,14 @@ nav ul li a:hover { color: var(--color-gold); }
     }
 }
 html {
-    background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+    background-image: url("../Image/mushoku-tensei14.jpg");
 }
 
 @media (max-width: 768px) {
 
     html {
         background-attachment: scroll;
-        background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+        background-image: url("../Image/mushoku-tensei14.jpg");
     }
 
     header {
@@ -683,7 +683,7 @@ html {
     html {
         background-attachment: scroll !important;
         background-position: top center;
-        background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+        background-image: url("../Image/mushoku-tensei14.jpg");
     }
 
     body {
@@ -694,7 +694,7 @@ html {
 
 @media (max-width: 480px) {
     html {
-        background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+        background-image: url("../Image/mushoku-tensei14.jpg");
         background-attachment: scroll !important;
         background-size: cover;
         background-repeat: no-repeat;
