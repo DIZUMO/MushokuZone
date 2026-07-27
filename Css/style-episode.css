@@ -843,10 +843,13 @@ tr:hover .video-placeholder {
         grid-template-columns: 1fr;
         gap: 16px;
     }
+    html {
+    background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+    }
 }
 
 @media (max-width: 768px) {
-
+  
     /* Barre de contrôles : chaque groupe prend toute la largeur */
     .controls-bar {
         flex-direction: column;
@@ -854,6 +857,9 @@ tr:hover .video-placeholder {
         padding: 14px 16px;
         margin: 16px 0 16px;
         width: calc(100% - 32px);
+    }
+    html {
+    background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
     }
 
     .ctrl-btns {
@@ -958,6 +964,9 @@ tr:hover .video-placeholder {
         margin-top: 10px;
         margin-bottom: 10px;
     }
+    html {
+    background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+    }
 
     .player-video-wrapper {
         border-radius: 8px;
@@ -994,6 +1003,9 @@ tr:hover .video-placeholder {
     .ep-num {
         width: 32px;
         font-size: 0.7rem;
+    }
+    html {
+    background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
     }
 
     .player-placeholder span {
