@@ -10,7 +10,7 @@ const EPISODES = {
             { num:'02', title:'Isshun no Jūryoku', date:'18 jan. 2021', sibnet:'4670917', uqload:'' },
             { num:'03', title:'Doryoku no Saki ni', date:'25 jan. 2021', sibnet:'4670918', uqload:'' },
             { num:'04', title:'Ushinawareta Mono', date:'1 fév. 2021', sibnet:'4670919', uqload:'' },
-            { num:'05', title:'Chīsama Hantai', date:'8 fév. 2021', sibnet:'4670920', uqload:'' },
+            { num:'05', title:'Chīsana Hantai', date:'8 fév. 2021', sibnet:'4670920', uqload:'' },
             { num:'06', title:'Hajimete no Shigoto', date:'15 fév. 2021', sibnet:'4670922', uqload:'' },
             { num:'07', title:'Shōjo no Kokoro', date:'22 fév. 2021', sibnet:'4670923', uqload:'' },
             { num:'08', title:'Inochi no Kachi', date:'1 mar. 2021', sibnet:'4670925', uqload:'' },
@@ -129,7 +129,7 @@ const EPISODES = {
             { num:'02', title:'Épisode 2', date:'4 juil. 2026', sibnet:'6234379', uqload:'' },
             { num:'03', title:'Épisode 3', date:'12 juil. 2026', sibnet:'6240509', uqload:'' },
             { num:'04', title:'Épisode 4', date:'19 juil. 2026', sibnet:'6246320', uqload:'' },
-            { num:'05', title:'Épisode 5', date:'26 juil. 2026', sibnet:'', uqload:'qzlvgp9xxz8c' },
+            { num:'05', title:'Épisode 5', date:'26 juil. 2026', sibnet:'6251934', uqload:'qzlvgp9xxz8c' },
             { num:'06', title:'Épisode 6', date:'2 août. 2026', sibnet:'', uqload:'' },
             { num:'07', title:'Épisode 7', date:'9 août 2026', sibnet:'', uqload:'' },
             { num:'08', title:'Épisode 8', date:'16 août 2026', sibnet:'', uqload:'' },
@@ -143,7 +143,7 @@ const EPISODES = {
             { num:'02', title:'Épisode 2', date:'—', sibnet:'', uqload:'' },
             { num:'03', title:'Épisode 3', date:'—', sibnet:'', uqload:'' },
             { num:'04', title:'Épisode 4', date:'—', sibnet:'', uqload:'' },
-            { num:'05', title:'Épisode 5', date:'—', sibnet:'6251934', uqload:'' },
+            { num:'05', title:'Épisode 5', date:'—', sibnet:'', uqload:'' },
             { num:'06', title:'Épisode 6', date:'—', sibnet:'', uqload:'' },
             { num:'07', title:'Épisode 7', date:'—', sibnet:'', uqload:'' },
             { num:'08', title:'Épisode 8', date:'—', sibnet:'', uqload:'' },
@@ -165,9 +165,8 @@ const SEASON_LABELS = {
 let state = {
     season:  's1',
     version: 'vo',
-    mode:    'player',
-    epIndex: 0,
-    playerChoice: 'sibnet'
+    player:  'sibnet',
+    epIndex: 0
 };
 
 function currentList() {
@@ -182,34 +181,40 @@ function uqloadSrc(videoId) {
     return 'https://uqload.is/e/' + videoId;
 }
 
-function hasAvailableVideo(ep) {
-    return ep.sibnet !== '' || ep.uqload !== '';
+/* ---- Helpers de disponibilité ---- */
+
+function firstAvailableIndex(list) {
+    const idx = list.findIndex(ep => ep.sibnet || ep.uqload);
+    return idx === -1 ? 0 : idx;
 }
+
+function lastAvailableIndex(list) {
+    for (let i = list.length - 1; i >= 0; i--) {
+        if (list[i].sibnet || list[i].uqload) return i;
+    }
+    return list.length - 1;
+}
+
+/* ---- Contrôles : saison / version / lecteur ---- */
 
 function setSeason(season) {
     state.season  = season;
-    state.epIndex = findFirstAvailableEp();
     activateCtrlBtn('[data-season]', '[data-season="' + season + '"]');
+    state.epIndex = firstAvailableIndex(currentList());
     refresh();
 }
 
 function setVersion(version) {
     state.version = version;
-    state.epIndex = findFirstAvailableEp();
     activateCtrlBtn('[data-version]', '[data-version="' + version + '"]');
+    state.epIndex = firstAvailableIndex(currentList());
     refresh();
 }
 
-function setMode(mode) {
-    state.mode = mode;
-    activateCtrlBtn('[data-mode]', '[data-mode="' + mode + '"]');
+function setPlayer(player) {
+    state.player = player;
+    activateCtrlBtn('[data-player]', '[data-player="' + player + '"]');
     refresh();
-}
-
-function setPlayerChoice(choice) {
-    state.playerChoice = choice;
-    activateCtrlBtn('[data-player-choice]', '[data-player-choice="' + choice + '"]');
-    renderPlayer();
 }
 
 function activateCtrlBtn(groupSel, targetSel) {
@@ -220,40 +225,11 @@ function activateCtrlBtn(groupSel, targetSel) {
     });
 }
 
-function findFirstAvailableEp() {
-    const list = currentList();
-    for (let i = 0; i < list.length; i++) {
-        if (hasAvailableVideo(list[i])) {
-            return i;
-        }
-    }
-    return 0;
-}
-
-function findLastAvailableEp() {
-    const list = currentList();
-    for (let i = list.length - 1; i >= 0; i--) {
-        if (hasAvailableVideo(list[i])) {
-            return i;
-        }
-    }
-    return 0;
-}
-
-function goToLastEpisode() {
-    state.epIndex = findLastAvailableEp();
-    renderPlayer();
-}
-
 function refresh() {
-    showPlayerView();
-}
-
-function showPlayerView() {
-    document.getElementById('view-player').removeAttribute('hidden');
-    document.getElementById('view-table').setAttribute('hidden', '');
     renderPlayer();
 }
+
+/* ---- Rendu du lecteur ---- */
 
 function renderPlayer() {
     const list = currentList();
@@ -263,137 +239,115 @@ function renderPlayer() {
     document.getElementById('player-ep-title').textContent = ep.title;
     document.getElementById('player-ep-date').textContent = ep.date;
 
-    // Déterminer quel lecteur afficher en fonction du choix de l'utilisateur et de la disponibilité
-    let primaryId = '';
-    let secondaryId = '';
-    let primaryType = '';
-    let secondaryType = '';
-
-    if (state.playerChoice === 'sibnet') {
-        primaryId = ep.sibnet;
-        secondaryId = ep.uqload;
-        primaryType = 'sibnet';
-        secondaryType = 'uqload';
-    } else {
-        primaryId = ep.uqload;
-        secondaryId = ep.sibnet;
-        primaryType = 'uqload';
-        secondaryType = 'sibnet';
+    // Choix de la source active : préférence utilisateur, repli sur l'autre si indisponible
+    let activeSource = state.player;
+    if (!ep[activeSource]) {
+        const other = activeSource === 'sibnet' ? 'uqload' : 'sibnet';
+        if (ep[other]) activeSource = other;
     }
 
-    // Lecteur primaire
-    const primaryContainer = document.getElementById('player-video-primary');
-    const primaryTitle = document.getElementById('player-wrapper-title-primary');
-    if (primaryId) {
-        const src = primaryType === 'sibnet' ? sibnetSrc(primaryId) : uqloadSrc(primaryId);
-        primaryContainer.innerHTML = `<iframe src="${src}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-        primaryTitle.textContent = primaryType.charAt(0).toUpperCase() + primaryType.slice(1) + ' (Primaire)';
-        primaryContainer.parentElement.style.display = 'block';
+    const container   = document.getElementById('player-video-active');
+    const sourceLabel = document.getElementById('player-source-label');
+
+    if (activeSource && ep[activeSource]) {
+        const src = activeSource === 'sibnet' ? sibnetSrc(ep.sibnet) : uqloadSrc(ep.uqload);
+        container.innerHTML = `<iframe src="${src}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+        sourceLabel.textContent = activeSource === 'sibnet' ? 'Sibnet' : 'Uqload';
     } else {
-        primaryContainer.innerHTML = '<div style="text-align:center; padding:20px; color:var(--color-text-muted);">Vidéo non disponible</div>';
-        primaryContainer.parentElement.style.display = 'block';
+        container.innerHTML = '<div class="player-placeholder"><span>Vidéo à venir</span></div>';
+        sourceLabel.textContent = '';
     }
 
-    // Lecteur secondaire
-    const secondaryContainer = document.getElementById('player-video-secondary');
-    const secondaryTitle = document.getElementById('player-wrapper-title-secondary');
-    if (secondaryId) {
-        const src = secondaryType === 'sibnet' ? sibnetSrc(secondaryId) : uqloadSrc(secondaryId);
-        secondaryContainer.innerHTML = `<iframe src="${src}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-        secondaryTitle.textContent = secondaryType.charAt(0).toUpperCase() + secondaryType.slice(1) + ' (Alternatif)';
-        secondaryContainer.parentElement.style.display = 'block';
-    } else {
-        secondaryContainer.innerHTML = '<div style="text-align:center; padding:20px; color:var(--color-text-muted);">Vidéo alternative non disponible</div>';
-        secondaryContainer.parentElement.style.display = 'none';
-    }
-
+    updatePlayerButtons(ep);
     renderEpisodeSelect(list);
     updateNavButtons(list);
     setTimeout(wrapDynamicIframes, 0);
+}
+
+function updatePlayerButtons(ep) {
+    const sibnetBtn = document.querySelector('[data-player="sibnet"]');
+    const uqloadBtn = document.querySelector('[data-player="uqload"]');
+    if (sibnetBtn) sibnetBtn.disabled = !ep.sibnet;
+    if (uqloadBtn) uqloadBtn.disabled = !ep.uqload;
 }
 
 function renderEpisodeSelect(list) {
     const select = document.getElementById('ep-select');
     if (!select) return;
 
-    select.innerHTML = list
-        .map((ep, index) => {
-            if (!hasAvailableVideo(ep)) return '';
-            const label = `Épisode ${ep.num} — ${ep.title}`;
-            return `<option value="${index}"${index === state.epIndex ? ' selected' : ''}>${label}</option>`;
-        })
-        .filter(x => x)
-        .join('');
+    const options = list
+        .map((ep, index) => ({ ep, index }))
+        .filter(item => item.ep.sibnet || item.ep.uqload);
+
+    if (options.length === 0) {
+        select.innerHTML = '<option value="">Aucun épisode disponible</option>';
+        return;
+    }
+
+    select.innerHTML = options.map(({ ep, index }) => {
+        const label = `Épisode ${ep.num} — ${ep.title}`;
+        return `<option value="${index}"${index === state.epIndex ? ' selected' : ''}>${label}</option>`;
+    }).join('');
 }
 
 function updateNavButtons(list) {
     const btnPrev = document.getElementById('btn-prev');
     const btnNext = document.getElementById('btn-next');
-    
-    if (btnPrev) {
-        let prevAvailable = false;
-        for (let i = state.epIndex - 1; i >= 0; i--) {
-            if (hasAvailableVideo(list[i])) {
-                prevAvailable = true;
-                break;
-            }
-        }
-        btnPrev.disabled = !prevAvailable;
-    }
-    
-    if (btnNext) {
-        let nextAvailable = false;
-        for (let i = state.epIndex + 1; i < list.length; i++) {
-            if (hasAvailableVideo(list[i])) {
-                nextAvailable = true;
-                break;
-            }
-        }
-        btnNext.disabled = !nextAvailable;
-    }
+
+    if (btnPrev) btnPrev.disabled = state.epIndex === 0;
+    if (btnNext) btnNext.disabled = state.epIndex === list.length - 1;
 }
 
 function navigateEp(delta) {
     const list = currentList();
-    let next = state.epIndex + delta;
-    
-    while (next >= 0 && next < list.length) {
-        if (hasAvailableVideo(list[next])) {
-            state.epIndex = next;
-            renderPlayer();
-            return;
-        }
-        next += delta;
-    }
-}
-
-function goToEp(index) {
-    const list = currentList();
-    const idx = parseInt(index);
-    if (idx >= 0 && idx < list.length && hasAvailableVideo(list[idx])) {
-        state.epIndex = idx;
+    const next = state.epIndex + delta;
+    if (next >= 0 && next < list.length) {
+        state.epIndex = next;
         renderPlayer();
     }
 }
 
-function switchTab(version) {
-    document.querySelectorAll('.tab-panel').forEach(panel => {
-        if (panel.id === 'panel-' + version) {
-            panel.removeAttribute('hidden');
-            panel.classList.add('active');
-        } else {
-            panel.setAttribute('hidden', '');
-            panel.classList.remove('active');
-        }
-    });
+function goToEp(index) {
+    const parsed = parseInt(index, 10);
+    if (isNaN(parsed)) return;
+    state.epIndex = parsed;
+    renderPlayer();
+}
 
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-        const isActive = btn.id === 'tab-' + version;
-        btn.classList.toggle('active', isActive);
-        btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    });
+function goToLastAvailable() {
+    const list = currentList();
+    goToEp(lastAvailableIndex(list));
+}
+
+/* ---- Médias externes chargés au clic (Bilibili / Twitter) ---- */
+
+function loadBilibili(el) {
+    el.innerHTML = `
+        <iframe
+            src="//player.bilibili.com/player.html?isOutside=true&aid=115200954998720&bvid=BV1miHfzEET2&cid=25861363351&p=1&autoplay=1"
+            allowfullscreen>
+        </iframe>
+    `;
+    setTimeout(wrapDynamicIframes, 0);
+}
+
+function loadTwitterEmbed(el) {
+    el.innerHTML = `
+        <blockquote class="twitter-tweet" data-media-max-width="560">
+            <p lang="de" dir="ltr">
+                Mushoku Tensei Fan animation OP Full Ver
+                <a href="https://t.co/OJVxI5ptUT">pic.twitter.com/OJVxI5ptUT</a>
+            </p>
+            &mdash; Lanwen Tuzi Studio (@LanwenTuzStudio)
+            <a href="https://twitter.com/LanwenTuzStudio/status/1758375753543266369">February 16, 2024</a>
+        </blockquote>
+    `;
+    if (window.twttr && window.twttr.widgets) {
+        window.twttr.widgets.load(el);
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    state.epIndex = firstAvailableIndex(currentList());
     refresh();
 });
