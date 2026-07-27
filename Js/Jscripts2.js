@@ -143,7 +143,7 @@ const EPISODES = {
             { num:'02', title:'Épisode 2', date:'—', sibnet:'', uqload:'' },
             { num:'03', title:'Épisode 3', date:'—', sibnet:'', uqload:'' },
             { num:'04', title:'Épisode 4', date:'—', sibnet:'', uqload:'' },
-            { num:'05', title:'Épisode 5', date:'—', sibnet:'', uqload:'' },
+            { num:'05', title:'Épisode 5', date:'—', sibnet:'6251934', uqload:'' },
             { num:'06', title:'Épisode 6', date:'—', sibnet:'', uqload:'' },
             { num:'07', title:'Épisode 7', date:'—', sibnet:'', uqload:'' },
             { num:'08', title:'Épisode 8', date:'—', sibnet:'', uqload:'' },
@@ -165,8 +165,9 @@ const SEASON_LABELS = {
 let state = {
     season:  's1',
     version: 'vo',
-    mode:    'table',
-    epIndex: 0
+    mode:    'player',
+    epIndex: 0,
+    playerChoice: 'sibnet'
 };
 
 function currentList() {
@@ -181,16 +182,20 @@ function uqloadSrc(videoId) {
     return 'https://uqload.is/e/' + videoId;
 }
 
+function hasAvailableVideo(ep) {
+    return ep.sibnet !== '' || ep.uqload !== '';
+}
+
 function setSeason(season) {
     state.season  = season;
-    state.epIndex = 0;
+    state.epIndex = findFirstAvailableEp();
     activateCtrlBtn('[data-season]', '[data-season="' + season + '"]');
     refresh();
 }
 
 function setVersion(version) {
     state.version = version;
-    state.epIndex = 0;
+    state.epIndex = findFirstAvailableEp();
     activateCtrlBtn('[data-version]', '[data-version="' + version + '"]');
     refresh();
 }
@@ -201,6 +206,12 @@ function setMode(mode) {
     refresh();
 }
 
+function setPlayerChoice(choice) {
+    state.playerChoice = choice;
+    activateCtrlBtn('[data-player-choice]', '[data-player-choice="' + choice + '"]');
+    renderPlayer();
+}
+
 function activateCtrlBtn(groupSel, targetSel) {
     document.querySelectorAll(groupSel).forEach(btn => {
         const isTarget = btn.matches(targetSel);
@@ -209,47 +220,33 @@ function activateCtrlBtn(groupSel, targetSel) {
     });
 }
 
-function refresh() {
-    if (state.mode === 'table') {
-        showTableView();
-    } else {
-        showPlayerView();
+function findFirstAvailableEp() {
+    const list = currentList();
+    for (let i = 0; i < list.length; i++) {
+        if (hasAvailableVideo(list[i])) {
+            return i;
+        }
     }
+    return 0;
 }
 
-function showTableView() {
-    document.getElementById('view-table').removeAttribute('hidden');
-    document.getElementById('view-player').setAttribute('hidden', '');
-
+function findLastAvailableEp() {
     const list = currentList();
-    const wrapper = document.getElementById('active-table-wrapper');
-
-    let rows = '';
-    list.forEach(ep => {
-        let videoCell = '<div class="video-placeholder">Vidéo à venir</div>';
-        
-        if (ep.sibnet) {
-            videoCell = `<div class="video-sources">
-                <iframe src="${sibnetSrc(ep.sibnet)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
-                <span class="source-label">Sibnet</span>
-            </div>`;
-        } else if (ep.uqload) {
-            videoCell = `<div class="video-sources">
-                <iframe src="${uqloadSrc(ep.uqload)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>
-                <span class="source-label">Uqload</span>
-            </div>`;
+    for (let i = list.length - 1; i >= 0; i--) {
+        if (hasAvailableVideo(list[i])) {
+            return i;
         }
+    }
+    return 0;
+}
 
-        rows += `<tr>
-            <td class="ep-num">${ep.num}</td>
-            <td class="ep-title">${ep.title}</td>
-            <td class="ep-date">${ep.date}</td>
-            <td class="ep-video">${videoCell}</td>
-        </tr>`;
-    });
+function goToLastEpisode() {
+    state.epIndex = findLastAvailableEp();
+    renderPlayer();
+}
 
-    wrapper.innerHTML = `<table><thead><tr><th scope="col">N°</th><th scope="col">Titre</th><th scope="col">Date</th><th scope="col">Vidéo</th></tr></thead><tbody>${rows}</tbody></table>`;
-    setTimeout(wrapDynamicIframes, 0);
+function refresh() {
+    showPlayerView();
 }
 
 function showPlayerView() {
@@ -266,24 +263,48 @@ function renderPlayer() {
     document.getElementById('player-ep-title').textContent = ep.title;
     document.getElementById('player-ep-date').textContent = ep.date;
 
-    // Lecteur Sibnet (primaire)
-    const sibnetContainer = document.getElementById('player-video-sibnet');
-    if (ep.sibnet) {
-        sibnetContainer.innerHTML = `<iframe src="${sibnetSrc(ep.sibnet)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-        sibnetContainer.parentElement.style.display = 'block';
+    // Déterminer quel lecteur afficher en fonction du choix de l'utilisateur et de la disponibilité
+    let primaryId = '';
+    let secondaryId = '';
+    let primaryType = '';
+    let secondaryType = '';
+
+    if (state.playerChoice === 'sibnet') {
+        primaryId = ep.sibnet;
+        secondaryId = ep.uqload;
+        primaryType = 'sibnet';
+        secondaryType = 'uqload';
     } else {
-        sibnetContainer.innerHTML = '<div style="text-align:center; padding:20px; color:var(--color-text-muted);">Vidéo Sibnet à venir</div>';
-        sibnetContainer.parentElement.style.display = 'block';
+        primaryId = ep.uqload;
+        secondaryId = ep.sibnet;
+        primaryType = 'uqload';
+        secondaryType = 'sibnet';
     }
 
-    // Lecteur Uqload (secondaire)
-    const uqloadContainer = document.getElementById('player-video-uqload');
-    if (ep.uqload) {
-        uqloadContainer.innerHTML = `<iframe src="${uqloadSrc(ep.uqload)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-        uqloadContainer.parentElement.style.display = 'block';
+    // Lecteur primaire
+    const primaryContainer = document.getElementById('player-video-primary');
+    const primaryTitle = document.getElementById('player-wrapper-title-primary');
+    if (primaryId) {
+        const src = primaryType === 'sibnet' ? sibnetSrc(primaryId) : uqloadSrc(primaryId);
+        primaryContainer.innerHTML = `<iframe src="${src}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+        primaryTitle.textContent = primaryType.charAt(0).toUpperCase() + primaryType.slice(1) + ' (Primaire)';
+        primaryContainer.parentElement.style.display = 'block';
     } else {
-        uqloadContainer.innerHTML = '<div style="text-align:center; padding:20px; color:var(--color-text-muted);">Vidéo Uqload à venir</div>';
-        uqloadContainer.parentElement.style.display = 'none';
+        primaryContainer.innerHTML = '<div style="text-align:center; padding:20px; color:var(--color-text-muted);">Vidéo non disponible</div>';
+        primaryContainer.parentElement.style.display = 'block';
+    }
+
+    // Lecteur secondaire
+    const secondaryContainer = document.getElementById('player-video-secondary');
+    const secondaryTitle = document.getElementById('player-wrapper-title-secondary');
+    if (secondaryId) {
+        const src = secondaryType === 'sibnet' ? sibnetSrc(secondaryId) : uqloadSrc(secondaryId);
+        secondaryContainer.innerHTML = `<iframe src="${src}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+        secondaryTitle.textContent = secondaryType.charAt(0).toUpperCase() + secondaryType.slice(1) + ' (Alternatif)';
+        secondaryContainer.parentElement.style.display = 'block';
+    } else {
+        secondaryContainer.innerHTML = '<div style="text-align:center; padding:20px; color:var(--color-text-muted);">Vidéo alternative non disponible</div>';
+        secondaryContainer.parentElement.style.display = 'none';
     }
 
     renderEpisodeSelect(list);
@@ -295,37 +316,64 @@ function renderEpisodeSelect(list) {
     const select = document.getElementById('ep-select');
     if (!select) return;
 
-    select.innerHTML = list.map((ep, index) => {
-        const label = `Épisode ${ep.num} — ${ep.title}`;
-        return `<option value="${index}"${index === state.epIndex ? ' selected' : ''}>${label}</option>`;
-    }).join('');
+    select.innerHTML = list
+        .map((ep, index) => {
+            if (!hasAvailableVideo(ep)) return '';
+            const label = `Épisode ${ep.num} — ${ep.title}`;
+            return `<option value="${index}"${index === state.epIndex ? ' selected' : ''}>${label}</option>`;
+        })
+        .filter(x => x)
+        .join('');
 }
 
 function updateNavButtons(list) {
     const btnPrev = document.getElementById('btn-prev');
     const btnNext = document.getElementById('btn-next');
     
-    if (btnPrev) btnPrev.disabled = state.epIndex === 0;
-    if (btnNext) btnNext.disabled = state.epIndex === list.length - 1;
+    if (btnPrev) {
+        let prevAvailable = false;
+        for (let i = state.epIndex - 1; i >= 0; i--) {
+            if (hasAvailableVideo(list[i])) {
+                prevAvailable = true;
+                break;
+            }
+        }
+        btnPrev.disabled = !prevAvailable;
+    }
+    
+    if (btnNext) {
+        let nextAvailable = false;
+        for (let i = state.epIndex + 1; i < list.length; i++) {
+            if (hasAvailableVideo(list[i])) {
+                nextAvailable = true;
+                break;
+            }
+        }
+        btnNext.disabled = !nextAvailable;
+    }
 }
 
 function navigateEp(delta) {
     const list = currentList();
-    const next = state.epIndex + delta;
-    if (next >= 0 && next < list.length) {
-        state.epIndex = next;
-        renderPlayer();
+    let next = state.epIndex + delta;
+    
+    while (next >= 0 && next < list.length) {
+        if (hasAvailableVideo(list[next])) {
+            state.epIndex = next;
+            renderPlayer();
+            return;
+        }
+        next += delta;
     }
 }
 
 function goToEp(index) {
-    state.epIndex = parseInt(index);
-    renderPlayer();
-}
-
-function loadBilibili(el) {
-    el.innerHTML = '<iframe src="//player.bilibili.com/player.html?isOutside=true&aid=115200954998720&bvid=BV1miHfzEET2&cid=25861363351&p=1&autoplay=1" allowfullscreen></iframe>';
-    setTimeout(wrapDynamicIframes, 0);
+    const list = currentList();
+    const idx = parseInt(index);
+    if (idx >= 0 && idx < list.length && hasAvailableVideo(list[idx])) {
+        state.epIndex = idx;
+        renderPlayer();
+    }
 }
 
 function switchTab(version) {
