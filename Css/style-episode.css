@@ -145,6 +145,29 @@ html {
     vertical-align: middle;
 }
 
+/* Indicateur de source vidéo */
+.video-sources {
+    position: relative;
+    width: 100%;
+}
+
+.source-label {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    background: rgba(255, 215, 0, 0.9);
+    color: #12100a;
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
 
 /* ================================================== */
 /*  PLACEHOLDER — VIDÉO NON DISPONIBLE                */
@@ -176,7 +199,7 @@ tr:hover .video-placeholder {
 
 
 /* ================================================== */
-/*  MODE LECTEUR                                      */
+/*  MODE LECTEUR — DUAL PLAYER LAYOUT                 */
 /* ================================================== */
 
 /* En-tête du lecteur : saison, titre, date */
@@ -208,16 +231,29 @@ tr:hover .video-placeholder {
     color: var(--color-text-muted);
 }
 
-/* Wrapper de la vidéo en mode lecteur */
+/* ===== CONTENEUR DOUBLE LECTEUR ===== */
+.players-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Wrapper individuel de chaque vidéo */
 .player-video-wrapper {
-    width: 100%;
     border-radius: var(--radius-md);
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--color-border);
     background: #000;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-/* Conteneur 16:9 de la vidéo (déjà dans style-common via .video-container) */
+.player-video-wrapper:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--color-gold-glow);
+}
+
 .player-video-wrapper .video-container {
     position: relative;
     width: 100%;
@@ -233,12 +269,28 @@ tr:hover .video-placeholder {
     border: none;
 }
 
+/* Titre du lecteur (Sibnet / Uqload) */
+.player-wrapper-title {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    padding: 8px 12px;
+    background: rgba(255, 215, 0, 0.08);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+    text-align: center;
+}
+
 /* Placeholder dans le lecteur quand pas de vidéo */
 .player-placeholder {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
     background: rgba(255, 215, 0, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .player-placeholder span {
@@ -255,6 +307,7 @@ tr:hover .video-placeholder {
     padding: 16px 32px;
     border-radius: var(--radius-sm);
     white-space: nowrap;
+    text-align: center;
 }
 
 /* Barre de navigation épisode : flèches + select */
@@ -339,6 +392,12 @@ tr:hover .video-placeholder {
 /*  RESPONSIVE SPÉCIFIQUE À CETTE PAGE                */
 /* ================================================== */
 
+@media (max-width: 1024px) {
+    .players-container {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
 
     /* Barre de contrôles : chaque groupe prend toute la largeur */
@@ -375,6 +434,12 @@ tr:hover .video-placeholder {
         font-size: 0.65rem;
     }
 
+    /* Double lecteur en colonne sur mobile */
+    .players-container {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
     /* Flèches du lecteur légèrement réduites */
     .player-nav-btn {
         width: 38px;
@@ -395,5 +460,9 @@ tr:hover .video-placeholder {
         padding: 12px 18px;
         white-space: normal;
         text-align: center;
+    }
+
+    .player-wrapper-title {
+        font-size: 0.65rem;
     }
 }
