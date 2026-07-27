@@ -675,12 +675,26 @@ nav ul li a:hover { color: var(--color-gold); }
     }
 }
 
-@media (max-width: 480px) {
-    section {
-        margin: 10px 6px 0;
+@media (max-width: 768px) {
+    html {
+        background-attachment: scroll !important;
+        background-position: top center;
     }
 
-    h2 {
-        font-size: 1.15rem;
+    body {
+        min-height: 100vh;
+        padding: 0 0 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    html {
+        background-attachment: scroll !important;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    body {
+        padding: 0 0 30px;
     }
 }
