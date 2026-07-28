@@ -79,7 +79,7 @@ border-color: rgba(255, 215, 0, 0.4);
 color: var(--color-text);
 }
 
-/* Bouton désactivé (ex : source vidéo indisponible pour l'épisode courant) */
+/* Bouton désactivé */
 .ctrl-btn:disabled {
 opacity: 0.3;
 cursor: not-allowed;
@@ -87,7 +87,7 @@ box-shadow: none;
 }
 
 /* ================================================== /
-/  PANNEAUX DE VUE (lecteur)                         /
+/  PANNEAUX DE VUE                                   /
 / ================================================== */
 
 .view-panel {
@@ -97,15 +97,23 @@ max-width: 100%;
 }
 
 @keyframes fadeInPanel {
-from { opacity: 0; transform: translateY(8px); }
-to   { opacity: 1; transform: translateY(0); }
+from {
+opacity: 0;
+transform: translateY(8px);
+}
+
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 }
 
 /* ================================================== /
-/  MODE LECTEUR — LECTEUR UNIQUE (SIBNET OU UQLOAD)  /
+/  MODE LECTEUR                                      /
 / ================================================== */
 
-/* En-tête du lecteur : saison, titre, date */
+/* En-tête du lecteur */
 .player-header {
 display: flex;
 flex-direction: column;
@@ -135,7 +143,10 @@ font-size: 0.82rem;
 color: var(--color-text-muted);
 }
 
-/* ===== CONTENEUR LECTEUR (colonne unique) ===== */
+/* ================================================== /
+/  CONTENEUR DU LECTEUR                              /
+/ ================================================== */
+
 .players-container {
 display: grid;
 grid-template-columns: 1fr;
@@ -147,7 +158,12 @@ max-width: 100%;
 box-sizing: border-box;
 }
 
-/* Conteneur direct du lecteur : largeur limitée et centrée */
+/*
+Le conteneur direct est limité et centré.
+
+Cela corrige le décalage du lecteur sans modifier
+les autres lecteurs présents sur le site.
+*/
 .players-container > div {
 width: 100%;
 max-width: 960px;
@@ -158,9 +174,13 @@ margin-inline: auto;
 .player-video-wrapper {
 border-radius: var(--radius-md);
 overflow: hidden;
-box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--color-border);
+box-shadow:
+0 8px 32px rgba(0, 0, 0, 0.7),
+0 0 0 1px var(--color-border);
 background: #000;
-transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+transition:
+transform var(--transition-fast),
+box-shadow var(--transition-fast);
 width: 100%;
 max-width: 100%;
 box-sizing: border-box;
@@ -168,7 +188,9 @@ box-sizing: border-box;
 
 .player-video-wrapper:hover {
 transform: translateY(-3px);
-box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--color-gold-glow);
+box-shadow:
+0 12px 40px rgba(0, 0, 0, 0.8),
+0 0 0 1px var(--color-gold-glow);
 }
 
 .player-video-wrapper .video-container {
@@ -189,7 +211,10 @@ border: none;
 display: block;
 }
 
-/* Titre du lecteur (nom de la source vidéo active) */
+/* ================================================== /
+/  TITRE DE LA SOURCE VIDÉO                          /
+/ ================================================== */
+
 .player-wrapper-title {
 font-family: var(--font-display);
 font-size: 0.75rem;
@@ -203,7 +228,10 @@ text-align: center;
 min-height: 1.2em;
 }
 
-/* Placeholder dans le lecteur quand pas de vidéo */
+/* ================================================== /
+/  PLACEHOLDER DU LECTEUR                            /
+/ ================================================== */
+
 .player-placeholder {
 position: relative;
 width: 100%;
@@ -231,7 +259,10 @@ white-space: nowrap;
 text-align: center;
 }
 
-/* Barre de navigation épisode : flèches + select */
+/* ================================================== /
+/  NAVIGATION ENTRE LES ÉPISODES                     /
+/ ================================================== */
+
 .player-nav {
 display: flex;
 align-items: center;
@@ -241,7 +272,7 @@ width: 100%;
 box-sizing: border-box;
 }
 
-/* Boutons flèche précédent / suivant */
+/* Boutons précédent / suivant */
 .player-nav-btn {
 width: 44px;
 height: 44px;
@@ -278,7 +309,10 @@ cursor: not-allowed;
 transform: none;
 }
 
-/* Select déroulant des épisodes /
+/* ================================================== /
+/  SÉLECTEUR D'ÉPISODE                               /
+/ ================================================== */
+
 .ep-select {
 flex: 1;
 font-family: var(--font-body);
@@ -289,17 +323,26 @@ border: 1.5px solid var(--color-border);
 border-radius: var(--radius-sm);
 padding: 10px 14px;
 cursor: pointer;
+
 appearance: none;
 -webkit-appearance: none;
 -moz-appearance: none;
-/ Chevron doré via SVG inline */
+
+/* Chevron doré via SVG intégré */
 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffd700' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+
 background-repeat: no-repeat;
 background-position: right 14px center;
+
 padding-right: 38px;
-transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+
+transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+
 box-sizing: border-box;
 min-width: 0;
+
 }
 
 .ep-select:focus {
@@ -313,7 +356,10 @@ background: #12100a;
 color: var(--color-text);
 }
 
-/* Actions supplémentaires sous le lecteur (dernier épisode disponible) */
+/* ================================================== /
+/  ACTIONS SUPPLÉMENTAIRES                           /
+/ ================================================== */
+
 .player-extra-actions {
 display: flex;
 justify-content: center;
@@ -325,18 +371,28 @@ padding: 9px 20px;
 }
 
 /* ================================================== /
-/  RESPONSIVE SPÉCIFIQUE À CETTE PAGE                /
+/  RESPONSIVE                                        /
 / ================================================== */
 
 @media (max-width: 1024px) {
+
 html {
-background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+    background-image:
+        url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
 }
+
 }
 
 @media (max-width: 768px) {
 
-/* Fond fixe stable sur mobile, sans background-attachment */
+/* ================================================== */
+/*  FOND MOBILE STABLE                                */
+/* ================================================== */
+
+/*
+   Le fond de html est désactivé uniquement sur mobile.
+   Le fond est affiché par le pseudo-élément fixe.
+*/
 html {
     background-image: none !important;
 }
@@ -348,17 +404,64 @@ body {
 
 body::before {
     content: "";
+
     position: fixed;
-    inset: 0;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+
+    /*
+       svh correspond à la plus petite hauteur stable
+       du viewport mobile.
+
+       Le fond ne change donc pas de hauteur lorsque
+       la barre d'adresse apparaît ou disparaît.
+    */
+    height: 100svh;
+
     z-index: -1;
-    background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
-    background-size: cover;
+
+    background-image:
+        url("../Image/bc57eead3176837e41f1235a4737aac3.jpg");
+
+    /*
+       L'image est dimensionnée selon une hauteur stable.
+       Cela évite le recalcul de zoom causé par
+       background-size: cover.
+    */
+    background-size: auto 100%;
+
     background-repeat: no-repeat;
+
     background-position: top center;
+
     pointer-events: none;
+
+    /*
+       Maintient le fond sur un calque de composition
+       séparé afin de réduire les redessins au scroll.
+    */
+    transform: translateZ(0);
 }
 
-/* Barre de contrôles : chaque groupe prend toute la largeur */
+/*
+   Compatibilité avec les navigateurs ne prenant pas
+   encore en charge l'unité svh.
+*/
+@supports not (height: 100svh) {
+
+    body::before {
+        height: 100vh;
+    }
+}
+
+
+/* ================================================== */
+/*  BARRE DE CONTRÔLES                                */
+/* ================================================== */
+
 .controls-bar {
     flex-direction: column;
     gap: 16px;
@@ -380,7 +483,11 @@ body::before {
     min-width: 60px;
 }
 
-/* Lecteur */
+
+/* ================================================== */
+/*  LECTEUR                                           */
+/* ================================================== */
+
 .players-container {
     gap: 12px;
     margin-top: 12px;
@@ -486,7 +593,7 @@ body::before {
     font-size: 0.7rem;
 }
 
-/* Controls ultra compactes */
+/* Contrôles ultra-compacts */
 .controls-bar {
     padding: 10px 12px;
     gap: 12px 16px;
