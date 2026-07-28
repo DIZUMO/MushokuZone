@@ -77,13 +77,6 @@ text-shadow:
 /  ANIMATION DE CHARGEMENT (LOADER)                  /
 / ================================================== */
 
-/*
-Le texte utilise une couleur normale plutôt qu'un texte
-transparent avec background-clip.
-
-Cela évite que "Loading..." disparaisse sur les fonds
-noirs des lecteurs vidéo.
-*/
 .loader {
 width: fit-content;
 font-weight: bold;
@@ -92,34 +85,42 @@ font-size: 18px;
 
 color: #ffffff;
 
+line-height: 1.2;
+white-space: nowrap;
+
 flex-shrink: 0;
 
 /*
-   Désactive l'ombre héritée du body afin que le texte
-   reste net et ne soit plus visuellement dédoublé.
+   Le body applique une ombre globale.
+
+   Elle est supprimée ici afin que le texte
+   "Loading..." reste net.
 */
 text-shadow: none;
 
+/*
+   Le texte est maintenant ajouté directement
+   par JavaScript avec :
+
+   loaderEl.textContent = "Loading...";
+*/
 animation: loader-color 1.5s ease-in-out infinite;
 
 }
 
+/*
+Aucun texte n'est créé par un pseudo-élément.
+
+Cela évite les problèmes de rendu ou de duplication
+entre le contenu JavaScript et le CSS.
+*/
 .loader::before {
-content: "Loading...";
-
-display: block;
-
-padding: 0 5px;
-
-color: inherit;
-
-text-shadow: none;
-
+content: none;
 }
 
 /*
-L'animation reste visible sur les arrière-plans noirs :
-blanc -> doré -> blanc.
+Animation visible sur les arrière-plans noirs :
+blanc → doré → blanc.
 */
 @keyframes loader-color {
 0%,
@@ -133,7 +134,10 @@ color: #ffffff;
 
 }
 
-/* Fondu d'entrée une fois le média prêt */
+/* ================================================== /
+/  APPARITION DES MÉDIAS                             /
+/ ================================================== */
+
 @keyframes media-fade-in {
 from {
 opacity: 0;
@@ -145,7 +149,7 @@ to {
 
 }
 
-/* Appliqué par JS quand l'image / iframe est chargé */
+/* Appliqué par JavaScript quand le média est chargé */
 .media-loaded {
 animation: media-fade-in 0.5s ease forwards;
 }
