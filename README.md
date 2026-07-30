@@ -1,135 +1,193 @@
-# MushokuZone
+Site documentaire consacré à l'univers de **Mushoku Tensei : Isekai Ittara Honki Dasu**.
 
-MushokuZone est un site web dédié à l’anime *Mushoku Tensei*, permettant d’accéder facilement aux différentes saisons et épisodes, avec une interface pensée pour un visionnage direct et fluide.
-
-Le site est accessible ici :
-[https://dizumo.github.io/MushokuZone/](https://dizumo.github.io/MushokuZone/)
+**Accès au site :** https://dizumo.github.io/MushokuZone/
 
 ---
 
-## Présentation
+## À propos
 
-MushokuZone est un projet personnel visant à concevoir une plateforme simple et efficace pour consulter et regarder les épisodes de l'anime Mushoku Tensei.
-Le projet met l’accent sur l’ergonomie, la lisibilité et l’accessibilité, notamment sur mobile.
+MushokuZone est un projet personnel visant à regrouper des informations vérifiables et bien organisées sur l'univers de Mushoku Tensei. Le site privilégie :
 
----
-
-## Fonctionnalités principales
-
-Le site propose actuellement :
-
-* sélection des saisons :
-
-  * Saison 1
-  * Saison 2 – Cour 1
-  * Saison 2 – Cour 2
-
-* choix de la version :
-
-  * VF (Version Française)
-  * VO (Version Originale)
-
-* affichage structuré des épisodes sous forme de tableau :
-
-  * numéro
-  * titre VO / FR
-  * date de diffusion
-
-* lecture directe via intégration de lecteurs vidéo (iframe)
-
-* navigation rapide entre les épisodes
-
-* interface responsive adaptée aux smartphones
+- **L'exactitude des informations** - Toutes les sources sont vérifiées
+- **La distinction entre faits et analyses** - Clarté documentaire
+- **L'accessibilité** - Design responsive, lisibilité optimale
+- **La transparence** - Chaque information peut être reliée à une source
 
 ---
 
-## Choix techniques
+## Caractéristiques principales
 
-Le projet repose sur une architecture volontairement simple et maîtrisée :
+### Pages documentaires
 
-* HTML5 pour la structure des pages
-* CSS3 pour la mise en forme et le responsive
-* JavaScript pour la gestion dynamique (navigation, sélection saison/langue, affichage vidéo)
-* GitHub Pages pour le déploiement
+- **Accueil** : Présentation générale et thèmes principaux
+- **Biographie** : Parcours public de Rifujin na Magonote
+- **Impact** : Réception critique et place dans l'isekai moderne
+- **Univers** : Continents, peuples, magie et systèmes du Monde des Six Faces
+- **Personnages** : Descriptions des protagonistes principaux
+- **Chronologie** : Étapes éditoriales depuis 2012
+- **Épisodes** : Lecteur vidéo avec navigation (fichiers existants)
+- **Sources** : Toutes les références utilisées
+- **À propos** : Mission et objectifs du projet
 
-Ce choix permet de garder un contrôle total sur le fonctionnement du site sans dépendre de frameworks externes.
+### Fonctionnalités techniques
+
+- **Navigation fluide** avec menu sticky et bouton "Retour en haut"
+- **Design responsive** adapté à tous les appareils (320px - 1440px+)
+- **Accessibilité** WCAG 2.2 AA (skip link, ARIA, contraste suffisant)
+- **Performance optimisée** avec lazy loading des images et iframes
+- **Animations discrètes** au scroll avec IntersectionObserver
+- **Métadonnées complètes** (Open Graph, Twitter Card, JSON-LD)
+- **SEO amélioré** avec titres, descriptions et canonical tags
 
 ---
 
 ## Structure du projet
 
-```bash
+```
 MushokuZone/
-│── index.html
-│── Autre pages/
-│   ├── Biographie.html
-│   ├── Impact.html
-│   └── Episode.html
-│── Css/
-│   ├── style-common.css
-│   ├── style-index.css
-│   ├── style-impact.css
-│   ├── style-episode.css
-│   └── style-biographie.css
-│── Js/
-│   └── Jscripts.js
-│── Image/
-│   ├── Mushoku_Tensei_Logo_(japonais).png
-│   ├── mushoku-tensei1.jpg
-│   ├── mushoku-tensei2.jpg
-│   ├── mushoku-tensei3.jpg
-│   ├── mushoku-tensei4.jpg
-│   ├── mushoku-tensei5.jpg
-│   ├── mushoku-tensei6.jpg
-│   ├── mushoku-tensei7.jpg
-│   ├── mushoku-tensei8.jpg
-│   ├── mushoku-tensei9.jpg
-│   ├── mushoku-tensei10.jpg
-│   ├── mushoku-tensei11.jpg
-│   ├── mushoku-tensei12.jpg
-│   └── mushoku-tensei13.jpg
+├── index.html                    # Page d'accueil
+├── Autre pages/
+│   ├── Biographie.html          # Parcours de l'auteur
+│   ├── Impact.html              # Analyse de l'impact
+│   ├── Univers.html             # Présentation du monde
+│   ├── Personnages.html         # Fiches personnages
+│   ├── Chronologie.html         # Frise éditoriale
+│   ├── Episode.html             # Lecteur vidéo (existant)
+│   ├── Sources.html             # Références documentaires
+│   └── A-propos.html            # Informations du site
+├── Css/
+│   ├── style-common.css         # Styles globaux (menu, footer, composants)
+│   ├── style-index.css          # Spécifique accueil
+│   ├── style-biographie.css     # Spécifique biographie
+│   ├── style-impact.css         # Spécifique impact
+│   └── style-episode.css        # Spécifique lecteur (existant)
+├── Js/
+│   ├── config.js                # Configuration globale du site
+│   ├── Jscripts.js              # Scripts communs (menu, animations)
+│   └── Jscripts2.js             # Logique du lecteur (existant)
+└── Image/
+    └── [images du site]
 ```
 
-L’organisation du projet sépare clairement :
+---
 
-* la structure (HTML)
-* la présentation (CSS)
-* la logique (JavaScript)
+## Améliorations apportées (v2.0)
 
-Ce découpage facilite les évolutions et la maintenance.
+### Interface utilisateur
+
+✅ Menu de navigation global (sticky)  
+✅ Footer cohérent sur toutes les pages  
+✅ Bouton "Retour en haut" de page  
+✅ Fil d'Ariane (breadcrumb) intégré  
+✅ Animations fluides au scroll  
+✅ Mobile burger menu responsive  
+
+### Architecture technique
+
+✅ Configuration centralisée (config.js)  
+✅ CSS modulaire et réutilisable  
+✅ Composants cohérents (cartes, accordéons, frise chrono)  
+✅ JavaScript maintenable et DRY  
+✅ Lazy loading des médias  
+
+### Accessibilité & SEO
+
+✅ Skip link pour clavier  
+✅ Attributs ARIA complets  
+✅ Métadonnées OpenGraph et Twitter Card  
+✅ JSON-LD structuré (WebSite, Article, Organization)  
+✅ Contraste WCAG AA  
+✅ Support du mode "Réduire les animations"  
+
+### Contenu documentaire
+
+✅ 9 pages avec contenu riche et sourcé  
+✅ Distinction claire faits/analyses  
+✅ Références officielles vérifiées  
+✅ Informations structurées et pédagogiques  
 
 ---
 
-## État actuel
+## Installation et déploiement
 
-Le projet est en cours de développement.
+### En local
 
-Certaines fonctionnalités sont encore perfectibles, notamment :
-* l’optimisation du lecteur vidéo
-* l’amélioration de l’expérience utilisateur
+```bash
+git clone https://github.com/DIZUMO/MushokuZone.git
+cd MushokuZone
+# Servir avec n'importe quel serveur local
+python -m http.server 8000
+# Puis visiter http://localhost:8000
+```
+
+### Sur GitHub Pages
+
+Le site est automatiquement déployé sur :  
+https://dizumo.github.io/MushokuZone/
+
+Chaque push sur la branche `main` met à jour le site en direct.
 
 ---
 
-## Perspectives d’évolution
+## Maintenance
 
-Améliorations envisagées :
+### Ajouter une nouvelle page
 
-* amélioration de l’interface utilisateur
-* optimisation des performances
-* enrichissement des métadonnées (titres, descriptions, organisation)
-* meilleure gestion des sources vidéo
-* rajout de contenu et des actualité
+1. Créer le fichier HTML dans `Autre pages/`
+2. Copier la structure HTML existante
+3. Ajouter un lien dans le menu (navigateur met à jour automatiquement)
+4. Si besoin, créer un CSS spécifique dans `Css/`
+
+### Mettre à jour les informations
+
+- Configuration globale : `Js/config.js`
+- Styles communs : `Css/style-common.css`
+- Footer & menu : automatiquement générés par `Jscripts.js`
+
+### Vérifier la qualité
+
+- **Accessibilité** : https://www.axe-devtools.com/
+- **Performance** : https://pagespeed.web.dev/
+- **SEO** : https://www.seobility.net/
+
 ---
 
-## Aspects légaux
+## Aspets légaux
 
-Ce projet est réalisé à titre personnel.
+**MushokuZone est un site non officiel.**
 
-Les contenus intégrés proviennent de sources externes. Les droits associés appartiennent à leurs ayants droit respectifs. Ce site n’a pas vocation à une utilisation commerciale.
+Les droits sur Mushoku Tensei appartiennent à :
+- Rifujin na Magonote (auteur)
+- KADOKAWA / MF Books (éditeur)
+- Studio Bind (producteur anime)
+
+Le site est à titre documentaire et passionnel, sans vocation commerciale.
+
+---
+
+## Licence du code
+
+MIT License - Voir LICENSE pour détails.
 
 ---
 
 ## Auteur
 
-DIZUMO
-[https://github.com/DIZUMO](https://github.com/DIZUMO)
+**DIZUMO**  
+GitHub : https://github.com/DIZUMO  
+Projet : https://github.com/DIZUMO/MushokuZone
+
+---
+
+## Support
+
+Pour signaler un bug ou une erreur dans l'information :
+1. Vérifier les sources sur la page dédiée
+2. Ouvrir une issue sur GitHub
+3. Proposer une correction avec sources
+
+**Engagement** : Toute erreur signalée et vérifiée sera corrigée rapidement.
+
+---
+
+Site développé avec ❤️ pour Mushoku Tensei
