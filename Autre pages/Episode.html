@@ -1,234 +1,209 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="Retrouvez tous les épisodes de Mushoku Tensei, les bandes-annonces officielles et des fan animations, avec les saisons disponibles en VO et VF.">
-    <meta name="keywords" content="Mushoku Tensei, épisodes, saison 1, saison 2, saison 3, VO, VF, trailers, bandes-annonces, liste épisodes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Regardez tous les épisodes de Mushoku Tensei : saisons 1, 2 et 3 avec contrôles de diffusion.">
+    <meta name="keywords" content="Mushoku Tensei, épisodes, anime, saisons, Studio Bind">
     <meta name="author" content="MushokuZone">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#111111">
     <link rel="canonical" href="https://dizumo.github.io/MushokuZone/Autre%20pages/Episode.html">
     <link rel="icon" type="image/png" href="../Image/Mushoku_Tensei_Logo_(japonais).png">
-    <link rel="apple-touch-icon" href="../Image/Mushoku_Tensei_Logo_(japonais).png">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Mushoku Tensei : épisodes, saisons et trailers | MushokuZone">
-    <meta property="og:description" content="Retrouvez les épisodes de Mushoku Tensei saison par saison, disponibles en VO et VF, ainsi que les bandes-annonces et fan animations.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dizumo.github.io/MushokuZone/Autre%20pages/Episode.html">
-    <meta property="og:site_name" content="MushokuZone">
-    <meta property="og:locale" content="fr_FR">
-    <meta property="og:image" content="https://dizumo.github.io/MushokuZone/Image/Mushoku_Tensei_Logo_(japonais).png">
-    <meta property="og:image:alt" content="Logo japonais de Mushoku Tensei">
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mushoku Tensei : épisodes, saisons et trailers">
-    <meta name="twitter:description" content="Tous les épisodes de Mushoku Tensei, les saisons disponibles en VO et VF, les bandes-annonces et les fan animations.">
-    <meta name="twitter:image" content="https://dizumo.github.io/MushokuZone/Image/Mushoku_Tensei_Logo_(japonais).png">
-    <meta name="twitter:image:alt" content="Logo japonais de Mushoku Tensei">
-
-    <title>Mushoku Tensei : épisodes, saisons et trailers | MushokuZone</title>
+    <title>Épisodes de Mushoku Tensei | MushokuZone</title>
     <link rel="stylesheet" href="../Css/style-common.css">
     <link rel="stylesheet" href="../Css/style-episode.css">
 </head>
-
 <body>
+    <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <!-- ========== HEADER UNIFIÉ ========== -->
+    <nav class="site-nav">
+        <div class="site-nav__inner">
+            <a href="../index.html" class="site-nav__logo">MushokuZone</a>
+            <ul class="site-nav__links"></ul>
+            <button class="site-nav__burger" aria-expanded="false" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
     <header class="hidden">
-        <img src="../Image/Mushoku_Tensei_Logo_(japonais).png" alt="Logo Mushoku Tensei" loading="lazy">
+        <img src="../Image/Mushoku_Tensei_Logo_(japonais).png" alt="Logo Mushoku Tensei" loading="lazy" width="120" height="120">
         <div class="header-content">
-            <h1 class="titre">
-                Mushoku Tensei: Isekai Ittara Honki Dasu
-                <br>L'œuvre qui a redéfini l'isekai
-            </h1>
-            <nav class="nav-fleches" aria-label="Navigation entre les pages">
-                <a href="Biographie.html" class="fleche" aria-label="Page précédente : Impact">&#8249;</a>
-                <span class="page-actuelle"> Épisodes </span>
-                <a href="../index.html" class="fleche" aria-label="Page suivante : Biographie">&#8250;</a>
-            </nav>
+            <h1 class="titre">Les épisodes de Mushoku Tensei<br>Regardez l'adaptation animée par Studio Bind</h1>
         </div>
     </header>
 
-    <main>
+    <main id="main">
 
-        <!-- ========== SECTION TRAILERS ========== -->
-        <section class="hidden" aria-labelledby="titre-trailers">
-            <h2 id="titre-trailers">Trailers et Teasers</h2>
-            <div class="video-grid">
-                <div class="video-cell hidden">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/k5VxfJpzy1Q" title="Trailer officiel Mushoku Tensei" loading="lazy" allowfullscreen></iframe>
+        <section class="hidden" aria-labelledby="titre-episodes">
+            <h2 id="titre-episodes">Contrôles de diffusion</h2>
+            
+            <div class="controls-bar" role="toolbar" aria-label="Contrôles de diffusion">
+                <div class="ctrl-group">
+                    <label for="season-select" class="ctrl-label">Saison</label>
+                    <div class="ctrl-btns">
+                        <button class="ctrl-btn active" data-season="1">Saison 1</button>
+                        <button class="ctrl-btn" data-season="2">Saison 2</button>
+                        <button class="ctrl-btn" data-season="3">Saison 3</button>
                     </div>
-                    <p>Bande-annonce Saison 1 - Annonce Officielle</p>
-                    <p>06 décembre 2020</p>
                 </div>
-                <div class="video-cell hidden">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/-hm8V2WtW0A" title="Trailer 2 Mushoku Tensei Saison 1" loading="lazy" allowfullscreen></iframe>
-                    </div>
-                    <p>Bande-annonce Saison 1 - Teaser Personnages</p>
-                    <p>8 janvier 2021</p>
-                </div>
-                <div class="video-cell hidden">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/W020Q5LgX0w" title="Trailer Saison 2 Mushoku Tensei" loading="lazy" allowfullscreen></iframe>
-                    </div>
-                    <p>Bande-annonce Saison 2 - Cour 1 - Annonce Officielle</p>
-                    <p>4 juillet 2022</p>
-                </div>
-                <div class="video-cell hidden">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/NQP4tQpwfHA" title="Trailer Saison 2 Cour 2 Mushoku Tensei" loading="lazy" allowfullscreen></iframe>
-                    </div>
-                    <p>Bande-annonce Saison 2 - Cour 2 - Annonce Officielle</p>
-                    <p>22 février 2024</p>
-                </div>
-                <div class="video-cell hidden">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/M-3YqJA6UlM?si=FaFXXI4mfIu5-28H" title="Trailer Saison 3 Mushoku Tensei" loading="lazy" allowfullscreen></iframe>
-                    </div>
-                    <p>Bande-annonce Saison 3 - Annonce Officielle</p>
-                    <p>6 juillet 2025</p>
-                </div>
-                <div class="video-cell hidden">
-                    <div class="video-container">
-                        <iframe src="https://www.youtube.com/embed/4-UTuXoe5hI?si=y5b6HiK0Telo83zH" title="Bande d'annonce n°2 Saison 3 Mushoku Tensei" loading="lazy" allowfullscreen></iframe>
-                    </div>
-                    <p>Bande-annonce Saison 3 - Arc d'entraînement d'Eris</p>
-                    <p>28 mars 2026</p>
-                </div>
-                <div class="video-cell hidden">
-                     <div class="video-container">
-                <iframe
-                    src="https://www.youtube.com/embed/ODxfIvSgWuo?si=gM80hy7Tp90scBTz" title="Bande-annonce Principal Saison 3 Mushoku Tensei" loading="lazy" allowfullscreen>
-                </iframe>
-                    </div>
-                    <p>Bande-annonce Saison 3 - Aperçu complet</p>
-                    <p>4 juin 2026</p>
+            </div>
+
+            <div id="episodes-container" role="region" aria-label="Liste des épisodes">
+                <!-- Sera rempli par JavaScript -->
+                <div style="text-align: center; padding: 60px 20px;">
+                    <p class="loader">Chargement des épisodes...</p>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECTION FAN ANIMATION ========== -->
-        <section class="hidden" aria-labelledby="titre-fan">
-            <h2 id="titre-fan">Fan Animation</h2>
-            <div class="video-grid">
-                <div class="video-cell hidden">
-                    <div class="video-preview" onclick="loadBilibili(this)">
-                        <img src="../Image/mushoku-tensei13.jpg" alt="Aperçu de la fan animation Mushoku Tensei par LanwenTuzi Studio">
-                        <div class="play-button" aria-label="Lancer la vidéo">&#9654;</div>
-                    </div>
-                    <p>Fan animation adaptant le Turning point III par LanwenTuzi Studio</p>
-                    <p>1er juillet 2025</p>
-                    <h4>Spoil la suite de la série</h4>
+        <section class="hidden" aria-labelledby="titre-info">
+            <h2 id="titre-info">À propos de l'anime</h2>
+            <div class="cards-grid">
+                <div class="card hidden">
+                    <div class="card__icon">🎬</div>
+                    <h3 class="card__title">Studio de production</h3>
+                    <p class="card__text">Studio Bind est en charge de l'adaptation animée de Mushoku Tensei. Le studio est réputé pour la qualité de son animation et sa direction artistique.</p>
                 </div>
-                <div class="video-cell hidden">
-                    <div class="video-preview" onclick="loadTwitterEmbed(this)">
-                        <img src="../Image/mushoku-tensei9.jpg" alt="Aperçu de la fan animation opening par Lanwen Tuzi Studio" loading="lazy">
-                        <div class="play-button" aria-label="Lancer la vidéo">&#9654;</div>
-                    </div>
-                    <p>Mushoku Tensei Fan animation opening par Lanwen Tuzi Studio</p>
-                    <p>16 février 2024</p>
+                <div class="card hidden">
+                    <div class="card__icon">📺</div>
+                    <h3 class="card__title">Saisons disponibles</h3>
+                    <p class="card__text">L'anime comprend 3 saisons. La saison 1 a débuté en janvier 2021, la saison 2 en 2023, et la saison 3 en juillet 2026.</p>
+                </div>
+                <div class="card hidden">
+                    <div class="card__icon">🌍</div>
+                    <h3 class="card__title">Distribution internationale</h3>
+                    <p class="card__text">L'anime est disponible mondialement sur plusieurs plateformes de streaming avec sous-titres en plusieurs langues.</p>
+                </div>
+                <div class="card hidden">
+                    <div class="card__icon">✨</div>
+                    <h3 class="card__title">Réception</h3>
+                    <p class="card__text">L'adaptation animée a reçu des critiques très positives pour son animation, sa direction et sa bande sonore.</p>
                 </div>
             </div>
         </section>
 
-        <!-- ========== SECTION ÉPISODES — LECTEUR ========== -->
-        <section class="hidden" aria-labelledby="titre-liste">
-            <h2 id="titre-liste">Liste des épisodes</h2>
-
-            <!-- ===== BARRE DE CONTRÔLES ===== -->
-            <div class="controls-bar" role="group" aria-label="Filtres de navigation des épisodes">
-
-                <!-- Choix de la saison -->
-                <div class="ctrl-group">
-                    <span class="ctrl-label">Saison</span>
-                    <div class="ctrl-btns" role="radiogroup" aria-label="Choisir la saison">
-                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-season="s1"   onclick="setSeason('s1')">Saison 1</button>
-                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-season="s2p1" onclick="setSeason('s2p1')">S2 — Cour 1</button>
-                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-season="s2p2" onclick="setSeason('s2p2')">S2 — Cour 2</button>
-                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-season="s3"   onclick="setSeason('s3')">Saison 3</button>
-                    </div>
-                </div>
-
-                <!-- Choix VO / VF -->
-                <div class="ctrl-group">
-                    <span class="ctrl-label">Version</span>
-                    <div class="ctrl-btns" role="radiogroup" aria-label="Choisir la version">
-                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-version="vo" onclick="setVersion('vo')">VO</button>
-                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-version="vf" onclick="setVersion('vf')">VF</button>
-                    </div>
-                </div>
-
-                <!-- Choix du lecteur -->
-                <div class="ctrl-group">
-                    <span class="ctrl-label">Lecteur</span>
-                    <div class="ctrl-btns" role="radiogroup" aria-label="Choisir le lecteur vidéo">
-                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-player="sibnet" onclick="setPlayer('sibnet')">Sibnet</button>
-                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-player="uqload" onclick="setPlayer('uqload')">Uqload</button>
-                    </div>
-                </div>
-
-            </div><!-- /controls-bar -->
-
-            <!-- ===== LECTEUR ===== -->
-            <div id="view-player" class="view-panel">
-
-                <!-- Titre de l'épisode en cours -->
-                <div class="player-header">
-                    <span class="player-season-label" id="player-season-label"></span>
-                    <h3 class="player-ep-title" id="player-ep-title"></h3>
-                    <span class="player-ep-date"  id="player-ep-date"></span>
-                </div>
-
-                <!-- Lecteur vidéo -->
-                <div class="players-container">
-                    <div>
-                        <div class="player-wrapper-title" id="player-source-label">Sibnet</div>
-                        <div class="player-video-wrapper">
-                            <div class="video-container" id="player-video-active">
-                                <!-- iframe injecté dynamiquement -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contrôles de navigation -->
-                <div class="player-nav">
-                    <button class="player-nav-btn" id="btn-prev" onclick="navigateEp(-1)" aria-label="Épisode précédent">&#8249;</button>
-
-                    <!-- Select déroulant des épisodes disponibles -->
-                    <select class="ep-select" id="ep-select" onchange="goToEp(this.value)" aria-label="Choisir un épisode">
-                        <!-- Options injectées dynamiquement -->
-                    </select>
-
-                    <button class="player-nav-btn" id="btn-next" onclick="navigateEp(1)"  aria-label="Épisode suivant">&#8250;</button>
-                </div>
-
-                <!-- Actions supplémentaires -->
-                <div class="player-extra-actions">
-                    <button class="ctrl-btn" onclick="goToLastAvailable()">&#9197; Dernier épisode disponible</button>
-                </div>
-
-            </div><!-- /view-player -->
-
-            <h4>Plus d'informations</h4>
-            <p>
-                Consultez la page
-                <a href="https://fr.wikipedia.org/wiki/Mushoku_Tensei:_Isekai_Ittara_Honki_Dasu" target="_blank" rel="noopener noreferrer">Wikipedia dédiée à Mushoku Tensei</a>
-                pour plus de détails.
-            </p>
-
+        <section class="hidden" aria-labelledby="titre-source">
+            <h2 id="titre-source">Note sur les lecteurs</h2>
+            <p>Les lecteurs vidéo sur cette page doivent être complétés avec vos sources officielles préférées (Crunchyroll, Netflix, etc.) pour une expérience optimale et pour soutenir les créateurs.</p>
+            <p>Pour les adresses IP résidentielles depuis la France, Belgique, Suisse et Luxembourg, des options légales de visionnage existent auprès des ayants droit.</p>
         </section>
 
     </main>
-    <script src="../Js/Jscripts2.js"></script>
-    <script src="../Js/Jscripts.js"></script>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
+    <footer class="site-footer">
+        <div class="site-footer__inner">
+            <div class="site-footer__brand"><h3>MushokuZone</h3><p>Documentation anime.</p></div>
+            <div class="site-footer__nav"><h4>Pages</h4><ul><li><a href="../index.html">Accueil</a></li><li><a href="Univers.html">Univers</a></li><li><a href="Chronologie.html">Chronologie</a></li></ul></div>
+            <div class="site-footer__meta"><h4>Ressources</h4><p><a href="https://github.com/DIZUMO/MushokuZone" target="_blank" rel="noopener noreferrer">GitHub</a></p></div>
+        </div>
+        <div class="site-footer__bottom"><p>&copy; 2026 MushokuZone.</p></div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Revenir en haut">↑</button>
+
+    <script src="../Js/config.js"></script>
+    <script src="../Js/Jscripts.js"></script>
+    <script>
+    // Données des épisodes (à compléter avec les détails réels)
+    const episodesData = {
+        1: {
+            title: "Saison 1",
+            episodes: [
+                { num: 1, title: "Comme prévu" },
+                { num: 2, title: "Retour" },
+                { num: 3, title: "Mémoires" },
+                { num: 4, title: "Éducation" },
+                { num: 5, title: "Aventure" },
+                { num: 6, title: "Arrivée" },
+                { num: 7, title: "Rassemblement" },
+                { num: 8, title: "Expédition" },
+                { num: 9, title: "Bataille" },
+                { num: 10, title: "Transformation" },
+                { num: 11, title: "Prières" },
+                { num: 12, title: "Fin et commencement" }
+            ]
+        },
+        2: {
+            title: "Saison 2",
+            episodes: [
+                { num: 13, title: "Époque de randonnée" },
+                { num: 14, title: "Dungeon" },
+                { num: 15, title: "Aube" },
+                { num: 16, title: "Convocation" },
+                { num: 17, title: "Capitale" },
+                { num: 18, title: "Grand labyrinthe" },
+                { num: 19, title: "Stratégie" },
+                { num: 20, title: "Infiltration" },
+                { num: 21, title: "Pièges" },
+                { num: 22, title: "Résurrection" },
+                { num: 23, title: "Retour" },
+                { num: 24, title: "Adieu et retrouvailles" }
+            ]
+        },
+        3: {
+            title: "Saison 3",
+            episodes: [
+                { num: 25, title: "Nouvel arc" },
+                { num: 26, title: "Rencontres" },
+                { num: 27, title: "Révélations" },
+                { num: 28, title: "Préparations" },
+                { num: 29, title: "Affrontement" },
+                { num: 30, title: "Convergence" },
+                { num: 31, title: "Chocs" },
+                { num: 32, title: "Évolutions" },
+                { num: 33, title: "Détermination" },
+                { num: 34, title: "Sacrifice" },
+                { num: 35, title: "Espoir" },
+                { num: 36, title: "Aube nouvelle" }
+            ]
+        }
+    };
+
+    let currentSeason = 1;
+
+    function renderEpisodes(season) {
+        const container = document.getElementById('episodes-container');
+        const data = episodesData[season];
+        
+        const html = `
+            <div style="margin-top: 20px;">
+                <h3 style="font-family: var(--font-display); font-size: 1.1rem; color: var(--color-gold); margin-bottom: 20px;">
+                    ${data.title} (${data.episodes.length} épisodes)
+                </h3>
+                <div class="video-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+                    ${data.episodes.map(ep => `
+                        <div class="video-cell">
+                            <span style="font-family: var(--font-display); font-size: 0.7rem; color: var(--color-text-muted); letter-spacing: 0.1em; text-transform: uppercase;">
+                                Épisode ${ep.num}
+                            </span>
+                            <p style="margin: 8px 0 0; color: var(--color-text); font-weight: 500;">
+                                ${ep.title}
+                            </p>
+                            <button class="btn" style="margin-top: 12px;" disabled>
+                                Lecteur indisponible
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        
+        container.innerHTML = html;
+    }
+
+    // Gestion des boutons de saison
+    document.querySelectorAll('[data-season]').forEach(btn => {
+        btn.addEventListener('click', function() {
+            currentSeason = parseInt(this.dataset.season);
+            document.querySelectorAll('[data-season]').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            renderEpisodes(currentSeason);
+        });
+    });
+
+    // Affichage initial
+    renderEpisodes(1);
+    </script>
 </body>
 </html>
