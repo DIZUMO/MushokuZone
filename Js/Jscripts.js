@@ -8,9 +8,6 @@ class NavigationManager {
         this.ul = this.nav?.querySelector('.site-nav__links');
     }
 
-    /**
-     * Construit la navigation depuis JSON
-     */
     async build() {
         if (!this.ul) return;
 
@@ -51,17 +48,11 @@ class NavigationManager {
         }
     }
 
-    /**
-     * Détecte si on est dans Autre pages/
-     */
     isOtherPagesDirectory() {
         const pathname = new URL(window.location).pathname;
         return /Autre\s+pages|Autre%20pages/.test(pathname);
     }
 
-    /**
-     * Récupère le nom du fichier actuel
-     */
     getCurrentFile() {
         const pathname = new URL(window.location).pathname;
         return pathname.split('/').pop() || 'index.html';
@@ -76,14 +67,12 @@ class BurgerMenu {
     constructor() {
         this.burger = document.querySelector('.site-nav__burger');
         this.navLinks = document.querySelector('.site-nav__links');
-        if (this.burger && this.navLinks) {
-            this.init();
-        }
+        if (this.burger && this.navLinks) this.init();
     }
 
     init() {
         this.burger.addEventListener('click', () => this.toggle());
-        document.addEventListener('click', (e) => this.closeIfOutside(e));
+        document.addEventListener('click', e => this.closeIfOutside(e));
     }
 
     toggle() {
@@ -146,13 +135,11 @@ class UpdateManager {
         try {
             const raw = localStorage.getItem(this.storageKey);
             if (!raw) return null;
-
             const cached = JSON.parse(raw);
             if (!cached.timestamp || Date.now() - cached.timestamp > this.cacheDuration) {
                 localStorage.removeItem(this.storageKey);
                 return null;
             }
-
             return cached.data || null;
         } catch {
             return null;
@@ -161,46 +148,29 @@ class UpdateManager {
 
     saveCachedData(data) {
         try {
-            localStorage.setItem(this.storageKey, JSON.stringify({
-                timestamp: Date.now(),
-                data
-            }));
-        } catch {
-            // Le site reste fonctionnel même si localStorage est indisponible.
-        }
+            localStorage.setItem(this.storageKey, JSON.stringify({ timestamp: Date.now(), data }));
+        } catch {}
     }
 
     formatDate(dateString) {
         const date = new Date(`${dateString}T00:00:00`);
         if (Number.isNaN(date.getTime())) return dateString;
-
         return new Intl.DateTimeFormat('fr-FR', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
+            day: 'numeric', month: 'long', year: 'numeric'
         }).format(date);
     }
 
     render() {
         if (!this.data) return;
-
         const lastUpdate = this.formatDate(this.data.lastUpdated);
         const version = this.data.version;
-
         const lastUpdateElement = document.getElementById('last-update');
         const versionElement = document.getElementById('version');
 
         if (lastUpdateElement) lastUpdateElement.textContent = lastUpdate;
         if (versionElement) versionElement.textContent = version;
-
-        document.querySelectorAll('[data-site-last-update]').forEach(element => {
-            element.textContent = lastUpdate;
-        });
-
-        document.querySelectorAll('[data-site-version]').forEach(element => {
-            element.textContent = version;
-        });
-
+        document.querySelectorAll('[data-site-last-update]').forEach(el => el.textContent = lastUpdate);
+        document.querySelectorAll('[data-site-version]').forEach(el => el.textContent = version);
         this.renderFooterMeta(lastUpdate, version);
     }
 
@@ -210,13 +180,7 @@ class UpdateManager {
 
             const container = document.createElement('div');
             container.setAttribute('data-update-manager', 'true');
-            container.style.cssText = [
-                'margin-top:16px',
-                'padding-top:12px',
-                'border-top:1px solid var(--color-border, rgba(255,215,0,.22))',
-                'font-size:.85rem',
-                'line-height:1.6'
-            ].join(';');
+            container.style.cssText = 'margin-top:16px;padding-top:12px;border-top:1px solid var(--color-border, rgba(255,215,0,.22));font-size:.85rem;line-height:1.6';
 
             const title = document.createElement('strong');
             title.textContent = 'Mise à jour du site';
@@ -224,15 +188,10 @@ class UpdateManager {
 
             const date = document.createElement('span');
             date.textContent = `Dernière mise à jour : ${lastUpdate}`;
-
             const release = document.createElement('span');
             release.textContent = `Version : ${version}`;
 
-            container.appendChild(title);
-            container.appendChild(document.createElement('br'));
-            container.appendChild(date);
-            container.appendChild(document.createElement('br'));
-            container.appendChild(release);
+            container.append(title, document.createElement('br'), date, document.createElement('br'), release);
 
             if (this.data.verified) {
                 const verified = document.createElement('span');
@@ -240,7 +199,6 @@ class UpdateManager {
                 verified.style.color = 'var(--color-gold, #ffd700)';
                 container.appendChild(verified);
             }
-
             meta.appendChild(container);
         });
     }
@@ -248,13 +206,61 @@ class UpdateManager {
     renderFallback() {
         const lastUpdateElement = document.getElementById('last-update');
         const versionElement = document.getElementById('version');
+        if (lastUpdateElement && !lastUpdateElement.textContent.trim()) lastUpdateElement.textContent = 'Indisponible';
+        if (versionElement && !versionElement.textContent.trim()) versionElement.textContent = 'Indisponible';
+    }
+}
 
-        if (lastUpdateElement && !lastUpdateElement.textContent.trim()) {
-            lastUpdateElement.textContent = 'Indisponible';
+// ============================================================
+// SPOILER SYSTEM LOADER
+// ============================================================
+// Le système est installé mais volontairement dormant.
+// Aucun élément existant n'utilise data-spoiler.
+
+class SpoilerSystemLoader {
+    constructor() {
+        this.basePath = this.isOtherPagesDirectory() ? '../' : '';
+    }
+
+    isOtherPagesDirectory() {
+        const pathname = decodeURIComponent(window.location.pathname);
+        return pathname.includes('/Autre pages/');
+    }
+
+    async load() {
+        this.loadStylesheet();
+
+        if (window.spoilerManager) {
+            window.spoilerManager.init();
+            return;
         }
-        if (versionElement && !versionElement.textContent.trim()) {
-            versionElement.textContent = 'Indisponible';
+
+        try {
+            await this.loadScript(`${this.basePath}Js/spoiler-manager.js`);
+            if (window.spoilerManager) window.spoilerManager.init();
+        } catch (error) {
+            console.warn('SpoilerSystemLoader: impossible de charger le système de spoilers ->', error);
         }
+    }
+
+    loadStylesheet() {
+        const href = `${this.basePath}Css/spoiler.css`;
+        if (document.querySelector(`link[href="${href}"]`)) return;
+
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        document.head.appendChild(link);
+    }
+
+    loadScript(src) {
+        return new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = () => reject(new Error(`Échec du chargement : ${src}`));
+            document.body.appendChild(script);
+        });
     }
 }
 
@@ -265,9 +271,7 @@ class UpdateManager {
 class BackToTop {
     constructor() {
         this.btn = document.getElementById('back-to-top');
-        if (this.btn) {
-            this.init();
-        }
+        if (this.btn) this.init();
     }
 
     init() {
@@ -285,7 +289,7 @@ class BackToTop {
 }
 
 // ============================================================
-// MEDIA LOADER (images et iframes)
+// MEDIA LOADER
 // ============================================================
 
 class MediaLoader {
@@ -319,13 +323,9 @@ class MediaLoader {
     wrapElement(el, type) {
         if (el.dataset.loaderWrapped === 'true') return;
         el.dataset.loaderWrapped = 'true';
-
         const parent = el.parentElement;
         if (!parent) return;
-
-        if (getComputedStyle(parent).position === 'static') {
-            parent.style.position = 'relative';
-        }
+        if (getComputedStyle(parent).position === 'static') parent.style.position = 'relative';
 
         const loader = document.createElement('div');
         loader.className = 'loader';
@@ -336,7 +336,6 @@ class MediaLoader {
         const start = performance.now();
         el.style.opacity = '0';
         let done = false;
-
         const finish = () => {
             if (done) return;
             done = true;
@@ -349,10 +348,7 @@ class MediaLoader {
         };
 
         if (type === 'IMG') {
-            if (el.complete && el.naturalWidth > 0) {
-                finish();
-                return;
-            }
+            if (el.complete && el.naturalWidth > 0) return finish();
             el.addEventListener('load', finish, { once: true });
             el.addEventListener('error', finish, { once: true });
         } else if (type === 'IFRAME') {
@@ -363,22 +359,16 @@ class MediaLoader {
 }
 
 // ============================================================
-// SCROLL ANIMATIONS (IntersectionObserver)
+// SCROLL ANIMATIONS
 // ============================================================
 
 class ScrollAnimations {
-    constructor() {
-        this.init();
-    }
+    constructor() { this.init(); }
 
     init() {
         if (!window.IntersectionObserver) return;
-
-        const targets = document.querySelectorAll(
-            'header, section, .video-cell, table, .table-wrapper, .timeline__item, .card'
-        );
-
-        const observer = new IntersectionObserver((entries) => {
+        const targets = document.querySelectorAll('header, section, .video-cell, table, .table-wrapper, .timeline__item, .card');
+        const observer = new IntersectionObserver(entries => {
             entries.forEach((entry, i) => {
                 if (!entry.isIntersecting) return;
                 entry.target.style.transitionDelay = `${i * 0.04}s`;
@@ -386,7 +376,6 @@ class ScrollAnimations {
                 observer.unobserve(entry.target);
             });
         }, { threshold: 0.05 });
-
         targets.forEach(el => {
             el.classList.add('hidden');
             observer.observe(el);
@@ -399,9 +388,7 @@ class ScrollAnimations {
 // ============================================================
 
 class AccordionManager {
-    constructor() {
-        this.init();
-    }
+    constructor() { this.init(); }
 
     init() {
         document.querySelectorAll('.accordion__btn').forEach(btn => {
@@ -428,10 +415,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     new MediaLoader();
     new ScrollAnimations();
     new AccordionManager();
-
-    // Les métadonnées de version sont centralisées dans Data/site.json.
-    // Le cache local évite une requête inutile à chaque navigation.
     new UpdateManager().load();
+
+    // Prépare le système de spoilers sans l'activer sur le contenu actuel.
+    new SpoilerSystemLoader().load();
 
     console.log('MushokuZone scripts initialized');
 });
