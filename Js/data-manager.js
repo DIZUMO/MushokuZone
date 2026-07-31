@@ -9,6 +9,7 @@ class DataManager {
         this.cache = {};
         this.errors = [];
         this.loadingPromises = {};
+        this.defaultTimeout = 5000; // ms
     }
 
     /**
@@ -54,17 +55,32 @@ class DataManager {
      */
     async _fetchAndCache(filename) {
         const url = `${this.baseUrl}${filename}`;
-        
+        // Use AbortController to implement a timeout for fetch
+        const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+        const signal = controller ? controller.signal : undefined;
+        const timeoutMs = this.defaultTimeout;
+        let timeoutId;
+
+        if (controller) {
+            timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+        }
+
         try {
-            const response = await fetch(url);
-            
+            const response = await fetch(url, { signal });
+
             if (!response.ok) {
-                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                const msg = `HTTP ${response.status}: ${response.statusText}`;
+                throw new Error(msg);
             }
 
-            const data = await response.json();
-            
-            // Valider la structure JSON
+            let data;
+            try {
+                data = await response.json();
+            } catch (parseErr) {
+                throw new Error(`Invalid JSON in ${filename}: ${parseErr.message}`);
+            }
+
+            // Validate JSON structure
             if (!data || typeof data !== 'object') {
                 throw new Error('JSON data is not an object');
             }
@@ -73,10 +89,24 @@ class DataManager {
             return data;
 
         } catch (error) {
-            const errorMsg = `Failed to load ${filename}: ${error.message}`;
-            console.error(errorMsg);
-            this.errors.push({ file: filename, error: error.message });
-            throw error;
+            // Normalize errors
+            let message = error && error.message ? error.message : String(error);
+            if (error && error.name === 'AbortError') {
+                message = `Request timed out after ${timeoutMs}ms`;
+            }
+
+            const errorRecord = {
+                file: filename,
+                message,
+                time: new Date().toISOString()
+            };
+
+            console.error(`DataManager: ${errorRecord.file} -> ${errorRecord.message}`);
+            this.errors.push(errorRecord);
+            throw new Error(errorRecord.message);
+
+        } finally {
+            if (timeoutId) clearTimeout(timeoutId);
         }
     }
 

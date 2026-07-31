@@ -1,0 +1,345 @@
+{
+  "personnages": {
+    "mainCharacters": [
+      {
+        "id": "rudeus",
+        "name": "Rudeus Greyrat",
+        "icon": "👤",
+        "role": "Protagoniste principal",
+        "description": "Réincarné dans un monde de fantasy après une vie qu'il considère comme un échec, Rudeus décide de profiter de cette seconde chance pour devenir une meilleure version de lui-même. Il développe rapidement de solides aptitudes pour la magie grâce à son apprentissage."
+      },
+      {
+        "id": "roxy",
+        "name": "Roxy Migurdia",
+        "icon": "🧙‍♀️",
+        "role": "Première professeure de magie",
+        "description": "Roxy appartient au peuple Migurd. Malgré sa grande expérience de magicienne, elle reste humble et passionnée par l'enseignement. Elle joue un rôle majeur dans la formation magique de Rudeus."
+      },
+      {
+        "id": "sylphiette",
+        "name": "Sylphiette",
+        "icon": "✨",
+        "role": "Amie d'enfance",
+        "description": "Sylphiette est une jeune magicienne douce et discrète. Son histoire est marquée par une évolution progressive qui lui permet de gagner progressivement en assurance."
+      },
+      {
+        "id": "eris",
+        "name": "Eris Boreas Greyrat",
+        "icon": "⚔️",
+        "role": "Compagne d'aventure",
+        "description": "Issue de la branche Boreas de la famille Greyrat, Eris possède un tempérament impulsif mais une volonté remarquable. Son parcours est marqué par une progression constante dans l'apprentissage du combat."
+      },
+      {
+        "id": "paul",
+        "name": "Paul Greyrat",
+        "icon": "🗡️",
+        "role": "Père de Rudeus",
+        "description": "Ancien aventurier devenu père de famille, Paul est un personnage complexe dont les décisions influencent durablement plusieurs personnages."
+      },
+      {
+        "id": "zenith",
+        "name": "Zenith Greyrat",
+        "icon": "❤️",
+        "role": "Mère de Rudeus",
+        "description": "Zenith est reconnue pour sa bienveillance et son attachement à sa famille. Elle joue un rôle essentiel dans les premières années de la vie de Rudeus."
+      }
+    ],
+    "importantCharacters": [
+      {
+        "id": "ruijerd",
+        "name": "Ruijerd Superdia",
+        "icon": "🛡️",
+        "role": "Protecteur et compagnon",
+        "description": "Guerrier appartenant au peuple Superd, Ruijerd cherche à améliorer l'image du peuple Superd. Son sens de l'honneur et de la justice marque profondément ceux qui voyagent avec lui."
+      },
+      {
+        "id": "orsted",
+        "name": "Orsted",
+        "icon": "👑",
+        "role": "Personnage majeur",
+        "description": "Orsted est l'un des personnages les plus puissants de l'univers. Son rôle prend progressivement de l'importance au fil du récit."
+      },
+      {
+        "id": "nanahoshi",
+        "name": "Nanahoshi Shizuka",
+        "icon": "🔬",
+        "role": "Chercheur",
+        "description": "Nanahoshi cherche avant tout à comprendre les phénomènes liés à sa présence dans ce monde et poursuit ses propres recherches."
+      }
+    ]
+  },
+  "univers": {
+    "continents": [
+      {
+        "id": "central",
+        "icon": "🏰",
+        "name": "Continent Central",
+        "description": "Région regroupant plusieurs royaumes où débute une partie importante du récit."
+      },
+      {
+        "id": "demons",
+        "icon": "👿",
+        "name": "Continent des Démons",
+        "description": "Habité par de nombreuses races démoniaques. Possède des paysages très variés et joue un rôle majeur dans plusieurs événements du récit."
+      },
+      {
+        "id": "millis",
+        "icon": "⛪",
+        "name": "Continent de Millis",
+        "description": "Région caractérisée par l'influence de la religion de Millis et connue pour ses traditions ainsi que son organisation politique."
+      },
+      {
+        "id": "begaritt",
+        "icon": "⚔️",
+        "name": "Continent de Begaritt",
+        "description": "Immense territoire réputé pour ses zones hostiles, ses labyrinthes et les nombreuses expéditions d'aventuriers qui s'y rendent."
+      }
+    ],
+    "peoples": [
+      {
+        "id": "humans",
+        "icon": "👤",
+        "name": "Humains",
+        "description": "Race la plus répandue dans le Monde des Six Faces."
+      },
+      {
+        "id": "demons",
+        "icon": "👿",
+        "name": "Démons",
+        "description": "Ensemble de peuples possédant des caractéristiques très diverses."
+      },
+      {
+        "id": "migurds",
+        "icon": "🌊",
+        "name": "Migurds",
+        "description": "Peuple auquel appartient Roxy. Reconnaissable à ses cheveux bleus et à ses capacités particulières."
+      },
+      {
+        "id": "superds",
+        "icon": "⚔️",
+        "name": "Superds",
+        "description": "Peuple de guerriers connu pour sa grande force et son histoire complexe."
+      },
+      {
+        "id": "beast-men",
+        "icon": "🐺",
+        "name": "Hommes-bêtes",
+        "description": "Ensemble de peuples présentant des caractéristiques animales."
+      },
+      {
+        "id": "dwarves",
+        "icon": "⛏️",
+        "name": "Nains",
+        "description": "Réputés pour leur artisanat et leur maîtrise technique."
+      },
+      {
+        "id": "elves",
+        "icon": "🌿",
+        "name": "Elfes",
+        "description": "Connus pour leur longévité et certains personnages elfes sont représentés comme des utilisateurs de magie."
+      }
+    ],
+    "magic": [
+      {
+        "id": "offensive",
+        "icon": "⚡",
+        "name": "Magie offensive",
+        "description": "Magie principalement employée lors des affrontements."
+      },
+      {
+        "id": "healing",
+        "icon": "💚",
+        "name": "Magie de soin",
+        "description": "Permet notamment de soigner certaines blessures et certains états."
+      },
+      {
+        "id": "detoxification",
+        "icon": "🛡️",
+        "name": "Magie de désintoxication",
+        "description": "Utilisée pour neutraliser certains poisons."
+      },
+      {
+        "id": "barrier",
+        "icon": "🔐",
+        "name": "Magie de barrière",
+        "description": "Permet de créer différentes protections."
+      },
+      {
+        "id": "summoning",
+        "icon": "✨",
+        "name": "Magie d'invocation",
+        "description": "Utilisée pour invoquer différentes entités selon les techniques maîtrisées."
+      }
+    ],
+    "combatStyles": [
+      {
+        "id": "swordsmen",
+        "icon": "🗡️",
+        "name": "Épéistes",
+        "description": "Spécialistes du combat rapproché utilisant des armes blanches."
+      },
+      {
+        "id": "mages",
+        "icon": "📖",
+        "name": "Magiciens",
+        "description": "Utilisent principalement la magie pour leurs combats."
+      },
+      {
+        "id": "adventurers",
+        "icon": "🎯",
+        "name": "Aventuriers",
+        "description": "Polyvalents et capables de s'adapter à de nombreuses situations."
+      },
+      {
+        "id": "fighters",
+        "icon": "💪",
+        "name": "Combattants",
+        "description": "Privilégient leur force physique et leurs armes."
+      }
+    ]
+  },
+  "chronologie": {
+    "events": [
+      {
+        "id": "webnovel_start",
+        "date": "22 novembre 2012",
+        "title": "Web novel",
+        "description": "Publication du premier chapitre sur Shōsetsuka ni Narō."
+      },
+      {
+        "id": "manga_start",
+        "date": "9 mai 2014",
+        "title": "Manga",
+        "description": "Début de l'adaptation en bande dessinée."
+      },
+      {
+        "id": "webnovel_end",
+        "date": "3 avril 2015",
+        "title": "Fin du web novel",
+        "description": "Publication du dernier chapitre du web novel principal."
+      },
+      {
+        "id": "anime_s1_start",
+        "date": "10 janvier 2021",
+        "title": "Anime Saison 1",
+        "description": "Début de la diffusion de l'anime produit par Studio Bind."
+      },
+      {
+        "id": "anime_s2_start",
+        "date": "2 juillet 2023",
+        "title": "Anime Saison 2",
+        "description": "Début de la saison 2, partie 1."
+      },
+      {
+        "id": "anime_s2p2_start",
+        "date": "7 avril 2024",
+        "title": "Anime Saison 2 Cour 2",
+        "description": "Début de la saison 2, partie 2."
+      },
+      {
+        "id": "anime_s3_start",
+        "date": "5 juillet 2026",
+        "title": "Anime Saison 3",
+        "description": "Début de la saison 3."
+      }
+    ]
+  },
+  "sources": {
+    "official": [
+      {
+        "id": "syosetu",
+        "name": "Shōsetsuka ni Narō",
+        "url": "https://ncode.syosetu.com/n9669bk/",
+        "type": "officielle",
+        "icon": "📚",
+        "description": "Publication originale du web novel. Plateforme officielle de partage de web novels au Japon."
+      },
+      {
+        "id": "anime_official",
+        "name": "Site officiel anime",
+        "url": "https://mushokutensei.jp/",
+        "type": "officielle",
+        "icon": "🎬",
+        "description": "Informations concernant l'adaptation animée produite par Studio Bind."
+      },
+      {
+        "id": "mfbooks",
+        "name": "MF Books",
+        "url": "https://mfbunkoj.jp/",
+        "type": "officielle",
+        "icon": "📖",
+        "description": "Éditeur japonais responsable de la publication en light novels."
+      },
+      {
+        "id": "kadokawa",
+        "name": "KADOKAWA",
+        "url": "https://www.kadokawa.co.jp/",
+        "type": "officielle",
+        "icon": "🏢",
+        "description": "Groupe éditorial responsable de la publication globale de la franchise."
+      }
+    ],
+    "databases": [
+      {
+        "id": "ann",
+        "name": "Anime News Network",
+        "url": "https://www.animenewsnetwork.com/",
+        "type": "documentaire",
+        "icon": "📰",
+        "description": "Utilisé principalement pour les annonces éditoriales et les récompenses."
+      },
+      {
+        "id": "mal",
+        "name": "MyAnimeList",
+        "url": "https://myanimelist.net/anime/39535/Mushoku_Tensei__Isekai_Ittara_Honki_Dasu",
+        "type": "documentaire",
+        "icon": "🗂️",
+        "description": "Base d'indexation des animes et mangas."
+      },
+      {
+        "id": "anidb",
+        "name": "AniDB",
+        "url": "https://anidb.net/",
+        "type": "documentaire",
+        "icon": "🗂️",
+        "description": "Utilisé pour certaines informations techniques."
+      },
+      {
+        "id": "wikipedia",
+        "name": "Wikipédia",
+        "url": "https://fr.wikipedia.org/wiki/Mushoku_Tensei:_Isekai_Ittara_Honki_Dasu",
+        "type": "documentaire",
+        "icon": "📖",
+        "description": "Base documentaire générale."
+      }
+    ]
+  },
+  "biographie": {
+    "timelineEvents": [
+      {
+        "id": "webnovel_start",
+        "date": "2012",
+        "title": "Début du web novel",
+        "description": "Début de la publication du web novel sur Shōsetsuka ni Narō, le 22 novembre 2012."
+      },
+      {
+        "id": "lightnov_start",
+        "date": "2014",
+        "title": "Début de la publication en light novel",
+        "description": "Publication du premier volume chez MF Books, le 23 janvier 2014."
+      },
+      {
+        "id": "webnovel_end",
+        "date": "2015",
+        "title": "Fin du web novel principal",
+        "description": "Publication du dernier chapitre du web novel, le 3 avril 2015."
+      },
+      {
+        "id": "anime_start",
+        "date": "2021",
+        "title": "Début de l'adaptation animée",
+        "description": "Début de la diffusion de l'anime produit par Studio Bind, janvier 2021."
+      }
+    ]
+  }
+}

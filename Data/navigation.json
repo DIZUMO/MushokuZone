@@ -4,136 +4,55 @@
       "id": "index",
       "titre": "Accueil",
       "url": "index.html",
-      "rootUrl": "index.html",
-      "otherPagesUrl": "../index.html",
-      "icone": "🏠",
-      "description": "Présentation générale de Mushoku Tensei",
-      "keywords": "Mushoku Tensei, Isekai Ittara Honki Dasu, Rudeus Greyrat, anime, light novel, manga, isekai, Rifujin na Magonote",
-      "canonical": "https://dizumo.github.io/MushokuZone/",
-      "ogTitle": "Mushoku Tensei : univers, histoire et personnages | MushokuZone",
-      "ogDescription": "Explorez l'univers de Mushoku Tensei : présentation de l'œuvre, histoire, personnages, thèmes et informations vérifiées.",
-      "twitterTitle": "Mushoku Tensei : univers, histoire et personnages",
-      "twitterDescription": "Présentation de l'œuvre, de son univers et de ses principaux thèmes."
+      "icone": "🏠"
     },
     {
       "id": "biographie",
       "titre": "Biographie",
       "url": "Biographie.html",
-      "rootUrl": "Autre pages/Biographie.html",
-      "otherPagesUrl": "Biographie.html",
-      "icone": "📖",
-      "description": "Parcours de Rifujin na Magonote et histoire de Mushoku Tensei",
-      "keywords": "Rifujin na Magonote, biographie, auteur, Mushoku Tensei, web novel, light novel",
-      "canonical": "https://dizumo.github.io/MushokuZone/Autre%20pages/Biographie.html",
-      "ogTitle": "Rifujin na Magonote : parcours et œuvre | MushokuZone",
-      "ogDescription": "Le parcours public de Rifujin na Magonote et les caractéristiques de son écriture.",
-      "twitterTitle": "Rifujin na Magonote : parcours et œuvre",
-      "twitterDescription": "Le parcours de l'auteur de Mushoku Tensei et les caractéristiques de son écriture."
+      "icone": "📖"
     },
     {
       "id": "impact",
       "titre": "Impact",
       "url": "Impact.html",
-      "rootUrl": "Autre pages/Impact.html",
-      "otherPagesUrl": "Impact.html",
-      "icone": "🌟",
-      "description": "Impact et réception de Mushoku Tensei",
-      "keywords": "Mushoku Tensei, impact, isekai, Studio Bind, réception, animation",
-      "canonical": "https://dizumo.github.io/MushokuZone/Autre%20pages/Impact.html",
-      "ogTitle": "L'impact et la réception de Mushoku Tensei | MushokuZone",
-      "ogDescription": "Une analyse de la place de Mushoku Tensei dans l'isekai moderne et sa réception.",
-      "twitterTitle": "L'impact et la réception de Mushoku Tensei",
-      "twitterDescription": "L'impact de Mushoku Tensei dans l'isekai moderne et sa réception critique."
+      "icone": "🌟"
     },
     {
       "id": "univers",
       "titre": "Univers",
       "url": "Univers.html",
-      "rootUrl": "Autre pages/Univers.html",
-      "otherPagesUrl": "Univers.html",
-      "icone": "🗺️",
-      "description": "Univers de Mushoku Tensei - Monde des Six Faces",
-      "keywords": "Mushoku Tensei, univers, Monde des Six Faces, magie, peuples, continents",
-      "canonical": "https://dizumo.github.io/MushokuZone/Autre%20pages/Univers.html",
-      "ogTitle": "L'univers de Mushoku Tensei | MushokuZone",
-      "ogDescription": "Explorez l'univers de Mushoku Tensei : continents, peuples, magie et systèmes du Monde des Six Faces.",
-      "twitterTitle": "L'univers de Mushoku Tensei",
-      "twitterDescription": "Explorez les continents, peuples et systèmes de magie du Monde des Six Faces."
+      "icone": "🗺️"
     },
     {
       "id": "personnages",
       "titre": "Personnages",
       "url": "Personnages.html",
-      "rootUrl": "Autre pages/Personnages.html",
-      "otherPagesUrl": "Personnages.html",
-      "icone": "👥",
-      "description": "Principaux personnages de Mushoku Tensei",
-      "keywords": "Mushoku Tensei, personnages, Rudeus, Roxy, Sylphiette, Eris",
-      "canonical": "https://dizumo.github.io/MushokuZone/Autre%20pages/Personnages.html",
-      "ogTitle": "Les personnages de Mushoku Tensei | MushokuZone",
-      "ogDescription": "Découvrez les principaux personnages de Mushoku Tensei : leurs rôles, leurs compétences et leurs relations.",
-      "twitterTitle": "Les personnages de Mushoku Tensei",
-      "twitterDescription": "Découvrez les principaux personnages et leurs rôles dans l'histoire."
+      "icone": "👥"
     },
     {
       "id": "chronologie",
       "titre": "Chronologie",
       "url": "Chronologie.html",
-      "rootUrl": "Autre pages/Chronologie.html",
-      "otherPagesUrl": "Chronologie.html",
-      "icone": "📅",
-      "description": "Chronologie éditoriale de Mushoku Tensei",
-      "keywords": "Mushoku Tensei, chronologie, édition, publication, anime",
-      "canonical": "https://dizumo.github.io/MushokuZone/Autre%20pages/Chronologie.html",
-      "ogTitle": "Chronologie éditoriale | MushokuZone",
-      "ogDescription": "Chronologie éditoriale de Mushoku Tensei : depuis le web novel jusqu'aux adaptations actuelles.",
-      "twitterTitle": "Chronologie éditoriale de Mushoku Tensei",
-      "twitterDescription": "Les principales étapes de publication de Mushoku Tensei."
+      "icone": "📅"
     },
     {
       "id": "episode",
       "titre": "Épisodes",
       "url": "Episode.html",
-      "rootUrl": "Autre pages/Episode.html",
-      "otherPagesUrl": "Episode.html",
-      "icone": "▶️",
-      "description": "Tous les épisodes de Mushoku Tensei avec lecteur vidéo",
-      "keywords": "Mushoku Tensei, épisodes, saison 1, saison 2, saison 3, VO, VF, trailers, bandes-annonces, liste épisodes",
-      "canonical": "https://dizumo.github.io/MushokuZone/Autre%20pages/Episode.html",
-      "ogTitle": "Mushoku Tensei : épisodes, saisons et trailers | MushokuZone",
-      "ogDescription": "Retrouvez les épisodes de Mushoku Tensei saison par saison, disponibles en VO et VF, ainsi que les bandes-annonces et fan animations.",
-      "twitterTitle": "Mushoku Tensei : épisodes, saisons et trailers",
-      "twitterDescription": "Tous les épisodes de Mushoku Tensei, les saisons disponibles en VO et VF, les bandes-annonces et les fan animations."
+      "icone": "▶️"
     },
     {
       "id": "sources",
       "titre": "Sources",
       "url": "Sources.html",
-      "rootUrl": "Autre pages/Sources.html",
-      "otherPagesUrl": "Sources.html",
-      "icone": "📚",
-      "description": "Sources et références utilisées par MushokuZone",
-      "keywords": "sources, références, Mushoku Tensei, documentation",
-      "canonical": "https://dizumo.github.io/MushokuZone/Autre%20pages/Sources.html",
-      "ogTitle": "Sources et références | MushokuZone",
-      "ogDescription": "Toutes les sources et références utilisées par MushokuZone.",
-      "twitterTitle": "Sources et références | MushokuZone",
-      "twitterDescription": "Toutes les sources et références du site MushokuZone."
+      "icone": "📚"
     },
     {
       "id": "apropos",
       "titre": "À propos",
       "url": "A-propos.html",
-      "rootUrl": "Autre pages/A-propos.html",
-      "otherPagesUrl": "A-propos.html",
-      "icone": "ℹ️",
-      "description": "À propos de MushokuZone",
-      "keywords": "MushokuZone, à propos, mission, projet, site",
-      "canonical": "https://dizumo.github.io/MushokuZone/Autre%20pages/A-propos.html",
-      "ogTitle": "À propos de MushokuZone",
-      "ogDescription": "À propos de MushokuZone : mission, méthode et objectifs du projet.",
-      "twitterTitle": "À propos de MushokuZone",
-      "twitterDescription": "À propos de MushokuZone : mission, méthode et objectifs du projet."
+      "icone": "ℹ️"
     }
   ]
 }

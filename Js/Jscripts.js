@@ -1,226 +1,281 @@
-document.addEventListener("DOMContentLoaded", async () => {
+/**
+ * JSCRIPTS.JS REFACTORISÉ
+ * Patterns : modules ES6, pas de globales polluées
+ * RRe
+// ============================================================
+// NAVIGATION MANAGER
+// ============================================================
 
-/* ====================================================== */
-/*  MENU NAVIGATION - Chargé depuis Data/navigation.json  */
-/* ====================================================== */
+class NavigationManager {
+    constructor() {
+        this.nav = document.querySelector('.site-nav');
+        this.ul = this.nav?.querySelector('.site-nav__links');
+    }
 
-async function buildNav() {
-    try {
-        const navigation = await dataManager.load('navigation.json');
-        if (!navigation || !navigation.pages) {
-            console.error('Navigation data not loaded');
-            return;
-        }
+    /**
+     * Construit la navigation depuis JSON
+     */
+    async build() {
+        if (!this.ul) return;
 
-        const nav = document.querySelector('.site-nav');
-        if (!nav) return;
-
-        const isRoot = !window.location.pathname.includes('Autre%20pages') &&
-                       !window.location.pathname.includes('Autre pages');
-        const prefix = isRoot ? 'Autre pages/' : '';
-        const rootPrefix = isRoot ? '' : '../';
-        const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-
-        const ul = nav.querySelector('.site-nav__links');
-        if (!ul) return;
-
-        navigation.pages.forEach(page => {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-
-            if (page.id === 'index') {
-                a.href = rootPrefix + 'index.html';
-                const isActive = currentFile === 'index.html' || currentFile === '';
-                if (isActive) a.setAttribute('aria-current', 'page');
-            } else {
-                a.href = prefix + page.url;
-                if (currentFile === page.url) a.setAttribute('aria-current', 'page');
+        try {
+            const navigation = await dataManager.load('navigation.json');
+            if (!navigation?.pages) {
+                console.error('Navigation data not loaded');
+                return;
             }
 
-            a.textContent = page.titre;
-            li.appendChild(a);
-            ul.appendChild(li);
-        });
+            const isOtherPages = this.isOtherPagesDirectory();
+            const prefix = isOtherPages ? '' : 'Autre pages/';
+            const rootPrefix = isOtherPages ? '../' : '';
+            const currentFile = this.getCurrentFile();
 
-    } catch (error) {
-        console.error('Failed to build navigation:', error);
-    }
-}
+            navigation.pages.forEach(page => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
 
-buildNav();
+                // Construire l'URL
+                if (page.id === 'index') {
+                    a.href = rootPrefix + 'index.html';
+                    if (currentFile === 'index.html' || currentFile === '') {
+                        a.setAttribute('aria-current', 'page');
+                    }
+                } else {
+                    a.href = prefix + page.url;
+                    if (currentFile === page.url || currentFile === page.id + '.html') {
+                        a.setAttribute('aria-current', 'page');
+                    }
+                }
 
-/* ====================================================== */
-/*  BURGER MENU MOBILE                                     */
-/* ====================================================== */
-
-const burger = document.querySelector('.site-nav__burger');
-const navLinks = document.querySelector('.site-nav__links');
-
-if (burger && navLinks) {
-    burger.addEventListener('click', () => {
-        const expanded = burger.getAttribute('aria-expanded') === 'true';
-        burger.setAttribute('aria-expanded', String(!expanded));
-        navLinks.classList.toggle('open', !expanded);
-    });
-
-    document.addEventListener('click', e => {
-        if (!burger.contains(e.target) && !navLinks.contains(e.target)) {
-            burger.setAttribute('aria-expanded', 'false');
-            navLinks.classList.remove('open');
+                a.textContent = page.titre;
+                li.appendChild(a);
+                this.ul.appendChild(li);
+            });
+        } catch (error) {
+            console.error('Erreur navigation:', error);
         }
-    });
-}
-
-/* ====================================================== */
-/*  BACK TO TOP                                            */
-/* ====================================================== */
-
-const btt = document.getElementById('back-to-top');
-if (btt) {
-    window.addEventListener('scroll', () => {
-        btt.classList.toggle('visible', window.scrollY > 400);
-    }, { passive: true });
-    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-}
-
-/* ====================================================== */
-/*  LOADER POUR LES IMAGES ET LES IFRAMES                 */
-/* ====================================================== */
-
-function wrapWithLoader(el) {
-    if (el.dataset.loaderWrapped === "true") return;
-    el.dataset.loaderWrapped = "true";
-
-    const parent = el.parentElement;
-    if (!parent) return;
-
-    if (getComputedStyle(parent).position === "static") {
-        parent.style.position = "relative";
     }
 
-    const loaderEl = document.createElement("div");
-    loaderEl.className = "loader";
-    loaderEl.textContent = "Loading...";
-    loaderEl.style.cssText = "position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;pointer-events:none";
-    parent.appendChild(loaderEl);
-
-    const loaderStartTime = performance.now();
-    el.style.opacity = "0";
-    el.style.position = "relative";
-    el.style.zIndex = "1";
-
-    let done = false;
-
-    function finish() {
-        if (done) return;
-        done = true;
-        const elapsed = performance.now() - loaderStartTime;
-        const wait = Math.max(0, 500 - elapsed);
-        setTimeout(() => {
-            loaderEl.remove();
-            el.style.opacity = "";
-            el.style.position = "";
-            el.style.zIndex = "";
-            el.classList.add("media-loaded");
-        }, wait);
+    /**
+     * Détecte si on est dans Autre pages/
+     */
+    isOtherPagesDirectory() {
+        const pathname = new URL(window.location).pathname;
+        return /Autre\s+pages|Autre%20pages/.test(pathname);
     }
 
-    if (el.tagName === "IMG") {
-        if (el.complete && el.naturalWidth > 0) { finish(); return; }
-        el.addEventListener("load", finish, { once: true });
-        el.addEventListener("error", finish, { once: true });
-        return;
-    }
-
-    if (el.tagName === "IFRAME") {
-        el.addEventListener("load", finish, { once: true });
-        setTimeout(finish, 15000);
+    /**
+     * Récupère le nom du fichier actuel
+     */
+    getCurrentFile() {
+        const pathname = new URL(window.location).pathname;
+        return pathname.split('/').pop() || 'index.html';
     }
 }
 
-document.querySelectorAll("section img").forEach(wrapWithLoader);
-document.querySelectorAll("section iframe").forEach(wrapWithLoader);
+// ============================================================
+// BURGER MENU
+// ============================================================
 
-/* ====================================================== */
-/*  ANIMATIONS AU SCROLL                                   */
-/* ====================================================== */
+class BurgerMenu {
+    constructor() {
+        this.burger = document.querySelector('.site-nav__burger');
+        this.navLinks = document.querySelector('.site-nav__links');
+        if (this.burger && this.navLinks) {
+            this.init();
+        }
+    }
 
-const animTargets = document.querySelectorAll(
-    "header, section, .video-cell, table, .table-wrapper, .timeline__item, .card"
-);
+    init() {
+        this.burger.addEventListener('click', () => this.toggle());
+        document.addEventListener('click', (e) => this.closeIfOutside(e));
+    }
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        entry.target.style.transitionDelay = entry.target.dataset.delay || "0s";
-        entry.target.classList.add("visible");
-        observer.unobserve(entry.target);
-    });
-}, { threshold: 0.05 });
+    toggle() {
+        const expanded = this.burger.getAttribute('aria-expanded') === 'true';
+        this.burger.setAttribute('aria-expanded', String(!expanded));
+        this.navLinks.classList.toggle('open', !expanded);
+    }
 
-animTargets.forEach((el, i) => {
-    el.classList.add("hidden");
-    el.dataset.delay = `${i * 0.04}s`;
-    observer.observe(el);
-});
+    closeIfOutside(e) {
+        if (!this.burger.contains(e.target) && !this.navLinks.contains(e.target)) {
+            this.burger.setAttribute('aria-expanded', 'false');
+            this.navLinks.classList.remove('open');
+        }
+    }
+}
 
-/* ====================================================== */
-/*  ACCORDEONS                                             */
-/* ====================================================== */
+// ============================================================
+// BACK TO TOP
+// ============================================================
 
-document.querySelectorAll('.accordion__btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-        const expanded = btn.getAttribute('aria-expanded') === 'true';
-        const panel = btn.nextElementSibling;
-        btn.setAttribute('aria-expanded', String(!expanded));
-        if (panel) panel.classList.toggle('open', !expanded);
-    });
-});
+class BackToTop {
+    constructor() {
+        this.btn = document.getElementById('back-to-top');
+        if (this.btn) {
+            this.init();
+        }
+    }
 
-});
+    init() {
+        window.addEventListener('scroll', () => this.updateVisibility(), { passive: true });
+        this.btn.addEventListener('click', () => this.scrollTop());
+    }
 
-/* ====================================================== */
-/*  LOADER DES IFRAMES DYNAMIQUES                         */
-/* ====================================================== */
+    updateVisibility() {
+        this.btn.classList.toggle('visible', window.scrollY > 400);
+    }
 
-function wrapDynamicIframes() {
-    const selector = [
-        "td iframe:not([data-loader-wrapped])",
-        "#player-video-active iframe:not([data-loader-wrapped])",
-        ".video-preview iframe:not([data-loader-wrapped])"
-    ].join(", ");
+    scrollTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
 
-    document.querySelectorAll(selector).forEach(iframe => {
-        if (iframe.dataset.loaderWrapped === "true") return;
-        iframe.dataset.loaderWrapped = "true";
+// ============================================================
+// MEDIA LOADER (images et iframes)
+// ============================================================
 
-        const parent = iframe.closest("td, .video-container, .video-preview") || iframe.parentElement;
+class MediaLoader {
+    constructor() {
+        this.init();
+        this.observeNewMedia();
+    }
+
+    init() {
+        this.wrapMediaElements(
+            Array.from(document.querySelectorAll('section img')),
+            Array.from(document.querySelectorAll('section iframe'))
+        );
+    }
+
+    observeNewMedia() {
+        const observer = new MutationObserver(() => {
+            this.wrapMediaElements(
+                Array.from(document.querySelectorAll('section img:not([data-loader-wrapped])')),
+                Array.from(document.querySelectorAll('section iframe:not([data-loader-wrapped])'))
+            );
+        });
+        observer.observe(document.body, { childList: true, subtree: true });
+    }
+
+    wrapMediaElements(images, iframes) {
+        images.forEach(img => this.wrapElement(img, 'IMG'));
+        iframes.forEach(iframe => this.wrapElement(iframe, 'IFRAME'));
+    }
+
+    wrapElement(el, type) {
+        if (el.dataset.loaderWrapped === 'true') return;
+        el.dataset.loaderWrapped = 'true';
+
+        const parent = el.parentElement;
         if (!parent) return;
 
-        if (getComputedStyle(parent).position === "static") parent.style.position = "relative";
+        if (getComputedStyle(parent).position === 'static') {
+            parent.style.position = 'relative';
+        }
 
-        const loaderEl = document.createElement("div");
-        loaderEl.className = "loader";
-        loaderEl.textContent = "Loading...";
-        loaderEl.style.cssText = "position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;pointer-events:none";
-        parent.appendChild(loaderEl);
+        const loader = document.createElement('div');
+        loader.className = 'loader';
+        loader.textContent = 'Loading...';
+        loader.style.cssText = 'position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;pointer-events:none';
+        parent.appendChild(loader);
 
         const start = performance.now();
-        iframe.style.opacity = "0";
+        el.style.opacity = '0';
         let done = false;
 
-        function finish() {
+        const finish = () => {
             if (done) return;
             done = true;
             const wait = Math.max(0, 500 - (performance.now() - start));
             setTimeout(() => {
-                loaderEl.remove();
-                iframe.style.opacity = "";
-                iframe.classList.add("media-loaded");
+                loader.remove();
+                el.style.opacity = '';
+                el.classList.add('media-loaded');
             }, wait);
-        }
+        };
 
-        iframe.addEventListener("load", finish, { once: true });
-        setTimeout(finish, 15000);
-    });
+        if (type === 'IMG') {
+            if (el.complete && el.naturalWidth > 0) {
+                finish();
+                return;
+            }
+            el.addEventListener('load', finish, { once: true });
+            el.addEventListener('error', finish, { once: true });
+        } else if (type === 'IFRAME') {
+            el.addEventListener('load', finish, { once: true });
+            setTimeout(finish, 15000);
+        }
+    }
 }
+
+// ============================================================
+// SCROLL ANIMATIONS (IntersectionObserver)
+// ============================================================
+
+class ScrollAnimations {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        if (!window.IntersectionObserver) return;
+
+        const targets = document.querySelectorAll(
+            'header, section, .video-cell, table, .table-wrapper, .timeline__item, .card'
+        );
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (!entry.isIntersecting) return;
+                entry.target.style.transitionDelay = `${i * 0.04}s`;
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.05 });
+
+        targets.forEach(el => {
+            el.classList.add('hidden');
+            observer.observe(el);
+        });
+    }
+}
+
+// ============================================================
+// ACCORDION MANAGER
+// ============================================================
+
+class AccordionManager {
+    constructor() {
+        this.init();
+    }
+
+    init() {
+        document.querySelectorAll('.accordion__btn').forEach(btn => {
+            btn.addEventListener('click', () => this.toggle(btn));
+        });
+    }
+
+    toggle(btn) {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        const panel = btn.nextElementSibling;
+        btn.setAttribute('aria-expanded', String(!expanded));
+        if (panel) panel.classList.toggle('open', !expanded);
+    }
+}
+
+// ============================================================
+// INITIALISATION
+// ============================================================
+
+document.addEventListener('DOMContentLoaded', async () => {
+    // Initialiser les modules
+    await new NavigationManager().build();
+    new BurgerMenu();
+    new BackToTop();
+    new MediaLoader();
+    new ScrollAnimations();
+    new AccordionManager();
+
+    console.log('MushokuZone scripts initialized');
+});
