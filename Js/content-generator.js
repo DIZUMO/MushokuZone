@@ -175,7 +175,7 @@ class ContentGenerator {
                 article.id = `personnage-${id}`;
                 article.setAttribute('aria-labelledby', `titre-personnage-${id}`);
                 article.dataset.character = id;
-                if (id !== 'rudeus') article.hidden = true;
+                article.hidden = true;
 
                 const sections = (character.sections || []).map(section => `
                     <div class="character-dossier__section">
@@ -210,6 +210,15 @@ class ContentGenerator {
             const panes = Array.from(selector.querySelectorAll('.character-selector__pane'));
             const nameButtons = Array.from(selector.querySelectorAll('.character-selector__name'));
             const status = selector.querySelector('.character-selector__status');
+
+            const deselectCharacter = () => {
+                dossiers.forEach(dossier => {
+                    dossier.hidden = true;
+                });
+                panes.forEach(pane => pane.classList.remove('is-active'));
+                nameButtons.forEach(button => button.classList.remove('is-active'));
+                status.textContent = 'Aucun personnage sélectionné.';
+            };
 
             const selectCharacter = (id, selected = true) => {
                 const character = detailed.characters?.[id];
@@ -246,7 +255,11 @@ class ContentGenerator {
                 button.addEventListener('click', () => selectCharacter(button.dataset.character, true));
             });
 
-            selectCharacter('rudeus');
+            document.addEventListener('click', event => {
+                if (!selector.contains(event.target)) deselectCharacter();
+            });
+
+            deselectCharacter();
             this.observeElements(container.querySelectorAll('.character-wiki-intro, .character-selector, .character-dossier'));
         } catch (error) {
             console.error('Erreur génération Personnages:', error);
