@@ -16,25 +16,16 @@ class DataManager {
         this.applyBackground();
     }
 
-    /**
-     * Détecte automatiquement l'URL de base (root ou Autre pages/)
-     */
     detectBaseUrl() {
         const isOtherPages = this.isOtherPages();
         return isOtherPages ? '../Data/' : 'Data/';
     }
 
-    /**
-     * Détermine si la page courante se trouve dans Autre pages/.
-     */
     isOtherPages() {
         const pathname = decodeURIComponent(window.location.pathname);
         return pathname.includes('/Autre pages/');
     }
 
-    /**
-     * Détermine l'identifiant de la page pour backgrounds.json.
-     */
     detectPageId() {
         const pathname = decodeURIComponent(window.location.pathname);
         const filename = pathname.split('/').pop().toLowerCase();
@@ -55,10 +46,6 @@ class DataManager {
         return mapping[filename] || 'index';
     }
 
-    /**
-     * Applique le fond de la page depuis Data/backgrounds.json.
-     * Cette méthode utilise les chemins relatifs adaptés à la profondeur de la page.
-     */
     async applyBackground() {
         try {
             const response = await fetch(`${this.baseUrl}backgrounds.json`, {
@@ -83,12 +70,25 @@ class DataManager {
                 ? `../${normalizedImage}`
                 : normalizedImage;
 
-            const root = document.documentElement;
-            root.style.backgroundImage = `url("${assetPath}")`;
-            root.style.backgroundSize = 'cover';
-            root.style.backgroundRepeat = 'no-repeat';
-            root.style.backgroundPosition = 'top center';
-            root.style.backgroundAttachment = 'fixed';
+            const html = document.documentElement;
+            const body = document.body;
+
+            const apply = (element) => {
+                if (!element) return;
+                element.style.backgroundImage = `url("${assetPath}")`;
+                element.style.backgroundSize = 'cover';
+                element.style.backgroundRepeat = 'no-repeat';
+                element.style.backgroundPosition = 'top center';
+                element.style.backgroundAttachment = 'fixed';
+            };
+
+            apply(html);
+            apply(body);
+
+            if (body) {
+                body.style.backgroundColor = 'transparent';
+                body.style.minHeight = '100vh';
+            }
 
             // Précharge l'image afin d'éviter un écran noir pendant son apparition.
             const preload = new Image();
@@ -98,10 +98,6 @@ class DataManager {
         }
     }
 
-    /**
-     * Charge un fichier JSON avec cache et gestion d'erreurs
-     * Utilise Promise pour éviter les chargements dupliqués
-     */
     async load(filename) {
         if (this.cache[filename]) {
             return this.cache[filename];
@@ -124,9 +120,6 @@ class DataManager {
         }
     }
 
-    /**
-     * Fetch réel avec gestion d'erreurs
-     */
     async _fetchAndCache(filename) {
         const url = `${this.baseUrl}${filename}`;
         const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
@@ -179,24 +172,15 @@ class DataManager {
         }
     }
 
-    /**
-     * Pré-charge plusieurs fichiers en parallèle
-     */
     async preload(filenames) {
         const promises = filenames.map(f => this.load(f).catch(() => null));
         await Promise.all(promises);
     }
 
-    /**
-     * Récupère les données en cache sans rechargement
-     */
     getSync(filename) {
         return this.cache[filename] || null;
     }
 
-    /**
-     * Vide le cache (utile pour rafraîchir les données)
-     */
     clearCache(filename = null) {
         if (filename) {
             delete this.cache[filename];
@@ -205,16 +189,10 @@ class DataManager {
         }
     }
 
-    /**
-     * Récupère les erreurs de chargement
-     */
     getErrors() {
         return this.errors;
     }
 
-    /**
-     * Vérifie l'état du cache
-     */
     getStatus() {
         return {
             cached: Object.keys(this.cache).length,
@@ -224,5 +202,4 @@ class DataManager {
     }
 }
 
-// Instance globale unique
 const dataManager = new DataManager();
