@@ -1,0 +1,83 @@
+/* ============================================================
+   SPOILER SYSTEM
+   Dormant until an element receives [data-spoiler].
+   ============================================================ */
+
+.spoiler {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    border-radius: 12px;
+}
+
+.spoiler__content {
+    position: relative;
+    z-index: 1;
+    filter: blur(14px);
+    user-select: none;
+    pointer-events: none;
+    transition: filter .25s ease;
+}
+
+.spoiler__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    text-align: center;
+    background: rgba(8, 6, 18, .72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.spoiler__description {
+    margin: 0;
+    font-size: .95rem;
+    color: rgba(240, 234, 214, .82);
+}
+
+.spoiler__button {
+    appearance: none;
+    border: 1px solid rgba(255, 215, 0, .45);
+    border-radius: 999px;
+    padding: 9px 16px;
+    background: rgba(255, 215, 0, .1);
+    color: #ffd700;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+
+.spoiler__button:hover {
+    background: rgba(255, 215, 0, .18);
+    border-color: rgba(255, 215, 0, .75);
+    transform: translateY(-1px);
+}
+
+.spoiler__button:focus-visible {
+    outline: 2px solid #ffd700;
+    outline-offset: 3px;
+}
+
+.spoiler--revealed .spoiler__content {
+    filter: none;
+    user-select: auto;
+    pointer-events: auto;
+}
+
+.spoiler--revealed .spoiler__overlay {
+    display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .spoiler__content,
+    .spoiler__button {
+        transition: none;
+    }
+}
