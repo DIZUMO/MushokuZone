@@ -38,7 +38,14 @@ class ContentGenerator {
         }
         elements.forEach(el => {
             el.classList.add('hidden');
-            this.observerAnimations.observe(el);
+            if (this.observerAnimations) {
+                this.observerAnimations.observe(el);
+            } else {
+                // Si l'observer n'est pas disponible (anciennes plateformes),
+                // on affiche directement les éléments pour éviter de bloquer le rendu.
+                el.classList.remove('hidden');
+                el.classList.add('visible');
+            }
         });
     }
 
