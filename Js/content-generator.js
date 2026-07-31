@@ -98,65 +98,74 @@ class ContentGenerator {
         return section;
     }
 
-    /** Génère la page Personnages avec les dossiers analytiques détaillés. */
+    /** Génère la page Personnages avec une structure HTML dédiée au wiki. */
     async generatePersonnagesPage() {
         try {
-            const [data, detailed] = await Promise.all([
-                dataManager.load('pages-content.json'),
-                dataManager.load('characters-detailed.json')
-            ]);
+            const detailed = await dataManager.load('characters-detailed.json');
             const container = document.getElementById('content-personnages');
             if (!container) return;
 
-            const intro = document.createElement('section');
-            intro.className = 'character-wiki-intro hidden';
+            container.innerHTML = '';
+
+            const intro = document.createElement('div');
+            intro.className = 'character-wiki-intro';
             intro.innerHTML = `
-                <h2>Personnages</h2>
-                <p>Cette section présente les personnages majeurs de <em>Mushoku Tensei</em> sous une forme de wiki analytique. Les fiches ne se limitent pas à une courte biographie : elles étudient l'évolution, les relations, les contradictions et la fonction narrative de chaque personnage.</p>
-                <p class="character-wiki-note"><strong>Lecture :</strong> les dossiers détaillés peuvent contenir des informations couvrant une large partie de l'histoire. Le mode spoiler du site pourra contrôler leur affichage ultérieurement.</p>`;
+                <div class="character-wiki-intro__content">
+                    <p class="character-wiki-intro__eyebrow">WIKI ANALYTIQUE</p>
+                    <h2>Personnages</h2>
+                    <p>Cette section présente les personnages majeurs de <em>Mushoku Tensei</em> sous une forme de wiki analytique. Les fiches étudient leur évolution, leurs relations, leurs contradictions et leur fonction narrative au lieu de se limiter à une biographie.</p>
+                    <p class="character-wiki-note"><strong>Attention aux spoilers :</strong> les dossiers peuvent couvrir une large partie de l'histoire.</p>
+                </div>`;
             container.appendChild(intro);
 
             const characterOrder = ['rudeus', 'roxy', 'sylphiette', 'eris'];
+
             characterOrder.forEach(id => {
-                const character = detailed.characters[id];
+                const character = detailed.characters?.[id];
                 if (!character) return;
 
                 const article = document.createElement('article');
-                article.className = 'character-dossier hidden';
+                article.className = 'character-dossier';
                 article.id = `personnage-${id}`;
 
-                const sections = character.sections.map((section, index) => `
-                    <section class="character-dossier__section" aria-labelledby="${id}-section-${index}">
-                        <h3 id="${id}-section-${index}">${section.title}</h3>
+                const sections = (character.sections || []).map((section, index) => `
+                    <div class="character-dossier__section">
+                        <h3>${section.title}</h3>
                         <p>${section.content}</p>
-                    </section>`).join('');
+                    </div>`).join('');
 
                 const relations = character.relations?.length ? `
-                    <section class="character-dossier__relations" aria-labelledby="${id}-relations">
-                        <h3 id="${id}-relations">Relations déterminantes</h3>
+                    <div class="character-dossier__relations">
+                        <h3>Relations déterminantes</h3>
                         <ul>${character.relations.map(relation => `<li>${relation}</li>`).join('')}</ul>
-                    </section>` : '';
+                    </div>` : '';
 
                 article.innerHTML = `
-                    <header class="character-dossier__header">
-                        <div class="character-dossier__icon" aria-hidden="true">${character.icon}</div>
-                        <div>
-                            <p class="character-dossier__role">${character.role}</p>
+                    <div class="character-dossier__header">
+                        <div class="character-dossier__icon" aria-hidden="true">${character.icon || '◆'}</div>
+                        <div class="character-dossier__identity">
+                            <p class="character-dossier__role">${character.role || 'Personnage'}</p>
                             <h2>${character.name}</h2>
-                            <p class="character-dossier__intro">${character.intro}</p>
+                            <p class="character-dossier__intro">${character.intro || ''}</p>
                         </div>
-                    </header>
-                    <div class="character-dossier__body">${sections}${relations}</div>`;
+                    </div>
+                    <div class="character-dossier__body">
+                        ${sections}
+                        ${relations}
+                    </div>`;
 
                 container.appendChild(article);
             });
-
-            this.observeElements(container.querySelectorAll('.character-wiki-intro, .character-dossier'));
-            this.observeElements(container.querySelectorAll('.character-dossier__section, .character-dossier__relations'));
         } catch (error) {
             console.error('Erreur génération Personnages:', error);
             const container = document.getElementById('content-personnages');
-            if (container) container.innerHTML = '<section><h2>Erreur</h2><p>Impossible de charger les dossiers de personnages.</p></section>';
+            if (container) {
+                container.innerHTML = `
+                    <div class="character-wiki-error">
+                        <h2>Impossible de charger les personnages</h2>
+                        <p>Une erreur est survenue lors du chargement des données.</p>
+                    </div>`;
+            }
         }
     }
 
