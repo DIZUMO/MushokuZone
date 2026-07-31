@@ -139,22 +139,22 @@ class ContentGenerator {
                             <linearGradient id="characterGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe06a"/><stop offset="0.55" stop-color="#ed9d30"/><stop offset="1" stop-color="#8d4c27"/></linearGradient>
                         </defs>
                         <g class="character-selector__pane character-selector__pane--roxy" data-character="roxy" tabindex="0" role="button" aria-label="Afficher le dossier de Roxy">
-                            <path d="M47 77 L202 45 L194 165 L39 181 Z" fill="url(#characterBlue)"/>
-                            <path class="character-selector__shine" d="M61 89 L190 62 L184 151 L51 164 Z"/>
+                            <path d="M30 175 L45 85 L205 35 L205 175 Z" fill="url(#characterBlue)"/>
+                            <path class="character-selector__shine" d="M39 163 L52 94 L193 50 L193 163 Z"/>
                         </g>
                         <g class="character-selector__pane character-selector__pane--sylphiette" data-character="sylphiette" tabindex="0" role="button" aria-label="Afficher le dossier de Sylphiette">
-                            <path d="M215 42 L373 62 L361 174 L208 163 Z" fill="url(#characterGreen)"/>
-                            <path class="character-selector__shine" d="M228 59 L355 75 L346 158 L220 150 Z"/>
+                            <path d="M215 35 L375 85 L390 175 L215 175 Z" fill="url(#characterGreen)"/>
+                            <path class="character-selector__shine" d="M227 50 L368 94 L381 163 L227 163 Z"/>
                         </g>
                         <g class="character-selector__pane character-selector__pane--eris" data-character="eris" tabindex="0" role="button" aria-label="Afficher le dossier d'Eris">
-                            <path d="M39 196 L194 181 L201 305 L52 333 Z" fill="url(#characterRed)"/>
-                            <path class="character-selector__shine" d="M54 210 L181 198 L186 288 L67 311 Z"/>
+                            <path d="M30 185 L205 185 L205 325 L45 275 Z" fill="url(#characterRed)"/>
+                            <path class="character-selector__shine" d="M39 197 L193 197 L193 309 L52 267 Z"/>
                         </g>
                         <g class="character-selector__pane character-selector__pane--rudeus" data-character="rudeus" tabindex="0" role="button" aria-label="Afficher le dossier de Rudeus">
-                            <path d="M208 178 L361 187 L373 292 L215 320 Z" fill="url(#characterGold)"/>
-                            <path class="character-selector__shine" d="M221 194 L348 201 L357 278 L231 301 Z"/>
+                            <path d="M215 185 L390 185 L375 275 L215 325 Z" fill="url(#characterGold)"/>
+                            <path class="character-selector__shine" d="M227 197 L381 197 L368 267 L227 309 Z"/>
                         </g>
-                        <path class="character-selector__outline" d="M47 77L202 45L194 165L39 181 M215 42L373 62L361 174L208 163 M39 196L194 181L201 305L52 333 M208 178L361 187L373 292L215 320"/>
+                        <path class="character-selector__outline" d="M30 175L45 85L205 35L205 175Z M215 35L375 85L390 175L215 175Z M30 185L205 185L205 325L45 275Z M215 185L390 185L375 275L215 325Z"/>
                     </svg>
                 </div>
                 <div class="character-selector__names" role="list" aria-label="Personnages">
