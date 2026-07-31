@@ -115,7 +115,7 @@ class ContentGenerator {
                     <p class="character-wiki-intro__eyebrow">WIKI ANALYTIQUE</p>
                     <h2 id="titre-personnages-wiki">Personnages</h2>
                     <p>Cette section présente les personnages majeurs de <em>Mushoku Tensei</em> sous une forme de wiki analytique. Les fiches étudient leur évolution, leurs relations, leurs contradictions et leur fonction narrative au lieu de se limiter à une biographie.</p>
-                    <p class="character-wiki-note"><strong>Attention aux spoilers :</strong> les dossiers peuvent couvrir une large partie de l'histoire.</p>
+                    <p class="character-wiki-note"><strong>Attention aux spoilers :</strong> la fonctionnalité de masquage des spoilers sera implémentée ultérieurement. En attendant, les dossiers peuvent couvrir une large partie de l'histoire.</p>
                 </div>`;
             container.appendChild(intro);
 
