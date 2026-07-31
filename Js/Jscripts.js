@@ -30,7 +30,6 @@ class NavigationManager {
                 const li = document.createElement('li');
                 const a = document.createElement('a');
 
-                // Construire l'URL
                 if (page.id === 'index') {
                     a.href = rootPrefix + 'index.html';
                     if (currentFile === 'index.html' || currentFile === '') {
@@ -97,6 +96,164 @@ class BurgerMenu {
         if (!this.burger.contains(e.target) && !this.navLinks.contains(e.target)) {
             this.burger.setAttribute('aria-expanded', 'false');
             this.navLinks.classList.remove('open');
+        }
+    }
+}
+
+// ============================================================
+// UPDATE MANAGER
+// ============================================================
+
+class UpdateManager {
+    constructor() {
+        this.data = null;
+        this.storageKey = 'mushokuzone-site-update';
+        this.cacheDuration = 15 * 60 * 1000;
+    }
+
+    getDataUrl() {
+        const pathname = decodeURIComponent(window.location.pathname);
+        return pathname.includes('/Autre pages/') ? '../Data/site.json' : 'Data/site.json';
+    }
+
+    async load() {
+        const cached = this.getCachedData();
+        if (cached) {
+            this.data = cached;
+            this.render();
+            return;
+        }
+
+        try {
+            const response = await fetch(this.getDataUrl(), { cache: 'no-cache' });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const data = await response.json();
+            if (!data || typeof data !== 'object' || !data.version || !data.lastUpdated) {
+                throw new Error('Métadonnées de mise à jour invalides');
+            }
+
+            this.data = data;
+            this.saveCachedData(data);
+            this.render();
+        } catch (error) {
+            console.warn('UpdateManager: impossible de charger les métadonnées ->', error);
+            this.renderFallback();
+        }
+    }
+
+    getCachedData() {
+        try {
+            const raw = localStorage.getItem(this.storageKey);
+            if (!raw) return null;
+
+            const cached = JSON.parse(raw);
+            if (!cached.timestamp || Date.now() - cached.timestamp > this.cacheDuration) {
+                localStorage.removeItem(this.storageKey);
+                return null;
+            }
+
+            return cached.data || null;
+        } catch {
+            return null;
+        }
+    }
+
+    saveCachedData(data) {
+        try {
+            localStorage.setItem(this.storageKey, JSON.stringify({
+                timestamp: Date.now(),
+                data
+            }));
+        } catch {
+            // Le site reste fonctionnel même si localStorage est indisponible.
+        }
+    }
+
+    formatDate(dateString) {
+        const date = new Date(`${dateString}T00:00:00`);
+        if (Number.isNaN(date.getTime())) return dateString;
+
+        return new Intl.DateTimeFormat('fr-FR', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        }).format(date);
+    }
+
+    render() {
+        if (!this.data) return;
+
+        const lastUpdate = this.formatDate(this.data.lastUpdated);
+        const version = this.data.version;
+
+        const lastUpdateElement = document.getElementById('last-update');
+        const versionElement = document.getElementById('version');
+
+        if (lastUpdateElement) lastUpdateElement.textContent = lastUpdate;
+        if (versionElement) versionElement.textContent = version;
+
+        document.querySelectorAll('[data-site-last-update]').forEach(element => {
+            element.textContent = lastUpdate;
+        });
+
+        document.querySelectorAll('[data-site-version]').forEach(element => {
+            element.textContent = version;
+        });
+
+        this.renderFooterMeta(lastUpdate, version);
+    }
+
+    renderFooterMeta(lastUpdate, version) {
+        document.querySelectorAll('.site-footer__meta').forEach(meta => {
+            if (meta.querySelector('[data-update-manager]')) return;
+
+            const container = document.createElement('div');
+            container.setAttribute('data-update-manager', 'true');
+            container.style.cssText = [
+                'margin-top:16px',
+                'padding-top:12px',
+                'border-top:1px solid var(--color-border, rgba(255,215,0,.22))',
+                'font-size:.85rem',
+                'line-height:1.6'
+            ].join(';');
+
+            const title = document.createElement('strong');
+            title.textContent = 'Mise à jour du site';
+            title.style.color = 'var(--color-gold, #ffd700)';
+
+            const date = document.createElement('span');
+            date.textContent = `Dernière mise à jour : ${lastUpdate}`;
+
+            const release = document.createElement('span');
+            release.textContent = `Version : ${version}`;
+
+            container.appendChild(title);
+            container.appendChild(document.createElement('br'));
+            container.appendChild(date);
+            container.appendChild(document.createElement('br'));
+            container.appendChild(release);
+
+            if (this.data.verified) {
+                const verified = document.createElement('span');
+                verified.textContent = ` ✓ ${this.data.verifiedLabel || 'Données vérifiées'}`;
+                verified.style.color = 'var(--color-gold, #ffd700)';
+                container.appendChild(verified);
+            }
+
+            meta.appendChild(container);
+        });
+    }
+
+    renderFallback() {
+        const lastUpdateElement = document.getElementById('last-update');
+        const versionElement = document.getElementById('version');
+
+        if (lastUpdateElement && !lastUpdateElement.textContent.trim()) {
+            lastUpdateElement.textContent = 'Indisponible';
+        }
+        if (versionElement && !versionElement.textContent.trim()) {
+            versionElement.textContent = 'Indisponible';
         }
     }
 }
@@ -265,13 +422,16 @@ class AccordionManager {
 // ============================================================
 
 document.addEventListener('DOMContentLoaded', async () => {
-    // Initialiser les modules
     await new NavigationManager().build();
     new BurgerMenu();
     new BackToTop();
     new MediaLoader();
     new ScrollAnimations();
     new AccordionManager();
+
+    // Les métadonnées de version sont centralisées dans Data/site.json.
+    // Le cache local évite une requête inutile à chaque navigation.
+    new UpdateManager().load();
 
     console.log('MushokuZone scripts initialized');
 });
