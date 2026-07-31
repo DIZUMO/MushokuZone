@@ -1,0 +1,55 @@
+name: Configure backgrounds on every page
+
+on:
+  push:
+    paths:
+      - '.github/workflows/temp-fix-all-page-backgrounds.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure background loader on all HTML pages
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+
+          root = Path('.')
+          pages = [root / 'index.html'] + sorted((root / 'Autre pages').glob('*.html'))
+
+          for p in pages:
+              text = p.read_text(encoding='utf-8')
+              if 'style-injector.js' in text:
+                  continue
+              src = 'Js/style-injector.js' if p.parent == root else '../Js/style-injector.js'
+              script = f'    <script src="{src}"></script>\n'
+              marker = '    <script src="Js/Jscripts.js"></script>\n'
+              if marker in text:
+                  text = text.replace(marker, script + marker, 1)
+              else:
+                  text = text.replace('</body>', script + '</body>', 1)
+              p.write_text(text, encoding='utf-8')
+
+          bg_path = root / 'Data' / 'backgrounds.json'
+          data = json.loads(bg_path.read_text(encoding='utf-8'))
+          fallback = data['fallback']
+          for page in ('univers', 'personnages', 'chronologie', 'sources', 'apropos'):
+              if not data['pages'].get(page):
+                  data['pages'][page] = fallback
+          bg_path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+      - name: Remove temporary workflow
+        run: rm -f .github/workflows/temp-fix-all-page-backgrounds.yml
+      - name: Commit all-page background fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html 'Autre pages/' Data/backgrounds.json .github/workflows/temp-fix-all-page-backgrounds.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Load backgrounds on every page"
+          git push
