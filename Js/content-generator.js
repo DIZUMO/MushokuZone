@@ -98,7 +98,7 @@ class ContentGenerator {
         return section;
     }
 
-    /** Génère la page Personnages avec une structure HTML dédiée au wiki. */
+    /** Génère la page Personnages sans modifier le contenu stocké dans JSON. */
     async generatePersonnagesPage() {
         try {
             const detailed = await dataManager.load('characters-detailed.json');
@@ -107,8 +107,6 @@ class ContentGenerator {
 
             container.innerHTML = '';
 
-            // Utilise une vraie <section> afin de réemployer le système visuel
-            // commun défini dans style-common.css.
             const intro = document.createElement('section');
             intro.className = 'character-wiki-intro';
             intro.setAttribute('aria-labelledby', 'titre-personnages-wiki');
@@ -127,9 +125,6 @@ class ContentGenerator {
                 const character = detailed.characters?.[id];
                 if (!character) return;
 
-                // Les dossiers sont eux aussi de vraies sections : l'opacité,
-                // le flou, les bordures et les ombres viennent donc directement
-                // de style-common.css comme sur les autres pages.
                 const article = document.createElement('section');
                 article.className = 'character-dossier';
                 article.id = `personnage-${id}`;
@@ -163,6 +158,8 @@ class ContentGenerator {
 
                 container.appendChild(article);
             });
+
+            this.observeElements(container.querySelectorAll('.character-wiki-intro, .character-dossier'));
         } catch (error) {
             console.error('Erreur génération Personnages:', error);
             const container = document.getElementById('content-personnages');
