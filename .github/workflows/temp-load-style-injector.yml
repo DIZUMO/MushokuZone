@@ -1,0 +1,39 @@
+name: Temporary style injector fix
+
+on:
+  push:
+    paths:
+      - '.github/workflows/temp-load-style-injector.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add style-injector.js to index.html if missing
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          text = p.read_text(encoding='utf-8')
+          script = '    <script src="Js/style-injector.js"></script>\n'
+          if 'src="Js/style-injector.js"' not in text:
+              marker = '    <script src="Js/Jscripts.js"></script>\n'
+              if marker not in text:
+                  marker = '</body>\n'
+              text = text.replace(marker, script + marker, 1)
+              p.write_text(text, encoding='utf-8')
+          PY
+      - name: Remove temporary workflow
+        run: rm -f .github/workflows/temp-load-style-injector.yml
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html .github/workflows/temp-load-style-injector.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Load background style injector on homepage"
+          git push
