@@ -128,7 +128,6 @@ class ContentGenerator {
                 <div class="character-selector__heading">
                     <p class="character-selector__eyebrow">SÉLECTION</p>
                     <h2 id="titre-selecteur-personnages">Choisir un personnage</h2>
-                    <p>Survolez l'un des quatre panneaux du même logo Windows 7 pour afficher le dossier correspondant.</p>
                 </div>
                 <div class="character-selector__logo-wrap">
                     <svg class="character-selector__logo" viewBox="0 0 420 360" role="img" aria-label="Sélecteur des quatre personnages principaux">
