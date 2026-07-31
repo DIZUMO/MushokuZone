@@ -1,11 +1,29 @@
-/* Styles for the analytical character wiki */
-.character-wiki-intro,
-.character-dossier {
+/* =========================================================
+   PERSONNAGES - WIKI ANALYTIQUE
+   ========================================================= */
+
+/* Conteneur principal : les dossiers occupent correctement la page */
+#content-personnages {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 48px;
+}
+
+/* Intro et dossiers : centrés, opaques et cohérents avec le reste du site */
+#content-personnages > .character-wiki-intro,
+#content-personnages > .character-dossier {
+    width: 100%;
     max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .character-wiki-intro {
     margin-top: 28px;
+    background: rgba(8, 6, 18, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
 .character-wiki-intro p {
@@ -15,19 +33,39 @@
 .character-wiki-note {
     padding: 12px 16px;
     border-left: 3px solid var(--color-gold);
-    background: rgba(255, 215, 0, 0.06);
+    background: rgba(255, 215, 0, 0.08);
+    max-width: none !important;
 }
 
+/* Chaque personnage est un véritable bloc de wiki */
 .character-dossier {
+    display: block;
+    position: relative;
     overflow: hidden;
+    margin-top: 34px;
+    padding: 32px 36px;
+    background: rgba(8, 6, 18, 0.94);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.58);
+    opacity: 1;
+    transform: none;
+}
+
+.character-dossier:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65), 0 0 0 1px var(--color-gold-glow);
+    border-color: rgba(255, 215, 0, 0.38);
 }
 
 .character-dossier__header {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto minmax(0, 1fr);
     gap: 24px;
     align-items: start;
-    padding-bottom: 22px;
+    padding-bottom: 24px;
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -39,13 +77,14 @@
     justify-content: center;
     border: 1px solid var(--color-border);
     border-radius: 50%;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.55);
     font-size: 2.4rem;
     box-shadow: 0 0 22px var(--color-gold-glow);
 }
 
 .character-dossier__header h2 {
     margin-top: 0;
+    margin-bottom: 12px;
 }
 
 .character-dossier__role {
@@ -63,40 +102,48 @@
 }
 
 .character-dossier__body {
-    max-width: 900px;
+    width: 100%;
+    max-width: 920px;
+    margin: 0 auto;
 }
 
+/* Les sous-sections restent intégrées au dossier, sans devenir des cartes */
 .character-dossier__section {
-    margin: 26px 0 0;
-    padding: 0 0 24px;
+    width: 100%;
+    max-width: none;
+    margin: 30px 0 0;
+    padding: 0 0 26px;
     background: transparent;
     border: 0;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.10);
     border-radius: 0;
     box-shadow: none;
-    max-width: none;
+    transition: none;
 }
 
 .character-dossier__section:hover {
     transform: none;
     box-shadow: none;
-    border-color: transparent;
+    border-color: rgba(255, 215, 0, 0.10);
 }
 
 .character-dossier__section h3,
 .character-dossier__relations h3 {
     margin-top: 0;
-    padding-bottom: 7px;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.12);
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.14);
 }
 
 .character-dossier__section p {
+    width: 100%;
     max-width: none;
 }
 
 .character-dossier__relations {
-    margin-top: 10px;
+    width: 100%;
+    margin-top: 28px;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.22);
+    background: rgba(0, 0, 0, 0.40);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
 }
@@ -105,12 +152,13 @@
     margin-bottom: 0;
 }
 
+/* Animation : ne jamais laisser une fiche invisible si l'observateur ne se déclenche pas */
 .character-dossier.hidden,
 .character-wiki-intro.hidden,
 .character-dossier__section.hidden,
 .character-dossier__relations.hidden {
-    opacity: 0;
-    transform: translateY(18px);
+    opacity: 1;
+    transform: none;
 }
 
 .character-dossier.visible,
@@ -118,12 +166,23 @@
 .character-dossier__section.visible,
 .character-dossier__relations.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
 }
 
 @media (max-width: 700px) {
+    #content-personnages {
+        padding: 0 12px 36px;
+    }
+
+    .character-dossier,
+    .character-wiki-intro {
+        padding: 22px 18px;
+        margin-top: 22px;
+    }
+
     .character-dossier__header {
         grid-template-columns: 1fr;
+        gap: 14px;
     }
 
     .character-dossier__icon {
@@ -132,11 +191,11 @@
         font-size: 1.9rem;
     }
 
-    .character-dossier {
-        padding: 22px 18px;
-    }
-
     .character-dossier__intro {
         font-size: 1rem;
+    }
+
+    .character-dossier__body {
+        max-width: none;
     }
 }
