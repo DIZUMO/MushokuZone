@@ -1,0 +1,130 @@
+{
+  "continents": [
+    {
+      "id": "central",
+      "icon": "🏰",
+      "name": "Continent Central",
+      "description": "Région regroupant plusieurs royaumes où débute une partie importante du récit."
+    },
+    {
+      "id": "demons",
+      "icon": "👿",
+      "name": "Continent des Démons",
+      "description": "Habité par de nombreuses races démoniaques. Possède des paysages très variés et joue un rôle majeur dans plusieurs événements du récit."
+    },
+    {
+      "id": "millis",
+      "icon": "⛪",
+      "name": "Continent de Millis",
+      "description": "Région caractérisée par l'influence de la religion de Millis et connue pour ses traditions ainsi que son organisation politique."
+    },
+    {
+      "id": "begaritt",
+      "icon": "⚔️",
+      "name": "Continent de Begaritt",
+      "description": "Immense territoire réputé pour ses zones hostiles, ses labyrinthes et les nombreuses expéditions d'aventuriers qui s'y rendent."
+    }
+  ],
+  "peoples": [
+    {
+      "id": "humans",
+      "icon": "👤",
+      "name": "Humains",
+      "description": "Race la plus répandue dans le Monde des Six Faces."
+    },
+    {
+      "id": "demons",
+      "icon": "👿",
+      "name": "Démons",
+      "description": "Ensemble de peuples possédant des caractéristiques très diverses."
+    },
+    {
+      "id": "migurds",
+      "icon": "🌊",
+      "name": "Migurds",
+      "description": "Peuple auquel appartient Roxy. Reconnaissable à ses cheveux bleus et à ses capacités particulières."
+    },
+    {
+      "id": "superds",
+      "icon": "⚔️",
+      "name": "Superds",
+      "description": "Peuple de guerriers connu pour sa grande force et son histoire complexe."
+    },
+    {
+      "id": "beast-men",
+      "icon": "🐺",
+      "name": "Hommes-bêtes",
+      "description": "Ensemble de peuples présentant des caractéristiques animales."
+    },
+    {
+      "id": "dwarves",
+      "icon": "⛏️",
+      "name": "Nains",
+      "description": "Réputés pour leur artisanat et leur maîtrise technique."
+    },
+    {
+      "id": "elves",
+      "icon": "🌿",
+      "name": "Elfes",
+      "description": "Connus pour leur longévité et certains personnages elfes sont représentés comme des utilisateurs de magie."
+    }
+  ],
+  "magic": [
+    {
+      "id": "offensive",
+      "icon": "⚡",
+      "name": "Magie offensive",
+      "description": "Magie principalement employée lors des affrontements."
+    },
+    {
+      "id": "healing",
+      "icon": "💚",
+      "name": "Magie de soin",
+      "description": "Permet notamment de soigner certaines blessures et certains états."
+    },
+    {
+      "id": "detoxification",
+      "icon": "🛡️",
+      "name": "Magie de désintoxication",
+      "description": "Utilisée pour neutraliser certains poisons."
+    },
+    {
+      "id": "barrier",
+      "icon": "🔐",
+      "name": "Magie de barrière",
+      "description": "Permet de créer différentes protections."
+    },
+    {
+      "id": "summoning",
+      "icon": "✨",
+      "name": "Magie d'invocation",
+      "description": "Utilisée pour invoquer différentes entités selon les techniques maîtrisées."
+    }
+  ],
+  "combatStyles": [
+    {
+      "id": "swordsmen",
+      "icon": "🗡️",
+      "name": "Épéistes",
+      "description": "Spécialistes du combat rapproché utilisant des armes blanches."
+    },
+    {
+      "id": "mages",
+      "icon": "📖",
+      "name": "Magiciens",
+      "description": "Utilisent principalement la magie pour leurs combats."
+    },
+    {
+      "id": "adventurers",
+      "icon": "🎯",
+      "name": "Aventuriers",
+      "description": "Polyvalents et capables de s'adapter à de nombreuses situations."
+    },
+    {
+      "id": "fighters",
+      "icon": "💪",
+      "name": "Combattants",
+      "description": "Privilégient leur force physique et leurs armes."
+    }
+  ]
+}

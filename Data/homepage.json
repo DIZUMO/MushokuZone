@@ -1,0 +1,51 @@
+{
+  "facts": [
+    "Le web novel principal compte 286 chapitres.",
+    "L'œuvre est née sur Shōsetsuka ni Narō avant d'être éditée commercialement.",
+    "Studio Bind est le studio d'animation chargé de l'adaptation télévisée de Mushoku Tensei.",
+    "Rudeus conserve tous les souvenirs de sa vie précédente.",
+    "L'édition en light novel ajoute plusieurs chapitres et développements absents de la version originale."
+  ],
+  "themes": [
+    {
+      "id": "reincarnation",
+      "icon": "🔄",
+      "title": "Réincarnation",
+      "description": "La réincarnation constitue le point de départ de l'histoire mais ne résout aucun problème à elle seule. Les souvenirs du passé accompagnent Rudeus tout au long de sa nouvelle vie."
+    },
+    {
+      "id": "evolution",
+      "icon": "📈",
+      "title": "Évolution",
+      "description": "Le récit couvre plusieurs périodes de la vie de ses personnages. Leurs décisions et leurs expériences continuent d'avoir des conséquences tout au long de l'histoire."
+    },
+    {
+      "id": "universe",
+      "icon": "🗺️",
+      "title": "Univers",
+      "description": "L'histoire se déroule dans un univers de fantasy généralement désigné comme le Monde des Six Faces. Celui-ci est composé de plusieurs régions, peuples, cultures et systèmes de magie découverts progressivement au fil du récit."
+    },
+    {
+      "id": "relationships",
+      "icon": "❤️",
+      "title": "Relations humaines",
+      "description": "La famille, l'amitié, l'enseignement et les liens affectifs occupent une place essentielle dans la progression de l'histoire."
+    }
+  ],
+  "characteristics": [
+    "une narration qui suit le protagoniste sur plusieurs périodes de sa vie ;",
+    "une continuité entre les différents arcs du récit ;",
+    "une attention portée aux relations entre les personnages ;",
+    "un univers développé progressivement au fil de l'histoire ;",
+    "une adaptation animée réalisée par Studio Bind."
+  ],
+  "keyStats": {
+    "webNovelStart": "22 novembre 2012",
+    "webNovelEnd": "3 avril 2015",
+    "chapterCount": "286",
+    "lightNovelStart": "23 janvier 2014",
+    "animeStudio": "Studio Bind",
+    "animeStart": "janvier 2021",
+    "author": "Rifujin na Magonote"
+  }
+}

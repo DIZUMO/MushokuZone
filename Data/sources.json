@@ -1,0 +1,85 @@
+{
+  "official": [
+    {
+      "id": "syosetu",
+      "name": "Shōsetsuka ni Narō",
+      "url": "https://ncode.syosetu.com/n9669bk/",
+      "type": "officielle",
+      "icon": "📚",
+      "description": "Publication originale du web novel. Plateforme officielle de partage de web novels au Japon."
+    },
+    {
+      "id": "anime_official",
+      "name": "Site officiel anime",
+      "url": "https://mushokutensei.jp/",
+      "type": "officielle",
+      "icon": "🎬",
+      "description": "Informations concernant l'adaptation animée produite par Studio Bind."
+    },
+    {
+      "id": "mfbooks",
+      "name": "MF Books",
+      "url": "https://mfbunkoj.jp/",
+      "type": "officielle",
+      "icon": "📖",
+      "description": "Éditeur japonais responsable de la publication en light novels."
+    },
+    {
+      "id": "kadokawa",
+      "name": "KADOKAWA",
+      "url": "https://www.kadokawa.co.jp/",
+      "type": "officielle",
+      "icon": "🏢",
+      "description": "Groupe éditorial responsable de la publication globale de la franchise."
+    }
+  ],
+  "databases": [
+    {
+      "id": "ann",
+      "name": "Anime News Network",
+      "url": "https://www.animenewsnetwork.com/",
+      "type": "documentaire",
+      "icon": "📰",
+      "description": "Utilisé principalement pour les annonces éditoriales et les récompenses."
+    },
+    {
+      "id": "mal",
+      "name": "MyAnimeList",
+      "url": "https://myanimelist.net/anime/39535/Mushoku_Tensei__Isekai_Ittara_Honki_Dasu",
+      "type": "documentaire",
+      "icon": "🗂️",
+      "description": "Base d'indexation des animes et mangas."
+    },
+    {
+      "id": "anidb",
+      "name": "AniDB",
+      "url": "https://anidb.net/",
+      "type": "documentaire",
+      "icon": "🗂️",
+      "description": "Utilisé pour certaines informations techniques."
+    },
+    {
+      "id": "wikipedia",
+      "name": "Wikipédia",
+      "url": "https://fr.wikipedia.org/wiki/Mushoku_Tensei:_Isekai_Ittara_Honki_Dasu",
+      "type": "documentaire",
+      "icon": "📖",
+      "description": "Base documentaire générale."
+    }
+  ],
+  "externalLinks": {
+    "official": {
+      "syosetu": "https://ncode.syosetu.com/n9669bk/",
+      "animeOfficial": "https://mushokutensei.jp/",
+      "staffCast": "https://mushokutensei.jp/staff-cast/",
+      "mfbooks": "https://mfbunkoj.jp/",
+      "kadokawa": "https://www.kadokawa.co.jp/"
+    },
+    "databases": {
+      "ann": "https://www.animenewsnetwork.com/",
+      "mal": "https://myanimelist.net/anime/39535/Mushoku_Tensei__Isekai_Ittara_Honki_Dasu",
+      "anidb": "https://anidb.net/",
+      "wikipedia": "https://fr.wikipedia.org/wiki/Mushoku_Tensei:_Isekai_Ittara_Honki_Dasu"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "lastUpdate": "2026-07-29",
+  "site": {
+    "name": "MushokuZone",
+    "title": "Mushoku Tensei : univers, histoire et personnages | MushokuZone",
+    "description": "Découvrez Mushoku Tensei : son histoire, son univers, ses personnages, ses thèmes et les informations vérifiées sur l'œuvre.",
+    "url": "https://dizumo.github.io/MushokuZone/",
+    "lang": "fr",
+    "locale": "fr_FR",
+    "theme-color": "#111111",
+    "author": "DIZUMO",
+    "github": "https://github.com/DIZUMO/MushokuZone",
+    "favicon": "Image/Mushoku_Tensei_Logo_(japonais).png"
+  },
+  "keywords": {
+    "global": "Mushoku Tensei, Isekai Ittara Honki Dasu, Rudeus Greyrat, anime, light novel, manga, isekai, Rifujin na Magonote",
+    "pages": {
+      "index": "Mushoku Tensei, Isekai Ittara Honki Dasu, Rudeus Greyrat, anime, light novel, manga, isekai, Rifujin na Magonote",
+      "biographie": "Rifujin na Magonote, biographie, auteur, Mushoku Tensei, web novel, light novel",
+      "impact": "Mushoku Tensei, impact, isekai, Studio Bind, réception, animation",
+      "univers": "Mushoku Tensei, univers, Monde des Six Faces, magie, peuples, continents",
+      "personnages": "Mushoku Tensei, personnages, Rudeus, Roxy, Sylphiette, Eris",
+      "chronologie": "Mushoku Tensei, chronologie, édition, publication, anime",
+      "episode": "Mushoku Tensei, épisodes, saison 1, saison 2, saison 3, VO, VF, trailers, bandes-annonces, liste épisodes",
+      "sources": "sources, références, Mushoku Tensei, documentation",
+      "apropos": "MushokuZone, à propos, mission, projet, site"
+    }
+  },
+  "socialMedia": {
+    "twitterCard": "summary_large_image",
+    "ogType": "website",
+    "ogImage": "https://dizumo.github.io/MushokuZone/Image/Mushoku_Tensei_Logo_(japonais).png",
+    "ogImageAlt": "Logo japonais de Mushoku Tensei"
+  },
+  "paths": {
+    "root": "./",
+    "data": "./Data/",
+    "css": "./Css/",
+    "js": "./Js/",
+    "images": "./Image/",
+    "pages": "./Autre pages/"
+  }
+}

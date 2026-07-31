@@ -1,0 +1,101 @@
+{
+  "trailers": [
+    {
+      "id": "trailer_s1_main",
+      "type": "trailer",
+      "platform": "youtube",
+      "videoId": "k5VxfJpzy1Q",
+      "title": "Bande-annonce Saison 1 - Annonce Officielle",
+      "date": "06 décembre 2020",
+      "season": "S1",
+      "spoilAlert": false
+    },
+    {
+      "id": "trailer_s1_teaser",
+      "type": "trailer",
+      "platform": "youtube",
+      "videoId": "-hm8V2WtW0A",
+      "title": "Bande-annonce Saison 1 - Teaser Personnages",
+      "date": "8 janvier 2021",
+      "season": "S1",
+      "spoilAlert": false
+    },
+    {
+      "id": "trailer_s2p1_main",
+      "type": "trailer",
+      "platform": "youtube",
+      "videoId": "W020Q5LgX0w",
+      "title": "Bande-annonce Saison 2 - Cour 1 - Annonce Officielle",
+      "date": "4 juillet 2022",
+      "season": "S2P1",
+      "spoilAlert": false
+    },
+    {
+      "id": "trailer_s2p2_main",
+      "type": "trailer",
+      "platform": "youtube",
+      "videoId": "NQP4tQpwfHA",
+      "title": "Bande-annonce Saison 2 - Cour 2 - Annonce Officielle",
+      "date": "22 février 2024",
+      "season": "S2P2",
+      "spoilAlert": false
+    },
+    {
+      "id": "trailer_s3_main",
+      "type": "trailer",
+      "platform": "youtube",
+      "videoId": "M-3YqJA6UlM",
+      "videoIdSuffix": "si=FaFXXI4mfIu5-28H",
+      "title": "Bande-annonce Saison 3 - Annonce Officielle",
+      "date": "6 juillet 2025",
+      "season": "S3",
+      "spoilAlert": false
+    },
+    {
+      "id": "trailer_s3_arc_eris",
+      "type": "trailer",
+      "platform": "youtube",
+      "videoId": "4-UTuXoe5hI",
+      "videoIdSuffix": "si=y5b6HiK0Telo83zH",
+      "title": "Bande-annonce Saison 3 - Arc d'entraînement d'Eris",
+      "date": "28 mars 2026",
+      "season": "S3",
+      "spoilAlert": false
+    },
+    {
+      "id": "trailer_s3_overview",
+      "type": "trailer",
+      "platform": "youtube",
+      "videoId": "ODxfIvSgWuo",
+      "videoIdSuffix": "si=gM80hy7Tp90scBTz",
+      "title": "Bande-annonce Saison 3 - Aperçu complet",
+      "date": "4 juin 2026",
+      "season": "S3",
+      "spoilAlert": false
+    }
+  ],
+  "fanAnimations": [
+    {
+      "id": "fan_turning_point_iii",
+      "type": "fan-animation",
+      "platform": "bilibili",
+      "src": "//player.bilibili.com/player.html?isOutside=true&aid=115200954998720&bvid=BV1miHfzEET2&cid=25861363351&p=1&autoplay=1",
+      "imagePreview": "Image/mushoku-tensei13.jpg",
+      "title": "Fan animation adaptant le Turning point III par LanwenTuzi Studio",
+      "date": "1er juillet 2025",
+      "spoilAlert": true,
+      "spoilAlertText": "Spoil la suite de la série"
+    },
+    {
+      "id": "fan_opening",
+      "type": "fan-animation",
+      "platform": "twitter",
+      "isTwitterEmbed": true,
+      "tweetUrl": "https://twitter.com/LanwenTuzStudio/status/1758375753543266369",
+      "imagePreview": "Image/mushoku-tensei9.jpg",
+      "title": "Mushoku Tensei Fan animation opening par Lanwen Tuzi Studio",
+      "date": "16 février 2024",
+      "spoilAlert": false
+    }
+  ]
+}

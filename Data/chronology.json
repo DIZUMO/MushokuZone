@@ -1,0 +1,46 @@
+{
+  "events": [
+    {
+      "id": "webnovel_start",
+      "date": "22 novembre 2012",
+      "title": "Web novel",
+      "description": "Publication du premier chapitre sur Shōsetsuka ni Narō."
+    },
+    {
+      "id": "manga_start",
+      "date": "9 mai 2014",
+      "title": "Manga",
+      "description": "Début de l'adaptation en bande dessinée."
+    },
+    {
+      "id": "webnovel_end",
+      "date": "3 avril 2015",
+      "title": "Fin du web novel",
+      "description": "Publication du dernier chapitre du web novel principal."
+    },
+    {
+      "id": "anime_s1_start",
+      "date": "10 janvier 2021",
+      "title": "Anime Saison 1",
+      "description": "Début de la diffusion de l'anime produit par Studio Bind."
+    },
+    {
+      "id": "anime_s2_start",
+      "date": "2 juillet 2023",
+      "title": "Anime Saison 2",
+      "description": "Début de la saison 2, partie 1."
+    },
+    {
+      "id": "anime_s2p2_start",
+      "date": "7 avril 2024",
+      "title": "Anime Saison 2 Cour 2",
+      "description": "Début de la saison 2, partie 2."
+    },
+    {
+      "id": "anime_s3_start",
+      "date": "5 juillet 2026",
+      "title": "Anime Saison 3",
+      "description": "Début de la saison 3."
+    }
+  ]
+}
