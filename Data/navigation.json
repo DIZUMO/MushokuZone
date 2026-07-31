@@ -7,18 +7,6 @@
       "icone": "🏠"
     },
     {
-      "id": "biographie",
-      "titre": "Biographie",
-      "url": "Biographie.html",
-      "icone": "📖"
-    },
-    {
-      "id": "impact",
-      "titre": "Impact",
-      "url": "Impact.html",
-      "icone": "🌟"
-    },
-    {
       "id": "univers",
       "titre": "Univers",
       "url": "Univers.html",
@@ -41,6 +29,18 @@
       "titre": "Épisodes",
       "url": "Episode.html",
       "icone": "▶️"
+    },
+    {
+      "id": "biographie",
+      "titre": "Biographie",
+      "url": "Biographie.html",
+      "icone": "📖"
+    },
+    {
+      "id": "impact",
+      "titre": "Impact",
+      "url": "Impact.html",
+      "icone": "🌟"
     },
     {
       "id": "sources",
