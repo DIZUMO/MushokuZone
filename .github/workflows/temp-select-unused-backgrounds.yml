@@ -15,27 +15,33 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Select unused landscape images with suitable dimensions
+        shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import json, re, subprocess, sys
+          import json
+          import re
+          import shutil
+          import subprocess
 
           root = Path('.')
           image_dir = root / 'Image'
           bg_file = root / 'Data' / 'backgrounds.json'
-
-          try:
-              from PIL import Image
-          except ImportError:
-              subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'Pillow'])
-              from PIL import Image
-
           data = json.loads(bg_file.read_text(encoding='utf-8'))
           pages = list(data.get('pages', {}).keys())
 
-          # Collect every image filename already referenced anywhere in the site.
+          if not image_dir.is_dir():
+              raise SystemExit('Image directory not found')
+
+          # Read image dimensions using ImageMagick already available on GitHub runners.
+          identify = shutil.which('identify')
+          if not identify:
+              raise SystemExit('ImageMagick identify is not available on this runner')
+
+          # Find images already referenced by the repository, excluding the background config
+          # because those are handled explicitly below.
           used = set()
-          image_pattern = re.compile(r'(?i)(?:Image/|\.\./Image/)([^\"\'\s)<>]+)')
+          image_pattern = re.compile(r'(?i)(?:Image/|\.\./Image/)([^"\'\s)<>]+)')
           for path in root.rglob('*'):
               if not path.is_file() or '.git' in path.parts or path == bg_file:
                   continue
@@ -46,37 +52,42 @@ jobs:
               for match in image_pattern.findall(text):
                   used.add(match.split('?', 1)[0])
 
-          # Existing background assignments are also considered used.
           for value in data.get('pages', {}).values():
               if isinstance(value, str):
                   used.add(Path(value).name)
-          fallback = data.get('fallback')
-          if isinstance(fallback, str):
-              used.add(Path(fallback).name)
+          if isinstance(data.get('fallback'), str):
+              used.add(Path(data['fallback']).name)
 
           candidates = []
           allowed = {'.jpg', '.jpeg', '.png', '.webp'}
+
           for path in image_dir.iterdir():
               if not path.is_file() or path.suffix.lower() not in allowed:
                   continue
               if path.name in used:
                   continue
+
               try:
-                  with Image.open(path) as im:
-                      width, height = im.size
-                      ratio = width / height if height else 0
-                      pixels = width * height
+                  result = subprocess.run(
+                      [identify, '-format', '%w %h', str(path)],
+                      capture_output=True,
+                      text=True,
+                      check=True
+                  )
+                  width, height = map(int, result.stdout.strip().split()[:2])
               except Exception:
                   continue
 
-              # Backgrounds should be landscape, sufficiently large, and not tiny assets.
-              if width < 1280 or height < 720 or ratio < 1.5:
-                  continue
-              if path.stat().st_size > 8 * 1024 * 1024:
+              ratio = width / height if height else 0
+              pixels = width * height
+              size = path.stat().st_size
+
+              # Suitable for full-page desktop backgrounds.
+              if width < 1280 or height < 720 or ratio < 1.5 or size > 8 * 1024 * 1024:
                   continue
 
-              # Prefer wide, high-resolution images with a reasonable file size.
-              score = (pixels, ratio, -path.stat().st_size)
+              # Prefer large landscape images while keeping file size reasonable.
+              score = (pixels, ratio, -size)
               candidates.append((score, path.name, width, height))
 
           candidates.sort(reverse=True)
@@ -87,19 +98,19 @@ jobs:
                   'No background assignments were changed.'
               )
 
-          selected = candidates[:len(pages)]
-          for page, (_, filename, width, height) in zip(pages, selected):
+          for page, (_, filename, width, height) in zip(pages, candidates):
               data['pages'][page] = f'Image/{filename}'
               print(f'{page}: {filename} ({width}x{height})')
 
-          # Keep the fallback on the selected first image only if the previous fallback
-          # was one of the newly selected assets; otherwise retain the existing fallback.
           data['responsive'] = {
-              'description': 'Les fonds spécifiques sont utilisés sur toutes les pages. Sur mobile, le CSS peut réduire ou adapter leur affichage.',
-              'strategy': 'Utiliser des images paysage suffisamment grandes pour couvrir correctement un écran desktop sans étirer de petites ressources.'
+              'description': 'Chaque page utilise un fond distinct sélectionné parmi les images non utilisées du dossier Image.',
+              'strategy': 'Images paysage d’au moins 1280x720, ratio >= 1.5, poids <= 8 Mo.'
           }
 
-          bg_file.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          bg_file.write_text(
+              json.dumps(data, ensure_ascii=False, indent=2) + '\n',
+              encoding='utf-8'
+          )
           PY
 
       - name: Remove temporary workflow
