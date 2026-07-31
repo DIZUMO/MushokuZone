@@ -121,6 +121,51 @@ class ContentGenerator {
 
             const characterOrder = ['rudeus', 'roxy', 'sylphiette', 'eris'];
 
+            const selector = document.createElement('section');
+            selector.className = 'character-selector';
+            selector.setAttribute('aria-labelledby', 'titre-selecteur-personnages');
+            selector.innerHTML = `
+                <div class="character-selector__heading">
+                    <p class="character-selector__eyebrow">SÉLECTION</p>
+                    <h2 id="titre-selecteur-personnages">Choisir un personnage</h2>
+                    <p>Survolez l'un des quatre panneaux du même logo Windows 7 pour afficher le dossier correspondant.</p>
+                </div>
+                <div class="character-selector__logo-wrap">
+                    <svg class="character-selector__logo" viewBox="0 0 420 360" role="img" aria-label="Sélecteur des quatre personnages principaux">
+                        <defs>
+                            <linearGradient id="characterBlue" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#52ddff"/><stop offset="1" stop-color="#0874d1"/></linearGradient>
+                            <linearGradient id="characterGreen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#91f25e"/><stop offset="1" stop-color="#239b46"/></linearGradient>
+                            <linearGradient id="characterRed" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7164"/><stop offset="1" stop-color="#a91631"/></linearGradient>
+                            <linearGradient id="characterGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffe06a"/><stop offset="0.55" stop-color="#ed9d30"/><stop offset="1" stop-color="#8d4c27"/></linearGradient>
+                        </defs>
+                        <g class="character-selector__pane character-selector__pane--roxy" data-character="roxy" tabindex="0" role="button" aria-label="Afficher le dossier de Roxy">
+                            <path d="M47 77 L202 45 L194 165 L39 181 Z" fill="url(#characterBlue)"/>
+                            <path class="character-selector__shine" d="M61 89 L190 62 L184 151 L51 164 Z"/>
+                        </g>
+                        <g class="character-selector__pane character-selector__pane--sylphiette" data-character="sylphiette" tabindex="0" role="button" aria-label="Afficher le dossier de Sylphiette">
+                            <path d="M215 42 L373 62 L361 174 L208 163 Z" fill="url(#characterGreen)"/>
+                            <path class="character-selector__shine" d="M228 59 L355 75 L346 158 L220 150 Z"/>
+                        </g>
+                        <g class="character-selector__pane character-selector__pane--eris" data-character="eris" tabindex="0" role="button" aria-label="Afficher le dossier d'Eris">
+                            <path d="M39 196 L194 181 L201 305 L52 333 Z" fill="url(#characterRed)"/>
+                            <path class="character-selector__shine" d="M54 210 L181 198 L186 288 L67 311 Z"/>
+                        </g>
+                        <g class="character-selector__pane character-selector__pane--rudeus" data-character="rudeus" tabindex="0" role="button" aria-label="Afficher le dossier de Rudeus">
+                            <path d="M208 178 L361 187 L373 292 L215 320 Z" fill="url(#characterGold)"/>
+                            <path class="character-selector__shine" d="M221 194 L348 201 L357 278 L231 301 Z"/>
+                        </g>
+                        <path class="character-selector__outline" d="M47 77L202 45L194 165L39 181 M215 42L373 62L361 174L208 163 M39 196L194 181L201 305L52 333 M208 178L361 187L373 292L215 320"/>
+                    </svg>
+                </div>
+                <div class="character-selector__names" role="list" aria-label="Personnages">
+                    <button type="button" class="character-selector__name character-selector__name--roxy" data-character="roxy">ROXY</button>
+                    <button type="button" class="character-selector__name character-selector__name--sylphiette" data-character="sylphiette">SYLPHIETTE</button>
+                    <button type="button" class="character-selector__name character-selector__name--eris" data-character="eris">ERIS</button>
+                    <button type="button" class="character-selector__name character-selector__name--rudeus" data-character="rudeus">RUDEUS</button>
+                </div>
+                <p class="character-selector__status" aria-live="polite">Survolez un panneau du logo.</p>`;
+            container.appendChild(selector);
+
             characterOrder.forEach(id => {
                 const character = detailed.characters?.[id];
                 if (!character) return;
@@ -129,6 +174,8 @@ class ContentGenerator {
                 article.className = 'character-dossier';
                 article.id = `personnage-${id}`;
                 article.setAttribute('aria-labelledby', `titre-personnage-${id}`);
+                article.dataset.character = id;
+                if (id !== 'rudeus') article.hidden = true;
 
                 const sections = (character.sections || []).map(section => `
                     <div class="character-dossier__section">
@@ -159,7 +206,48 @@ class ContentGenerator {
                 container.appendChild(article);
             });
 
-            this.observeElements(container.querySelectorAll('.character-wiki-intro, .character-dossier'));
+            const dossiers = Array.from(container.querySelectorAll('.character-dossier'));
+            const panes = Array.from(selector.querySelectorAll('.character-selector__pane'));
+            const nameButtons = Array.from(selector.querySelectorAll('.character-selector__name'));
+            const status = selector.querySelector('.character-selector__status');
+
+            const selectCharacter = (id, selected = true) => {
+                const character = detailed.characters?.[id];
+                if (!character) return;
+
+                dossiers.forEach(dossier => {
+                    dossier.hidden = dossier.dataset.character !== id;
+                });
+                panes.forEach(pane => {
+                    pane.classList.toggle('is-active', pane.dataset.character === id);
+                });
+                nameButtons.forEach(button => {
+                    button.classList.toggle('is-active', button.dataset.character === id);
+                });
+
+                status.textContent = selected ? `${character.name} sélectionné.` : `Survol : ${character.name}`;
+            };
+
+            panes.forEach(pane => {
+                pane.addEventListener('mouseenter', () => selectCharacter(pane.dataset.character, false));
+                pane.addEventListener('focus', () => selectCharacter(pane.dataset.character, false));
+                pane.addEventListener('click', () => selectCharacter(pane.dataset.character, true));
+                pane.addEventListener('keydown', event => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        selectCharacter(pane.dataset.character, true);
+                    }
+                });
+            });
+
+            nameButtons.forEach(button => {
+                button.addEventListener('mouseenter', () => selectCharacter(button.dataset.character, false));
+                button.addEventListener('focus', () => selectCharacter(button.dataset.character, false));
+                button.addEventListener('click', () => selectCharacter(button.dataset.character, true));
+            });
+
+            selectCharacter('rudeus');
+            this.observeElements(container.querySelectorAll('.character-wiki-intro, .character-selector, .character-dossier'));
         } catch (error) {
             console.error('Erreur génération Personnages:', error);
             const container = document.getElementById('content-personnages');
