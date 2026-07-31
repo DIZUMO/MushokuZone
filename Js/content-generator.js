@@ -107,12 +107,15 @@ class ContentGenerator {
 
             container.innerHTML = '';
 
-            const intro = document.createElement('div');
+            // Utilise une vraie <section> afin de réemployer le système visuel
+            // commun défini dans style-common.css.
+            const intro = document.createElement('section');
             intro.className = 'character-wiki-intro';
+            intro.setAttribute('aria-labelledby', 'titre-personnages-wiki');
             intro.innerHTML = `
                 <div class="character-wiki-intro__content">
                     <p class="character-wiki-intro__eyebrow">WIKI ANALYTIQUE</p>
-                    <h2>Personnages</h2>
+                    <h2 id="titre-personnages-wiki">Personnages</h2>
                     <p>Cette section présente les personnages majeurs de <em>Mushoku Tensei</em> sous une forme de wiki analytique. Les fiches étudient leur évolution, leurs relations, leurs contradictions et leur fonction narrative au lieu de se limiter à une biographie.</p>
                     <p class="character-wiki-note"><strong>Attention aux spoilers :</strong> les dossiers peuvent couvrir une large partie de l'histoire.</p>
                 </div>`;
@@ -124,11 +127,15 @@ class ContentGenerator {
                 const character = detailed.characters?.[id];
                 if (!character) return;
 
-                const article = document.createElement('article');
+                // Les dossiers sont eux aussi de vraies sections : l'opacité,
+                // le flou, les bordures et les ombres viennent donc directement
+                // de style-common.css comme sur les autres pages.
+                const article = document.createElement('section');
                 article.className = 'character-dossier';
                 article.id = `personnage-${id}`;
+                article.setAttribute('aria-labelledby', `titre-personnage-${id}`);
 
-                const sections = (character.sections || []).map((section, index) => `
+                const sections = (character.sections || []).map(section => `
                     <div class="character-dossier__section">
                         <h3>${section.title}</h3>
                         <p>${section.content}</p>
@@ -145,7 +152,7 @@ class ContentGenerator {
                         <div class="character-dossier__icon" aria-hidden="true">${character.icon || '◆'}</div>
                         <div class="character-dossier__identity">
                             <p class="character-dossier__role">${character.role || 'Personnage'}</p>
-                            <h2>${character.name}</h2>
+                            <h2 id="titre-personnage-${id}">${character.name}</h2>
                             <p class="character-dossier__intro">${character.intro || ''}</p>
                         </div>
                     </div>
@@ -161,10 +168,10 @@ class ContentGenerator {
             const container = document.getElementById('content-personnages');
             if (container) {
                 container.innerHTML = `
-                    <div class="character-wiki-error">
+                    <section class="character-wiki-error">
                         <h2>Impossible de charger les personnages</h2>
                         <p>Une erreur est survenue lors du chargement des données.</p>
-                    </div>`;
+                    </section>`;
             }
         }
     }
