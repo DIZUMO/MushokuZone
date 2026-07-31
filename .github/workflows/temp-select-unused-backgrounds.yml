@@ -1,0 +1,115 @@
+name: Select unused background images
+
+on:
+  push:
+    paths:
+      - '.github/workflows/temp-select-unused-backgrounds.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  select:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select unused landscape images with suitable dimensions
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re, subprocess, sys
+
+          root = Path('.')
+          image_dir = root / 'Image'
+          bg_file = root / 'Data' / 'backgrounds.json'
+
+          try:
+              from PIL import Image
+          except ImportError:
+              subprocess.check_call([sys.executable, '-m', 'pip', 'install', 'Pillow'])
+              from PIL import Image
+
+          data = json.loads(bg_file.read_text(encoding='utf-8'))
+          pages = list(data.get('pages', {}).keys())
+
+          # Collect every image filename already referenced anywhere in the site.
+          used = set()
+          image_pattern = re.compile(r'(?i)(?:Image/|\.\./Image/)([^\"\'\s)<>]+)')
+          for path in root.rglob('*'):
+              if not path.is_file() or '.git' in path.parts or path == bg_file:
+                  continue
+              try:
+                  text = path.read_text(encoding='utf-8')
+              except (UnicodeDecodeError, OSError):
+                  continue
+              for match in image_pattern.findall(text):
+                  used.add(match.split('?', 1)[0])
+
+          # Existing background assignments are also considered used.
+          for value in data.get('pages', {}).values():
+              if isinstance(value, str):
+                  used.add(Path(value).name)
+          fallback = data.get('fallback')
+          if isinstance(fallback, str):
+              used.add(Path(fallback).name)
+
+          candidates = []
+          allowed = {'.jpg', '.jpeg', '.png', '.webp'}
+          for path in image_dir.iterdir():
+              if not path.is_file() or path.suffix.lower() not in allowed:
+                  continue
+              if path.name in used:
+                  continue
+              try:
+                  with Image.open(path) as im:
+                      width, height = im.size
+                      ratio = width / height if height else 0
+                      pixels = width * height
+              except Exception:
+                  continue
+
+              # Backgrounds should be landscape, sufficiently large, and not tiny assets.
+              if width < 1280 or height < 720 or ratio < 1.5:
+                  continue
+              if path.stat().st_size > 8 * 1024 * 1024:
+                  continue
+
+              # Prefer wide, high-resolution images with a reasonable file size.
+              score = (pixels, ratio, -path.stat().st_size)
+              candidates.append((score, path.name, width, height))
+
+          candidates.sort(reverse=True)
+
+          if len(candidates) < len(pages):
+              raise SystemExit(
+                  f'Not enough unused suitable images: found {len(candidates)}, need {len(pages)}. '
+                  'No background assignments were changed.'
+              )
+
+          selected = candidates[:len(pages)]
+          for page, (_, filename, width, height) in zip(pages, selected):
+              data['pages'][page] = f'Image/{filename}'
+              print(f'{page}: {filename} ({width}x{height})')
+
+          # Keep the fallback on the selected first image only if the previous fallback
+          # was one of the newly selected assets; otherwise retain the existing fallback.
+          data['responsive'] = {
+              'description': 'Les fonds spécifiques sont utilisés sur toutes les pages. Sur mobile, le CSS peut réduire ou adapter leur affichage.',
+              'strategy': 'Utiliser des images paysage suffisamment grandes pour couvrir correctement un écran desktop sans étirer de petites ressources.'
+          }
+
+          bg_file.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Remove temporary workflow
+        run: rm -f .github/workflows/temp-select-unused-backgrounds.yml
+
+      - name: Commit background selection
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Data/backgrounds.json .github/workflows/temp-select-unused-backgrounds.yml
+          git diff --cached --quiet && exit 0
+          git commit -m "Use unused suitable images as page backgrounds"
+          git push
