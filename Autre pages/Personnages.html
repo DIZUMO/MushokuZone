@@ -10,6 +10,7 @@
 
     <script src="../Js/data-manager.js"></script>
     <script src="../Js/seo-injector.js"></script>
+    <script src="../Js/content-generator.js"></script>
 </head>
 <body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -32,70 +33,7 @@
     </header>
 
     <main id="main">
-
-        <section class="hidden" aria-labelledby="titre-perso">
-            <h2 id="titre-perso">Présentation</h2>
-            <p>Les personnages occupent une place centrale dans la progression du récit. Les principaux personnages disposent de motivations, de relations et d'objectifs qui influencent leur évolution au fil de l'histoire.</p>
-            <p>Les descriptions ci-dessous présentent uniquement le rôle général de chaque personnage au début de l'œuvre ou lors de sa première apparition importante. Elles évitent volontairement les révélations majeures.</p>
-        </section>
-
-        <section class="hidden" aria-labelledby="titre-protagonistes">
-            <h2 id="titre-protagonistes">Personnages principaux</h2>
-            <div class="cards-grid">
-                <div class="card hidden">
-                    <div class="card__icon">👤</div>
-                    <h3 class="card__title">Rudeus Greyrat</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Protagoniste principal. Réincarné dans un monde de fantasy après une vie qu'il considère comme un échec, Rudeus décide de profiter de cette seconde chance pour devenir une meilleure version de lui-même. Il développe rapidement de solides aptitudes pour la magie grâce à son apprentissage.</p>
-                </div>
-                <div class="card hidden">
-                    <div class="card__icon">🧙‍♀️</div>
-                    <h3 class="card__title">Roxy Migurdia</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Première professeure de magie. Roxy appartient au peuple Migurd. Malgré sa grande expérience de magicienne, elle reste humble et passionnée par l'enseignement. Elle joue un rôle majeur dans la formation magique de Rudeus.</p>
-                </div>
-                <div class="card hidden">
-                    <div class="card__icon">✨</div>
-                    <h3 class="card__title">Sylphiette</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Amie d'enfance. Sylphiette est une jeune magicienne douce et discrète. Son histoire est marquée par une évolution progressive qui lui permet de gagner progressivement en assurance.</p>
-                </div>
-                <div class="card hidden">
-                    <div class="card__icon">⚔️</div>
-                    <h3 class="card__title">Eris Boreas Greyrat</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Compagne d'aventure. Issue de la branche Boreas de la famille Greyrat, Eris possède un tempérament impulsif mais une volonté remarquable. Son parcours est marqué par une progression constante dans l'apprentissage du combat.</p>
-                </div>
-                <div class="card hidden">
-                    <div class="card__icon">🗡️</div>
-                    <h3 class="card__title">Paul Greyrat</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Père de Rudeus. Ancien aventurier devenu père de famille, Paul est un personnage complexe dont les décisions influencent durablement plusieurs personnages.</p>
-                </div>
-                <div class="card hidden">
-                    <div class="card__icon">❤️</div>
-                    <h3 class="card__title">Zenith Greyrat</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Mère de Rudeus. Zenith est reconnue pour sa bienveillance et son attachement à sa famille. Elle joue un rôle essentiel dans les premières années de la vie de Rudeus.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="hidden" aria-labelledby="titre-autres">
-            <h2 id="titre-autres">Autres personnages importants</h2>
-            <div class="cards-grid">
-                <div class="card hidden">
-                    <div class="card__icon">🛡️</div>
-                    <h3 class="card__title">Ruijerd Superdia</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Protecteur et compagnon. Guerrier appartenant au peuple Superd, Ruijerd cherche à améliorer l'image du peuple Superd. Son sens de l'honneur et de la justice marque profondément ceux qui voyagent avec lui.</p>
-                </div>
-                <div class="card hidden">
-                    <div class="card__icon">👑</div>
-                    <h3 class="card__title">Orsted</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Personnage majeur. Orsted est l'un des personnages les plus puissants de l'univers. Son rôle prend progressivement de l'importance au fil du récit.</p>
-                </div>
-                <div class="card hidden">
-                    <div class="card__icon">🔬</div>
-                    <h3 class="card__title">Nanahoshi Shizuka</h3>
-                    <p class="card__text"><strong>Rôle :</strong> Chercheur. Nanahoshi cherche avant tout à comprendre les phénomènes liés à sa présence dans ce monde et poursuit ses propres recherches.</p>
-                </div>
-            </div>
-        </section>
-
+        <div id="content-personnages"></div>
     </main>
 
     <footer class="site-footer">
@@ -108,7 +46,11 @@
     </footer>
 
     <button id="back-to-top" aria-label="Revenir en haut">↑</button>
-    <script src="../Js/config.js"></script>
     <script src="../Js/Jscripts.js"></script>
+    <script>
+    (async () => {
+        await contentGenerator.generatePersonnagesPage();
+    })();
+    </script>
 </body>
 </html>

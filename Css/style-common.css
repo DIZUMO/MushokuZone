@@ -145,16 +145,7 @@ header img:hover { filter: drop-shadow(0 0 14px var(--color-gold-dim)); transfor
     letter-spacing: 3px; text-transform: uppercase;
 }
 
-/* FIL D'ARIANE */
-.breadcrumb {
-    max-width: 1100px; margin: 12px auto 0; padding: 0 20px;
-    font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.05em;
-    color: var(--color-text-muted); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-}
-.breadcrumb a { color: var(--color-text-muted); text-decoration: none; transition: color var(--transition-fast); }
-.breadcrumb a:hover { color: var(--color-gold); }
-.breadcrumb__sep { color: rgba(255,215,0,0.3); }
-.breadcrumb__current { color: var(--color-gold); }
+/* FIL D'ARIANE (supprimé) */
 
 /* SECTIONS */
 section {

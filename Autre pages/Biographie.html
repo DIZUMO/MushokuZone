@@ -7,10 +7,11 @@
     <link rel="icon" type="image/png" href="../Image/Mushoku_Tensei_Logo_(japonais).png">
     <link rel="apple-touch-icon" href="../Image/Mushoku_Tensei_Logo_(japonais).png"><title>Rifujin na Magonote : parcours et œuvre | MushokuZone</title>
     <link rel="stylesheet" href="../Css/style-common.css">
-    <link rel="stylesheet" href="../Css/style-biographie.css">
+    <link rel="stylesheet" href="../Css/style-common.css">
 
     <script src="../Js/data-manager.js"></script>
     <script src="../Js/seo-injector.js"></script>
+    <script src="../Js/content-generator.js"></script>
 </head>
 <body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -93,42 +94,9 @@
             <p>Sa diffusion sur plusieurs supports et sa publication sur une longue période ont contribué à sa notoriété internationale.</p>
         </section>
 
-        <section class="hidden" aria-labelledby="titre-chronologie">
+        <section aria-labelledby="titre-chronologie">
             <h2 id="titre-chronologie">Chronologie</h2>
-            <div class="timeline">
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">2012</div>
-                        <div class="timeline__title">Début du web novel</div>
-                        <div class="timeline__desc">Début de la publication du web novel sur Shōsetsuka ni Narō, le 22 novembre 2012.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">2014</div>
-                        <div class="timeline__title">Début de la publication en light novel</div>
-                        <div class="timeline__desc">Publication du premier volume chez MF Books, le 23 janvier 2014.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">2015</div>
-                        <div class="timeline__title">Fin du web novel principal</div>
-                        <div class="timeline__desc">Publication du dernier chapitre du web novel, le 3 avril 2015.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">2021</div>
-                        <div class="timeline__title">Début de l'adaptation animée</div>
-                        <div class="timeline__desc">Début de la diffusion de l'anime produit par Studio Bind, janvier 2021.</div>
-                    </div>
-                </div>
-            </div>
+            <div id="content-chronologie-bio"></div>
         </section>
 
         <section class="hidden" aria-labelledby="titre-retenir">
@@ -214,7 +182,11 @@
 
     <button id="back-to-top" aria-label="Revenir en haut de la page">↑</button>
 
-    <script src="../Js/config.js"></script>
     <script src="../Js/Jscripts.js"></script>
+    <script>
+    (async () => {
+        await contentGenerator.generateChronologiePage('#content-chronologie-bio');
+    })();
+    </script>
 </body>
 </html>

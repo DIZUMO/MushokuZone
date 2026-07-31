@@ -8,7 +8,6 @@
     <link rel="apple-touch-icon" href="Image/Mushoku_Tensei_Logo_(japonais).png">
     <title>Mushoku Tensei : univers, histoire et personnages | MushokuZone</title>
     <link rel="stylesheet" href="Css/style-common.css">
-    <link rel="stylesheet" href="Css/style-index.css">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -242,29 +241,31 @@
 
     <button id="back-to-top" aria-label="Revenir en haut de la page">↑</button>
 
-    <script src="Js/config.js"></script>
     <script src="Js/Jscripts.js"></script>
     <script>
-    const facts = [
-        "Le web novel principal compte 286 chapitres.",
-        "L'œuvre est née sur Shōsetsuka ni Narō avant d'être éditée commercialement.",
-        "Studio Bind est le studio d'animation chargé de l'adaptation télévisée de Mushoku Tensei.",
-        "Rudeus conserve tous les souvenirs de sa vie précédente.",
-        "L'édition en light novel ajoute plusieurs chapitres et développements absents de la version originale."
-    ];
-
-    let currentFact = 0;
-
-    function updateFactCard() {
-        document.getElementById('fact-text').textContent = facts[currentFact];
-    }
-
-    function rotateFactCard() {
-        currentFact = (currentFact + 1) % facts.length;
-        updateFactCard();
-    }
-
-    updateFactCard();
+    (async () => {
+        try {
+            const resp = await fetch('Data/homepage.json');
+            const data = await resp.json();
+            const facts = data.facts || data.faits || [];
+            let currentFact = 0;
+            function updateFactCard() {
+                const el = document.getElementById('fact-text');
+                if (!el) return;
+                el.textContent = facts.length ? facts[currentFact] : '';
+            }
+            function rotateFactCard() {
+                if (!facts.length) return;
+                currentFact = (currentFact + 1) % facts.length;
+                updateFactCard();
+            }
+            updateFactCard();
+            setInterval(rotateFactCard, 8000);
+            window.rotateFactCard = rotateFactCard;
+        } catch (err) {
+            console.warn('Impossible de charger Data/homepage.json', err);
+        }
+    })();
     </script>
 
 </body>

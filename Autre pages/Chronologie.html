@@ -10,6 +10,7 @@
 
     <script src="../Js/data-manager.js"></script>
     <script src="../Js/seo-injector.js"></script>
+    <script src="../Js/content-generator.js"></script>
 </head>
 <body>
     <a href="#main" class="skip-link">Aller au contenu principal</a>
@@ -32,71 +33,7 @@
     </header>
 
     <main id="main">
-
-        <section class="hidden" aria-labelledby="titre-chrono">
-            <h2 id="titre-chrono">Frise chronologique</h2>
-            <p>Cette page retrace les principales étapes de la publication de Mushoku Tensei, depuis le lancement du web novel jusqu'aux adaptations officielles. Elle présente uniquement des événements éditoriaux vérifiables.</p>
-            
-            <div class="timeline">
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">22 novembre 2012</div>
-                        <div class="timeline__title">Web novel</div>
-                        <div class="timeline__desc">Publication du premier chapitre sur Shōsetsuka ni Narō.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">9 mai 2014</div>
-                        <div class="timeline__title">Manga</div>
-                        <div class="timeline__desc">Début de l'adaptation en bande dessinée.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">3 avril 2015</div>
-                        <div class="timeline__title">Fin du web novel</div>
-                        <div class="timeline__desc">Publication du dernier chapitre du web novel principal.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">10 janvier 2021</div>
-                        <div class="timeline__title">Anime Saison 1</div>
-                        <div class="timeline__desc">Début de la diffusion de l'anime produit par Studio Bind.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">2 juillet 2023</div>
-                        <div class="timeline__title">Anime Saison 2</div>
-                        <div class="timeline__desc">Début de la saison 2, partie 1.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">7 avril 2024</div>
-                        <div class="timeline__title">Anime Saison 2 Cour 2</div>
-                        <div class="timeline__desc">Début de la saison 2, partie 2.</div>
-                    </div>
-                </div>
-                <div class="timeline__item hidden">
-                    <div class="timeline__dot"></div>
-                    <div class="timeline__content">
-                        <div class="timeline__date">5 juillet 2026</div>
-                        <div class="timeline__title">Anime Saison 3</div>
-                        <div class="timeline__desc">Début de la saison 3.</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <div id="content-chronologie"></div>
     </main>
 
     <footer class="site-footer">
@@ -109,7 +46,11 @@
     </footer>
 
     <button id="back-to-top" aria-label="Revenir en haut">↑</button>
-    <script src="../Js/config.js"></script>
     <script src="../Js/Jscripts.js"></script>
+    <script>
+    (async () => {
+        await contentGenerator.generateChronologiePage();
+    })();
+    </script>
 </body>
 </html>
