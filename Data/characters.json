@@ -1,0 +1,69 @@
+{
+  "mainCharacters": [
+    {
+      "id": "rudeus",
+      "name": "Rudeus Greyrat",
+      "icon": "👤",
+      "role": "Protagoniste principal",
+      "description": "Réincarné dans un monde de fantasy après une vie qu'il considère comme un échec, Rudeus décide de profiter de cette seconde chance pour devenir une meilleure version de lui-même. Il développe rapidement de solides aptitudes pour la magie grâce à son apprentissage."
+    },
+    {
+      "id": "roxy",
+      "name": "Roxy Migurdia",
+      "icon": "🧙‍♀️",
+      "role": "Première professeure de magie",
+      "description": "Roxy appartient au peuple Migurd. Malgré sa grande expérience de magicienne, elle reste humble et passionnée par l'enseignement. Elle joue un rôle majeur dans la formation magique de Rudeus."
+    },
+    {
+      "id": "sylphiette",
+      "name": "Sylphiette",
+      "icon": "✨",
+      "role": "Amie d'enfance",
+      "description": "Sylphiette est une jeune magicienne douce et discrète. Son histoire est marquée par une évolution progressive qui lui permet de gagner progressivement en assurance."
+    },
+    {
+      "id": "eris",
+      "name": "Eris Boreas Greyrat",
+      "icon": "⚔️",
+      "role": "Compagne d'aventure",
+      "description": "Issue de la branche Boreas de la famille Greyrat, Eris possède un tempérament impulsif mais une volonté remarquable. Son parcours est marqué par une progression constante dans l'apprentissage du combat."
+    },
+    {
+      "id": "paul",
+      "name": "Paul Greyrat",
+      "icon": "🗡️",
+      "role": "Père de Rudeus",
+      "description": "Ancien aventurier devenu père de famille, Paul est un personnage complexe dont les décisions influencent durablement plusieurs personnages."
+    },
+    {
+      "id": "zenith",
+      "name": "Zenith Greyrat",
+      "icon": "❤️",
+      "role": "Mère de Rudeus",
+      "description": "Zenith est reconnue pour sa bienveillance et son attachement à sa famille. Elle joue un rôle essentiel dans les premières années de la vie de Rudeus."
+    }
+  ],
+  "importantCharacters": [
+    {
+      "id": "ruijerd",
+      "name": "Ruijerd Superdia",
+      "icon": "🛡️",
+      "role": "Protecteur et compagnon",
+      "description": "Guerrier appartenant au peuple Superd, Ruijerd cherche à améliorer l'image du peuple Superd. Son sens de l'honneur et de la justice marque profondément ceux qui voyagent avec lui."
+    },
+    {
+      "id": "orsted",
+      "name": "Orsted",
+      "icon": "👑",
+      "role": "Personnage majeur",
+      "description": "Orsted est l'un des personnages les plus puissants de l'univers. Son rôle prend progressivement de l'importance au fil du récit."
+    },
+    {
+      "id": "nanahoshi",
+      "name": "Nanahoshi Shizuka",
+      "icon": "🔬",
+      "role": "Chercheur",
+      "description": "Nanahoshi cherche avant tout à comprendre les phénomènes liés à sa présence dans ce monde et poursuit ses propres recherches."
+    }
+  ]
+}
