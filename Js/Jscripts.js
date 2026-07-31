@@ -1,52 +1,50 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
 /* ====================================================== */
-/*  MENU NAVIGATION                                        */
+/*  MENU NAVIGATION - Chargé depuis Data/navigation.json  */
 /* ====================================================== */
 
-function buildNav() {
-    const pages = [
-        { titre: 'Accueil',      url: null, id: 'index' },
-        { titre: 'Biographie',   url: 'Biographie.html' },
-        { titre: 'Impact',       url: 'Impact.html' },
-        { titre: 'Univers',      url: 'Univers.html' },
-        { titre: 'Personnages',  url: 'Personnages.html' },
-        { titre: 'Chronologie',  url: 'Chronologie.html' },
-        { titre: 'Épisodes',     url: 'Episode.html' },
-        { titre: 'Sources',      url: 'Sources.html' },
-        { titre: 'À propos',     url: 'A-propos.html' }
-    ];
-
-    const nav = document.querySelector('.site-nav');
-    if (!nav) return;
-
-    const isRoot = !window.location.pathname.includes('Autre%20pages') &&
-                   !window.location.pathname.includes('Autre pages');
-    const prefix = isRoot ? 'Autre pages/' : '';
-    const rootPrefix = isRoot ? '' : '../';
-
-    const currentFile = window.location.pathname.split('/').pop() || 'index.html';
-
-    const ul = nav.querySelector('.site-nav__links');
-    if (!ul) return;
-
-    pages.forEach(page => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-
-        if (page.id === 'index') {
-            a.href = rootPrefix + 'index.html';
-            const isActive = currentFile === 'index.html' || currentFile === '';
-            if (isActive) a.setAttribute('aria-current', 'page');
-        } else {
-            a.href = prefix + page.url;
-            if (currentFile === page.url) a.setAttribute('aria-current', 'page');
+async function buildNav() {
+    try {
+        const navigation = await dataManager.load('navigation.json');
+        if (!navigation || !navigation.pages) {
+            console.error('Navigation data not loaded');
+            return;
         }
 
-        a.textContent = page.titre;
-        li.appendChild(a);
-        ul.appendChild(li);
-    });
+        const nav = document.querySelector('.site-nav');
+        if (!nav) return;
+
+        const isRoot = !window.location.pathname.includes('Autre%20pages') &&
+                       !window.location.pathname.includes('Autre pages');
+        const prefix = isRoot ? 'Autre pages/' : '';
+        const rootPrefix = isRoot ? '' : '../';
+        const currentFile = window.location.pathname.split('/').pop() || 'index.html';
+
+        const ul = nav.querySelector('.site-nav__links');
+        if (!ul) return;
+
+        navigation.pages.forEach(page => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+
+            if (page.id === 'index') {
+                a.href = rootPrefix + 'index.html';
+                const isActive = currentFile === 'index.html' || currentFile === '';
+                if (isActive) a.setAttribute('aria-current', 'page');
+            } else {
+                a.href = prefix + page.url;
+                if (currentFile === page.url) a.setAttribute('aria-current', 'page');
+            }
+
+            a.textContent = page.titre;
+            li.appendChild(a);
+            ul.appendChild(li);
+        });
+
+    } catch (error) {
+        console.error('Failed to build navigation:', error);
+    }
 }
 
 buildNav();
