@@ -13,7 +13,7 @@ class StyleInjector {
      */
     detectPageId() {
         const pathname = new URL(window.location).pathname;
-        
+
         if (pathname.includes('index') || pathname.endsWith('/') || pathname.endsWith('MushokuZone/')) {
             return 'index';
         }
@@ -39,6 +39,21 @@ class StyleInjector {
     }
 
     /**
+     * Détermine le chemin vers une ressource depuis la page courante.
+     * Les pages à la racine utilisent directement Image/..., tandis que
+     * les pages de Autre pages/ doivent remonter d'un niveau.
+     */
+    getAssetPath(path) {
+        if (!path) return null;
+
+        const isOtherPages = window.location.pathname.includes('Autre%20pages') ||
+                             window.location.pathname.includes('Autre pages');
+        const normalizedPath = path.replace(/^\.\//, '');
+
+        return isOtherPages ? `../${normalizedPath}` : normalizedPath;
+    }
+
+    /**
      * Injecte l'image de fond appropriée
      */
     async injectBackgroundImage() {
@@ -47,10 +62,10 @@ class StyleInjector {
             if (!backgrounds) return;
 
             const bgImage = backgrounds.pages[this.pageId] || backgrounds.fallback;
+            const assetPath = this.getAssetPath(bgImage);
 
-            if (bgImage) {
-                // Injecter via CSS inline sur <html>
-                document.documentElement.style.backgroundImage = `url("../${bgImage}")`;
+            if (assetPath) {
+                document.documentElement.style.backgroundImage = `url("${assetPath}")`;
                 document.documentElement.style.backgroundSize = 'cover';
                 document.documentElement.style.backgroundRepeat = 'no-repeat';
                 document.documentElement.style.backgroundPosition = 'top center';
@@ -65,13 +80,10 @@ class StyleInjector {
      * Injecte les styles spécifiques à la page (si nécessaire)
      */
     async injectPageSpecificStyles() {
-        // Exemple : ajouter des règles CSS spécifiques par page
-        // On peut aussi charger des variables CSS dynamiques ici
         try {
             const config = await dataManager.load('site-config.json');
             if (!config) return;
 
-            // Exemple : injecter des variables CSS
             const style = document.createElement('style');
             style.textContent = `
                 :root {
