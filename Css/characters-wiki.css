@@ -1,0 +1,142 @@
+/* Styles for the analytical character wiki */
+.character-wiki-intro,
+.character-dossier {
+    max-width: 1100px;
+}
+
+.character-wiki-intro {
+    margin-top: 28px;
+}
+
+.character-wiki-intro p {
+    max-width: 900px;
+}
+
+.character-wiki-note {
+    padding: 12px 16px;
+    border-left: 3px solid var(--color-gold);
+    background: rgba(255, 215, 0, 0.06);
+}
+
+.character-dossier {
+    overflow: hidden;
+}
+
+.character-dossier__header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+    align-items: start;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.character-dossier__icon {
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.35);
+    font-size: 2.4rem;
+    box-shadow: 0 0 22px var(--color-gold-glow);
+}
+
+.character-dossier__header h2 {
+    margin-top: 0;
+}
+
+.character-dossier__role {
+    margin-top: 0;
+    color: var(--color-gold-dim);
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.character-dossier__intro {
+    max-width: 900px;
+    font-size: 1.08rem;
+}
+
+.character-dossier__body {
+    max-width: 900px;
+}
+
+.character-dossier__section {
+    margin: 26px 0 0;
+    padding: 0 0 24px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: none;
+}
+
+.character-dossier__section:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.character-dossier__section h3,
+.character-dossier__relations h3 {
+    margin-top: 0;
+    padding-bottom: 7px;
+    border-bottom: 1px solid rgba(255, 215, 0, 0.12);
+}
+
+.character-dossier__section p {
+    max-width: none;
+}
+
+.character-dossier__relations {
+    margin-top: 10px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+}
+
+.character-dossier__relations ul {
+    margin-bottom: 0;
+}
+
+.character-dossier.hidden,
+.character-wiki-intro.hidden,
+.character-dossier__section.hidden,
+.character-dossier__relations.hidden {
+    opacity: 0;
+    transform: translateY(18px);
+}
+
+.character-dossier.visible,
+.character-wiki-intro.visible,
+.character-dossier__section.visible,
+.character-dossier__relations.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 700px) {
+    .character-dossier__header {
+        grid-template-columns: 1fr;
+    }
+
+    .character-dossier__icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.9rem;
+    }
+
+    .character-dossier {
+        padding: 22px 18px;
+    }
+
+    .character-dossier__intro {
+        font-size: 1rem;
+    }
+}
