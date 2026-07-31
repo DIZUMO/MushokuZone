@@ -3,12 +3,12 @@
     "index": "Image/mushoku-tensei12.jpg",
     "biographie": "Image/mushoku-tensei6.jpg",
     "impact": "Image/mushoku-tensei11.jpg",
-    "univers": null,
-    "personnages": null,
-    "chronologie": null,
+    "univers": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
+    "personnages": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
+    "chronologie": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
     "episode": "Image/mushoku-tensei4.jpg",
-    "sources": null,
-    "apropos": null
+    "sources": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
+    "apropos": "Image/bc57eead3176837e41f1235a4737aac3.jpg"
   },
   "fallback": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
   "responsive": {
