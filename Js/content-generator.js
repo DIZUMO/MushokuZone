@@ -217,6 +217,13 @@ class ContentGenerator {
                 });
                 panes.forEach(pane => pane.classList.remove('is-active'));
                 nameButtons.forEach(button => button.classList.remove('is-active'));
+
+                // Retire aussi le focus qui peut conserver une surbrillance visuelle
+                // après un clic extérieur, notamment sur les boutons de noms.
+                if (selector.contains(document.activeElement)) {
+                    document.activeElement.blur();
+                }
+
                 status.textContent = 'Aucun personnage sélectionné.';
             };
 
