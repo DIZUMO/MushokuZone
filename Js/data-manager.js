@@ -150,6 +150,28 @@ class DataManager {
                 throw new Error('JSON data is not an object');
             }
 
+            // Le dossier Rudeus est maintenu séparément afin de pouvoir recevoir
+            // le contenu complet sans réécrire les fiches des autres personnages.
+            if (filename === 'characters-detailed.json' && data.characters) {
+                try {
+                    const rudeusResponse = await fetch(`${this.baseUrl}rudeus-detailed.json`, {
+                        signal,
+                        cache: 'no-cache'
+                    });
+
+                    if (!rudeusResponse.ok) {
+                        throw new Error(`HTTP ${rudeusResponse.status}: ${rudeusResponse.statusText}`);
+                    }
+
+                    const rudeusData = await rudeusResponse.json();
+                    if (rudeusData && typeof rudeusData === 'object' && rudeusData.name && Array.isArray(rudeusData.sections)) {
+                        data.characters.rudeus = rudeusData;
+                    }
+                } catch (overrideError) {
+                    console.warn('DataManager: impossible de charger le dossier Rudeus séparé ->', overrideError);
+                }
+            }
+
             this.cache[filename] = data;
             return data;
         } catch (error) {
