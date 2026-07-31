@@ -3,16 +3,16 @@
     "index": "Image/mushoku-tensei12.jpg",
     "biographie": "Image/mushoku-tensei6.jpg",
     "impact": "Image/mushoku-tensei11.jpg",
-    "univers": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
-    "personnages": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
-    "chronologie": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
+    "univers": "Image/mushoku-tensei15.jpg",
+    "personnages": "Image/mushoku-tensei15.jpg",
+    "chronologie": "Image/mushoku-tensei15.jpg",
     "episode": "Image/mushoku-tensei4.jpg",
-    "sources": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
-    "apropos": "Image/bc57eead3176837e41f1235a4737aac3.jpg"
+    "sources": "Image/mushoku-tensei15.jpg",
+    "apropos": "Image/mushoku-tensei15.jpg"
   },
-  "fallback": "Image/bc57eead3176837e41f1235a4737aac3.jpg",
+  "fallback": "Image/mushoku-tensei15.jpg",
   "responsive": {
-    "description": "Sur mobile (<768px), le fallback remplace le background spécifique",
-    "strategy": "Utiliser fallback sur petit écran pour optimiser les performances"
+    "description": "Chaque page dispose d'une image de fond configurée. Les pages sans visuel spécifique utilisent mushoku-tensei15.jpg.",
+    "strategy": "Conserver les fonds spécifiques existants et utiliser mushoku-tensei15.jpg comme fond commun pour les pages sans fond dédié."
   }
 }
