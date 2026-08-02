@@ -3,7 +3,6 @@
 /* ====================================================== */
 
 let EPISODES = {};
-let CHARACTERS = {};
 const SEASON_LABELS = { s1: 'Saison 1', s2p1: 'Saison 2 — Cour 1', s2p2: 'Saison 2 — Cour 2', s3: 'Saison 3' };
 let state = { season: 's1', version: 'vo', player: 'sibnet', epIndex: 0 };
 
@@ -15,18 +14,6 @@ async function loadEpisodesData() {
         return true;
     } catch (error) {
         console.error('Failed to load episodes:', error);
-        return false;
-    }
-}
-
-async function loadCharactersData() {
-    try {
-        const data = await dataManager.load('characters-detailed.json');
-        if (!data || !data.characters) return false;
-        CHARACTERS = data.characters;
-        return true;
-    } catch (error) {
-        console.error('Failed to load characters:', error);
         return false;
     }
 }
@@ -51,87 +38,7 @@ function activateCtrlBtn(groupSel, targetSel) {
 
 function refresh() { renderPlayer(); }
 
-/* ======================================================
-   MENU INTERACTIF DES PERSONNAGES
-   ====================================================== */
 
-function createCharacterMenu() {
-    const controls = document.querySelector('.controls-bar');
-    if (!controls || document.getElementById('episode-character-menu')) return;
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'character-menu-wrapper';
-    wrapper.id = 'episode-character-menu';
-    wrapper.innerHTML = `
-        <div class="ctrl-group character-menu-group">
-            <span class="ctrl-label">Personnages</span>
-            <button type="button" class="ctrl-btn character-menu-toggle" id="character-menu-toggle" aria-expanded="false" aria-controls="episode-character-panel">
-                Personnages <span aria-hidden="true">⌄</span>
-            </button>
-        </div>
-        <div class="character-menu-panel" id="episode-character-panel" hidden aria-label="Liste interactive des personnages">
-            <div class="character-menu-panel__header">
-                <div><strong>Personnages principaux</strong><p>Accédez directement à leur fiche analytique.</p></div>
-                <button type="button" class="character-menu-close" aria-label="Fermer le menu">×</button>
-            </div>
-            <div class="character-menu-grid" id="character-menu-grid"></div>
-        </div>`;
-
-    controls.appendChild(wrapper);
-    const toggle = wrapper.querySelector('#character-menu-toggle');
-    const panel = wrapper.querySelector('#episode-character-panel');
-    const close = wrapper.querySelector('.character-menu-close');
-
-    toggle.addEventListener('click', event => {
-        event.stopPropagation();
-        const open = !panel.hidden;
-        panel.hidden = open;
-        toggle.setAttribute('aria-expanded', String(!open));
-        toggle.classList.toggle('active', !open);
-    });
-
-    close.addEventListener('click', () => {
-        panel.hidden = true;
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.classList.remove('active');
-        toggle.focus();
-    });
-
-    document.addEventListener('click', event => {
-        if (!wrapper.contains(event.target)) {
-            panel.hidden = true;
-            toggle.setAttribute('aria-expanded', 'false');
-            toggle.classList.remove('active');
-        }
-    });
-
-    renderCharacterMenu();
-}
-
-function renderCharacterMenu() {
-    const grid = document.getElementById('character-menu-grid');
-    if (!grid) return;
-
-    const order = ['rudeus', 'roxy', 'sylphiette', 'eris'];
-    const ids = order.filter(id => CHARACTERS[id]);
-    if (!ids.length) {
-        grid.innerHTML = '<p class="character-menu-empty">Aucun personnage disponible.</p>';
-        return;
-    }
-
-    grid.innerHTML = ids.map(id => {
-        const character = CHARACTERS[id];
-        return `<a class="character-menu-card" href="Personnages.html#personnage-${id}">
-            <span class="character-menu-card__icon" aria-hidden="true">${character.icon || '◆'}</span>
-            <span class="character-menu-card__info"><strong>${escapeCharacterText(character.name || 'Personnage')}</strong><small>${escapeCharacterText(character.role || 'Personnage')}</small></span>
-            <span class="character-menu-card__arrow" aria-hidden="true">›</span>
-        </a>`;
-    }).join('');
-}
-
-function escapeCharacterText(value) {
-    return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-}
 
 /* ---- Rendu du lecteur ---- */
 
@@ -219,8 +126,8 @@ function loadTwitterEmbed(el) {
 /* ---- Initialisation ---- */
 
 document.addEventListener('DOMContentLoaded', async function () {
-    const [episodesLoaded] = await Promise.all([loadEpisodesData(), loadCharactersData()]);
-    createCharacterMenu();
+    const episodesLoaded = await loadEpisodesData();
+
     if (episodesLoaded) {
         state.epIndex = firstAvailableIndex(currentList());
         refresh();
