@@ -582,7 +582,6 @@ Le code doit rester compréhensible et maintenable, y compris lorsque le projet 
 | Système d'épisodes | 🟡 En développement |
 | Contenu documentaire | 🔴 Pas encore finalisé |
 | Documentation | 🟡 En développement |
-| Version finale du site | 🔴 Non disponible |
 
 **MushokuZone n'est donc pas encore une version finale.**
 
