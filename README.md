@@ -266,7 +266,7 @@ Le dossier Data constitue la couche de données du projet.
 L'objectif est de séparer autant que possible les informations du site de leur présentation HTML.
 
 L'architecture générale peut être représentée ainsi :
-
+```text
 Présentation
      ↓
 HTML / JavaScript
@@ -274,7 +274,7 @@ HTML / JavaScript
 Data Manager
      ↓
 Fichiers JSON
-
+```
 Cette organisation facilite la mise à jour et l'enrichissement progressif du contenu.
 
 
@@ -315,7 +315,7 @@ navigation.json
 Contient la configuration des éléments de navigation du site.
 
 La navigation permet notamment d'accéder aux différentes sections du projet :
-
+```text
 Accueil
 Univers
 Personnages
@@ -325,7 +325,7 @@ Biographie
 Impact
 Sources
 À propos
-
+```
 pages-content.json
 
 Contient des données destinées au contenu des différentes pages.
@@ -398,6 +398,7 @@ Il permet notamment de charger les données nécessaires au fonctionnement des d
 
 Le principe général est :
 
+```text
 Page HTML
     ↓
 JavaScript
@@ -407,6 +408,7 @@ data-manager.js
 Data/*.json
     ↓
 Données utilisées par la page
+```
 
 seo-injector.js
 
@@ -448,6 +450,7 @@ Le sous-dossier Image trinity/ contient également plusieurs ressources graphiqu
 Architecture fonctionnelle
 
 L'organisation générale du projet peut être représentée ainsi :
+```text
 
 ┌──────────────────────┐
                          │      index.html      │
@@ -471,6 +474,7 @@ L'organisation générale du projet peut être représentée ainsi :
                                    ▼               ▼
                               Contenu          Image/*
                               affiché
+```
 
 Le principe général du projet est de séparer les différentes responsabilités :
 
@@ -502,6 +506,7 @@ Cette séparation permet de faire évoluer le contenu sans devoir modifier syst�
 Architecture du système de personnages
 
 Le système de personnages repose sur une génération dynamique à partir des données JSON.
+```text
 
 Autre pages/Personnages.html
               │
@@ -519,6 +524,7 @@ characters-detailed.json   Données détaillées
                    │
                    ▼
             Personnages.html
+```
 
 Les informations détaillées sont donc séparées de la structure HTML de la page.
 
