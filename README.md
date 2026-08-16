@@ -452,13 +452,14 @@ Architecture fonctionnelle
 L'organisation générale du projet peut être représentée ainsi :
 ```text
 
-┌──────────────────────┐
-                         │      index.html      │
-                         │       Accueil        │
-                         └──────────┬───────────┘
-                                    │
-                    ┌───────────────┼───────────────┐
-                    │               │               │
+
+                         ┌───────────────────┐
+                         │      index.html       │
+                         │       Accueil         │
+                         └──────────┬────────┘
+                                      │
+                    ┌──────────────┼───────────────┐
+                    │                │               │
                     ▼               ▼               ▼
               Pages HTML       JavaScript          CSS
              Autre pages/          │             Css/
@@ -512,13 +513,13 @@ Autre pages/Personnages.html
               │
               ▼
        characters-page.js
-              │
-        ┌─────┴────────────────┐
+               │
+        ┌─────┴─────────────┐
         │                      │
         ▼                      ▼
 characters-detailed.json   Données détaillées
-        │                      │
-        └──────────┬───────────┘
+        │                       │
+        └────────┬──────────┘
                    ▼
            Génération dynamique
                    │
@@ -812,7 +813,6 @@ Système de chronologie	🟡 En développement
 Système d'épisodes	🟡 En développement
 Contenu documentaire	🔴 Non finalisé
 Documentation	🟡 En développement
-Version finale du site	🔴 Non disponible
 
 
 MushokuZone n'est donc pas encore une version finale.
