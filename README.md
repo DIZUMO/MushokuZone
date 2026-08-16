@@ -147,55 +147,57 @@ MushokuZone/
 
 Cette structure correspond à l'organisation actuelle du projet.
 
-
 ---
 
-Organisation des fichiers
+# Organisation des fichiers
 
-index.html
+## `index.html`
 
 Point d'entrée principal du site.
 
 Cette page constitue la base de l'accueil de MushokuZone et sert de point de départ à la navigation entre les différentes sections du site.
 
-
 ---
 
-Autre pages/
+# `Autre pages/`
 
 Ce dossier contient les différentes pages HTML secondaires du site.
 
-A-propos.html
+## `A-propos.html`
 
 Page consacrée à la présentation du projet et de ses objectifs.
 
-Biographie.html
+## `Biographie.html`
 
-Page consacrée à la biographie de l'auteur de Mushoku Tensei, Rifujin na Magonote.
+Page consacrée à la biographie de l'auteur de *Mushoku Tensei*, Rifujin na Magonote.
 
-Chronologie.html
+## `Chronologie.html`
 
 Page consacrée à la chronologie du projet.
 
 Les données associées à la chronologie sont stockées dans :
 
+```text
 Data/chronology.json
+```
 
-Episode.html
+## `Episode.html`
 
 Page consacrée aux épisodes.
 
 Les données relatives aux épisodes sont stockées dans :
 
+```text
 Data/episodes.json
+```
 
 La page possède également des ressources CSS et JavaScript spécifiques à son fonctionnement.
 
-Impact.html
+## `Impact.html`
 
 Page consacrée à l'impact et à la réception de l'œuvre.
 
-Personnages.html
+## `Personnages.html`
 
 Page consacrée au système de présentation des personnages.
 
@@ -203,69 +205,76 @@ Le système utilise une architecture dynamique basée sur les données JSON et p
 
 La page utilise notamment :
 
+```text
 Js/data-manager.js
 Js/content-generator.js
 Js/characters-page.js
+```
 
 Les données détaillées des personnages sont stockées dans les fichiers JSON correspondants, notamment :
 
+```text
 Data/characters-detailed.json
 Data/rudeus-detailed.json
 Data/sylphiette-detailed.json
+```
 
-characters-page.js utilise ces données pour générer dynamiquement les fiches et les informations affichées sur la page.
+`characters-page.js` utilise ces données pour générer dynamiquement les fiches et les informations affichées sur la page.
 
-Sources.html
+## `Sources.html`
 
 Page consacrée aux sources et références utilisées par le projet.
 
 Les données correspondantes sont stockées dans :
 
+```text
 Data/sources.json
+```
 
-Univers.html
+## `Univers.html`
 
-Page consacrée à l'univers de Mushoku Tensei.
+Page consacrée à l'univers de *Mushoku Tensei*.
 
 Les données associées à l'univers sont stockées dans :
 
+```text
 Data/universe.json
-
+```
 
 ---
 
-Css/
+# `Css/`
 
-Le dossier Css regroupe les feuilles de style du site.
+Le dossier `Css` regroupe les feuilles de style du site.
 
-style-common.css
+## `style-common.css`
 
 Feuille de style commune utilisée par les différentes pages du site.
 
 Elle regroupe les styles généraux nécessaires à l'interface.
 
-style-episode.css
+## `style-episode.css`
 
 Feuille de style dédiée à la page des épisodes.
 
-characters-wiki.css
+## `characters-wiki.css`
 
 Feuille de style utilisée pour l'interface de présentation des personnages.
 
-spoiler.css
+## `spoiler.css`
 
 Feuille de style associée aux éléments contenant des spoilers.
 
-
 ---
 
-Data/
+# `Data/`
 
-Le dossier Data constitue la couche de données du projet.
+Le dossier `Data` constitue la couche de données du projet.
 
 L'objectif est de séparer autant que possible les informations du site de leur présentation HTML.
 
 L'architecture générale peut être représentée ainsi :
+
 ```text
 Présentation
      ↓
@@ -275,46 +284,45 @@ Data Manager
      ↓
 Fichiers JSON
 ```
+
 Cette organisation facilite la mise à jour et l'enrichissement progressif du contenu.
 
-
----
-
-backgrounds.json
+## `backgrounds.json`
 
 Contient les données relatives aux arrière-plans utilisés par le site.
 
-characters.json
+## `characters.json`
 
 Contient les données générales relatives aux personnages.
 
-characters-detailed.json
+## `characters-detailed.json`
 
 Contient les données détaillées utilisées par le système de présentation des personnages.
 
-chronology.json
+## `chronology.json`
 
 Contient les données utilisées pour la chronologie.
 
-config.json
+## `config.json`
 
 Contient des éléments de configuration utilisés par le projet.
 
-episodes.json
+## `episodes.json`
 
 Contient les données relatives aux épisodes.
 
 Les informations concernant les épisodes sont centralisées dans ce fichier afin de permettre leur utilisation par les fonctionnalités associées aux épisodes.
 
-homepage.json
+## `homepage.json`
 
 Contient des données associées à la page d'accueil.
 
-navigation.json
+## `navigation.json`
 
 Contient la configuration des éléments de navigation du site.
 
 La navigation permet notamment d'accéder aux différentes sections du projet :
+
 ```text
 Accueil
 Univers
@@ -326,71 +334,68 @@ Impact
 Sources
 À propos
 ```
-pages-content.json
+
+## `pages-content.json`
 
 Contient des données destinées au contenu des différentes pages.
 
-rudeus-detailed.json
+## `rudeus-detailed.json`
 
 Contient les données détaillées relatives à Rudeus.
 
-site-config.json
+## `site-config.json`
 
 Contient des paramètres de configuration du site.
 
-site.json
+## `site.json`
 
 Contient des informations générales concernant le projet.
 
-sources.json
+## `sources.json`
 
 Contient les données relatives aux sources et références documentaires.
 
-sylphiette-detailed.json
+## `sylphiette-detailed.json`
 
 Contient les données détaillées relatives à Sylphiette.
 
 Ces données peuvent être utilisées par le système dynamique de présentation des personnages.
 
-trailers.json
+## `trailers.json`
 
 Contient les données relatives aux bandes-annonces.
 
-universe.json
+## `universe.json`
 
-Contient les données relatives à l'univers de Mushoku Tensei.
-
+Contient les données relatives à l'univers de *Mushoku Tensei*.
 
 ---
 
-Js/
+# `Js/`
 
-Le dossier Js contient la logique JavaScript du site.
+Le dossier `Js` contient la logique JavaScript du site.
 
 Les différents scripts sont séparés afin de répartir les responsabilités et de faciliter la maintenance du projet.
 
-
----
-
-Jscripts.js
+## `Jscripts.js`
 
 Contient des fonctionnalités JavaScript générales utilisées par le site.
 
-Jscripts2.js
+## `Jscripts2.js`
 
 Contient des fonctionnalités JavaScript supplémentaires utilisées par le projet.
 
-characters-page.js
+## `characters-page.js`
 
 Script associé au système de présentation des personnages.
 
-Il gère notamment les fonctionnalités dynamiques de la page Personnages.html et l'utilisation des données détaillées des personnages.
+Il gère notamment les fonctionnalités dynamiques de la page `Personnages.html` et l'utilisation des données détaillées des personnages.
 
-content-generator.js
+## `content-generator.js`
 
 Contient des fonctions permettant de générer dynamiquement certains contenus à partir des données disponibles.
 
-data-manager.js
+## `data-manager.js`
 
 Gestionnaire des données JSON du site.
 
@@ -410,56 +415,48 @@ Data/*.json
 Données utilisées par la page
 ```
 
-seo-injector.js
+## `seo-injector.js`
 
 Script consacré à l'injection dynamique de certaines métadonnées liées au référencement du site.
 
-spoiler-manager.js
+## `spoiler-manager.js`
 
 Script consacré à la gestion des éléments contenant des spoilers.
 
-style-injector.js
+## `style-injector.js`
 
 Script permettant la gestion dynamique de certains styles utilisés par le site.
 
-
 ---
 
-Image/
+# `Image/`
 
-Le dossier Image contient les ressources graphiques du projet.
+Le dossier `Image` contient les ressources graphiques du projet.
 
 Il comprend notamment :
 
-logos ;
+- logos ;
+- illustrations ;
+- images liées à *Mushoku Tensei* ;
+- images utilisées par les différentes pages ;
+- ressources graphiques destinées à l'interface du site.
 
-illustrations ;
-
-images liées à Mushoku Tensei ;
-
-images utilisées par les différentes pages ;
-
-ressources graphiques destinées à l'interface du site.
-
-
-Le sous-dossier Image trinity/ contient également plusieurs ressources graphiques utilisées dans le projet.
-
+Le sous-dossier `Image trinity/` contient également plusieurs ressources graphiques utilisées dans le projet.
 
 ---
 
-Architecture fonctionnelle
+# Architecture fonctionnelle
 
 L'organisation générale du projet peut être représentée ainsi :
+
 ```text
-
-
-                         ┌───────────────────┐
-                         │      index.html       │
-                         │       Accueil         │
-                         └──────────┬────────┘
-                                      │
-                    ┌──────────────┼───────────────┐
-                    │                │               │
+                         ┌─────────────────────┐
+                         │     index.html      │
+                         │      Accueil        │
+                         └──────────┬──────────┘
+                                    │
+                    ┌───────────────┼───────────────┐
+                    │               │               │
                     ▼               ▼               ▼
               Pages HTML       JavaScript          CSS
              Autre pages/          │             Css/
@@ -479,6 +476,7 @@ L'organisation générale du projet peut être représentée ainsi :
 
 Le principe général du projet est de séparer les différentes responsabilités :
 
+```text
 HTML
  ↓
 Structure des pages
@@ -498,48 +496,48 @@ Données
 Image
  ↓
 Ressources graphiques
+```
 
 Cette séparation permet de faire évoluer le contenu sans devoir modifier systématiquement la structure HTML.
 
-
 ---
 
-Architecture du système de personnages
+# Architecture du système de personnages
 
 Le système de personnages repose sur une génération dynamique à partir des données JSON.
-```text
 
+```text
 Autre pages/Personnages.html
               │
               ▼
        characters-page.js
-               │
+              │
         ┌─────┴─────────────┐
-        │                      │
-        ▼                      ▼
+        │                   │
+        ▼                   ▼
 characters-detailed.json   Données détaillées
-        │                       │
-        └────────┬──────────┘
-                   ▼
-           Génération dynamique
-                   │
-                   ▼
-            Personnages.html
+        │                   │
+        └─────────┬─────────┘
+                  ▼
+          Génération dynamique
+                  │
+                  ▼
+           Personnages.html
 ```
 
 Les informations détaillées sont donc séparées de la structure HTML de la page.
 
 Cette architecture permet d'ajouter ou de modifier des informations sans devoir créer une nouvelle page HTML pour chaque personnage.
 
-
 ---
 
-Architecture des données
+# Architecture des données
 
 Le projet utilise les fichiers JSON comme couche de données.
 
 Le principe est notamment de pouvoir faire évoluer :
 
+```text
 Données
   ↓
 JSON
@@ -549,113 +547,83 @@ JavaScript
 HTML
   ↓
 Interface utilisateur
+```
 
 Cette approche permet de centraliser les informations et d'éviter autant que possible leur duplication dans plusieurs fichiers HTML.
 
-
 ---
 
-Technologies utilisées
+# Technologies utilisées
 
 MushokuZone utilise principalement des technologies web standards.
 
-Technologie	Utilisation
-
-HTML5	Structure des pages
-CSS3	Présentation et mise en page
-JavaScript	Fonctionnalités dynamiques
-JSON	Stockage et organisation des données
-Git	Gestion des versions
-GitHub	Hébergement du dépôt
-GitHub Pages	Hébergement du site
-
+| Technologie | Utilisation |
+|---|---|
+| **HTML5** | Structure des pages |
+| **CSS3** | Présentation et mise en page |
+| **JavaScript** | Fonctionnalités dynamiques |
+| **JSON** | Stockage et organisation des données |
+| **Git** | Gestion des versions |
+| **GitHub** | Hébergement du dépôt |
+| **GitHub Pages** | Hébergement du site |
 
 Aucun framework JavaScript majeur n'est nécessaire au fonctionnement de l'architecture principale actuelle.
 
 Le projet repose principalement sur du JavaScript natif, du HTML, du CSS et des fichiers JSON.
 
-
 ---
 
-Fonctionnalités actuelles et en développement
+# Fonctionnalités actuelles et en développement
 
 Le projet étant encore en bêta, les fonctionnalités présentes dans l'architecture ne constituent pas nécessairement une version définitive.
 
 Les principaux systèmes présents ou en développement comprennent notamment :
 
-système de navigation ;
-
-chargement de données JSON ;
-
-gestion des données ;
-
-système de personnages ;
-
-génération dynamique de contenu ;
-
-gestion des spoilers ;
-
-gestion des arrière-plans ;
-
-données structurées pour les épisodes ;
-
-données structurées pour l'univers ;
-
-données structurées pour la chronologie ;
-
-système de sources ;
-
-gestion de certaines métadonnées SEO ;
-
-styles responsive ;
-
-ressources graphiques.
-
+- système de navigation ;
+- chargement de données JSON ;
+- gestion des données ;
+- système de personnages ;
+- génération dynamique de contenu ;
+- gestion des spoilers ;
+- gestion des arrière-plans ;
+- données structurées pour les épisodes ;
+- données structurées pour l'univers ;
+- données structurées pour la chronologie ;
+- système de sources ;
+- gestion de certaines métadonnées SEO ;
+- styles responsive ;
+- ressources graphiques.
 
 Certaines fonctionnalités sont déjà implémentées tandis que d'autres continuent d'être développées.
 
-
 ---
 
-Développement futur
+# Développement futur
 
 Le projet étant encore en développement, plusieurs aspects sont amenés à évoluer.
 
 Les développements futurs peuvent notamment concerner :
 
-enrichissement des fiches personnages ;
-
-enrichissement des données de l'univers ;
-
-développement de la chronologie ;
-
-enrichissement des informations sur les épisodes ;
-
-ajout et vérification des sources ;
-
-développement du contenu documentaire ;
-
-amélioration du responsive design ;
-
-amélioration de l'accessibilité ;
-
-optimisation du référencement ;
-
-optimisation des performances ;
-
-amélioration de l'organisation du code ;
-
-enrichissement progressif des fichiers JSON.
-
+- enrichissement des fiches personnages ;
+- enrichissement des données de l'univers ;
+- développement de la chronologie ;
+- enrichissement des informations sur les épisodes ;
+- ajout et vérification des sources ;
+- développement du contenu documentaire ;
+- amélioration du responsive design ;
+- amélioration de l'accessibilité ;
+- optimisation du référencement ;
+- optimisation des performances ;
+- amélioration de l'organisation du code ;
+- enrichissement progressif des fichiers JSON.
 
 Ces éléments constituent des axes de développement et ne doivent pas être interprétés comme des fonctionnalités déjà entièrement terminées.
 
-
 ---
 
-Développement
+# Développement
 
-Lancer le site en local
+## Lancer le site en local
 
 MushokuZone est un site web statique.
 
@@ -663,192 +631,168 @@ Aucun serveur backend spécifique n'est nécessaire pour l'architecture actuelle
 
 Après avoir cloné le dépôt :
 
+```bash
 git clone https://github.com/DIZUMO/MushokuZone.git
 cd MushokuZone
+```
 
 Un serveur HTTP local peut ensuite être lancé avec Python :
 
+```bash
 python -m http.server 8000
+```
 
 Puis ouvrir :
 
+```text
 http://localhost:8000
+```
 
-L'utilisation d'un serveur HTTP local est recommandée plutôt que l'ouverture directe des fichiers avec file://, notamment pour les fonctionnalités JavaScript qui utilisent fetch afin de charger les fichiers JSON.
-
+L'utilisation d'un serveur HTTP local est recommandée plutôt que l'ouverture directe des fichiers avec `file://`, notamment pour les fonctionnalités JavaScript qui utilisent `fetch` afin de charger les fichiers JSON.
 
 ---
 
-GitHub Pages
+# GitHub Pages
 
-Le projet est hébergé avec GitHub Pages.
+Le projet est hébergé avec **GitHub Pages**.
 
-🌐 Site :
+🌐 **Site :**
 
 https://dizumo.github.io/MushokuZone/
 
-💻 Dépôt :
+💻 **Dépôt :**
 
 https://github.com/DIZUMO/MushokuZone
 
 La branche principale du dépôt est :
 
+```text
 main
-
+```
 
 ---
 
-Évolution du projet
+# Évolution du projet
 
 Le développement de MushokuZone suit une approche progressive.
 
-Phase actuelle : Architecture et développement
+## Phase actuelle : Architecture et développement
 
 Les éléments actuellement développés comprennent notamment :
 
-structure des pages ;
+- structure des pages ;
+- système de navigation ;
+- organisation CSS ;
+- organisation JavaScript ;
+- système de données JSON ;
+- ressources graphiques ;
+- fonctionnalités dynamiques ;
+- système de personnages ;
+- système de gestion des épisodes ;
+- système de gestion des arrière-plans.
 
-système de navigation ;
-
-organisation CSS ;
-
-organisation JavaScript ;
-
-système de données JSON ;
-
-ressources graphiques ;
-
-fonctionnalités dynamiques ;
-
-système de personnages ;
-
-système de gestion des épisodes ;
-
-système de gestion des arrière-plans.
-
-
-Phase suivante : Contenu
+## Phase suivante : Contenu
 
 Les prochaines étapes peuvent notamment inclure :
 
-rédaction et enrichissement des pages ;
+- rédaction et enrichissement des pages ;
+- intégration de nouvelles données ;
+- développement des fiches personnages ;
+- développement de la chronologie ;
+- enrichissement de l'univers ;
+- ajout et vérification des sources ;
+- enrichissement du contenu des épisodes.
 
-intégration de nouvelles données ;
-
-développement des fiches personnages ;
-
-développement de la chronologie ;
-
-enrichissement de l'univers ;
-
-ajout et vérification des sources ;
-
-enrichissement du contenu des épisodes.
-
-
-Phase ultérieure : Optimisation
+## Phase ultérieure : Optimisation
 
 Une phase d'optimisation pourra notamment concerner :
 
-performances ;
+- performances ;
+- accessibilité ;
+- responsive design ;
+- SEO ;
+- organisation du code ;
+- optimisation des ressources ;
+- expérience utilisateur.
 
-accessibilité ;
-
-responsive design ;
-
-SEO ;
-
-organisation du code ;
-
-optimisation des ressources ;
-
-expérience utilisateur.
-
-
-L'architecture n'est donc pas considérée comme définitive.
-
+L'architecture n'est donc **pas considérée comme définitive**.
 
 ---
 
-Philosophie du projet
+# Philosophie du projet
 
 MushokuZone est conçu comme un projet documentaire et évolutif.
 
 Les principes recherchés sont :
 
-Exactitude
+## Exactitude
 
 Les informations destinées au site doivent être vérifiées avant leur publication.
 
-Séparation des données et de la présentation
+## Séparation des données et de la présentation
 
 Les données doivent autant que possible être séparées du HTML afin de faciliter leur maintenance.
 
-Modularité
+## Modularité
 
 Les différentes fonctionnalités doivent être réparties entre des scripts ayant des responsabilités distinctes.
 
-Évolutivité
+## Évolutivité
 
 L'architecture doit pouvoir accueillir progressivement de nouvelles pages, données et fonctionnalités.
 
-Lisibilité
+## Lisibilité
 
 Le code doit rester compréhensible et maintenable à mesure que le projet prend de l'ampleur.
 
-
 ---
 
-État actuel
+# État actuel
 
-Élément	État
+| Élément | État |
+|---|---|
+| **Structure HTML** | 🟡 En développement |
+| **Navigation** | 🟡 En développement |
+| **CSS** | 🟡 En développement |
+| **JavaScript** | 🟡 En développement |
+| **Architecture JSON** | 🟡 En développement |
+| **Système de personnages** | 🟡 En développement |
+| **Système de chronologie** | 🟡 En développement |
+| **Système d'épisodes** | 🟡 En développement |
+| **Contenu documentaire** | 🔴 Pas encore finalisé |
+| **Documentation** | 🟡 En développement |
 
-Structure HTML	🟡 En développement
-Navigation	🟡 En développement
-CSS	🟡 En développement
-JavaScript	🟡 En développement
-Architecture JSON	🟡 En développement
-Système de personnages	🟡 En développement
-Système de chronologie	🟡 En développement
-Système d'épisodes	🟡 En développement
-Contenu documentaire	🔴 Non finalisé
-Documentation	🟡 En développement
-
-
-MushokuZone n'est donc pas encore une version finale.
+**MushokuZone n'est donc pas encore une version finale.**
 
 Les fichiers et fonctionnalités présents dans le dépôt constituent principalement la base technique destinée à accueillir et organiser le contenu futur.
 
-
 ---
 
-Aspects légaux
+# Aspects légaux
 
-MushokuZone est un projet non officiel et indépendant.
+MushokuZone est un projet **non officiel et indépendant**.
 
-Mushoku Tensei: Isekai Ittara Honki Dasu et les éléments appartenant à l'œuvre originale restent la propriété de leurs ayants droit respectifs.
+*Mushoku Tensei: Isekai Ittara Honki Dasu* et les éléments appartenant à l'œuvre originale restent la propriété de leurs ayants droit respectifs.
 
 Le projet n'a pas pour objectif de revendiquer la propriété intellectuelle de l'œuvre originale.
 
 Les ressources externes utilisées dans le projet restent soumises aux droits de leurs auteurs et ayants droit respectifs.
 
+---
+
+# Licence
+
+Le code source du projet est distribué sous licence **MIT**.
+
+Voir [`LICENSE`](LICENSE) pour les détails.
+
+La licence MIT du dépôt concerne le code couvert par cette licence et ne signifie pas que les éléments appartenant à la propriété intellectuelle de *Mushoku Tensei* sont placés sous licence MIT.
 
 ---
 
-Licence
+# Auteur
 
-Le code source du projet est distribué sous licence MIT.
-
-Voir LICENSE pour les détails.
-
-La licence MIT du dépôt concerne le code couvert par cette licence et ne signifie pas que les éléments appartenant à la propriété intellectuelle de Mushoku Tensei sont placés sous licence MIT.
-
-
----
-
-Auteur
-
-DIZUMO
+**DIZUMO**
 
 GitHub :
 
@@ -858,22 +802,20 @@ Projet :
 
 https://github.com/DIZUMO/MushokuZone
 
-
 ---
 
-Contribution
+# Contribution
 
 Le projet étant encore en phase de développement, son architecture peut évoluer de manière importante.
 
-Les corrections, suggestions et contributions peuvent être proposées via les Issues et Pull Requests du dépôt GitHub.
+Les corrections, suggestions et contributions peuvent être proposées via les **Issues** et **Pull Requests** du dépôt GitHub.
 
 Pour signaler une erreur concernant une information documentaire, il est recommandé de fournir une source permettant de vérifier la correction.
 
-
 ---
 
-MushokuZone
+## MushokuZone
 
-Un projet personnel consacré à l'univers de Mushoku Tensei.
+Un projet personnel consacré à l'univers de **Mushoku Tensei**.
 
-Statut : Bêta · Architecture en développement · Contenu en cours d'intégration
+**Statut : Bêta · Architecture en développement · Contenu en cours d'intégration**
