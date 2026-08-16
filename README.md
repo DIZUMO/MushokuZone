@@ -183,12 +183,6 @@ Elle est associée à des données JSON et à des scripts JavaScript spécifique
 
 Page destinée à regrouper les sources utilisées pour documenter les informations présentées sur le site.
 
-### `Sylphiette.html`
-
-Page dédiée à Sylphiette.
-
-Elle sert également de base au développement du système de fiches détaillées de personnages.
-
 ### `Univers.html`
 
 Page destinée à présenter l'univers de *Mushoku Tensei*, notamment son monde, ses peuples, ses régions et ses systèmes.
