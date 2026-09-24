@@ -6,6 +6,10 @@
 let EPISODES = {};
 const SEASON_LABELS = { s1: 'Saison 1', s2p1: 'Saison 2 — Cour 1', s2p2: 'Saison 2 — Cour 2', s3: 'Saison 3' };
 // La saison 2 est découpée visuellement en deux cours, mais Vidzy la traite comme une saison unique.
+const VIDZY_TMDB_ID = 94664;
+const VIDZY_API_URL = "https://vidzy.org/api/tmdb/94664";
+let vidzyCatalog = null;
+const VIDZY_THEME_COLOR = "#e6c000";
 const VIDZY_SEASON_MAP = { s1: 1, s2p1: 2, s2p2: 2, s3: 3 };
 const VIDZY_LANGUAGE_MAP = { vo: 'vostfr', vf: 'vf' };
 let state = { season: 's1', version: 'vo', player: 'vidzy', epIndex: 0 };
@@ -45,10 +49,30 @@ function saveVidzyPreferences() {
 function vidzySrc(season, episode, language) {
     const params = new URLSearchParams();
     if (vidzyPreferences.autoplay) params.set('autoplay', '1');
-    if (vidzyPreferences.autonext) params.set('autonext', '1');
+    if (vidzyPreferences.autonext) { params.set('autonext', '1'); const next = getNextVidzyEpisode(season, episode); if (next) params.set('next', 'https://vidzy.org/serie/94664/' + next.season + '/' + next.episode + '/' + language); }
+    params.set('color', VIDZY_THEME_COLOR);
     params.set('info', 'title,year,rating,genres,duration,synopsis');
     return `https://vidzy.org/serie/94664/${season}/${episode}/${language}?${params.toString()}`;
 }
+async function loadVidzyCatalog() {
+    try {
+        const response = await fetch(VIDZY_API_URL, { cache: 'no-cache' });
+        const catalog = await response.json();
+        if (response.ok && catalog.available === true && Array.isArray(catalog.seasons)) vidzyCatalog = catalog;
+    } catch (error) { console.warn('Vidzy : catalogue indisponible.', error); }
+}
+
+function getNextVidzyEpisode(season, episode) {
+    if (!vidzyCatalog?.available) return null;
+    const seasons = vidzyCatalog.seasons.filter(item => Array.isArray(item.episodes) && item.episodes.length).map(item => ({ season: Number(item.season), episodes: item.episodes.map(Number).sort((a, b) => a - b) })).sort((a, b) => a.season - b.season);
+    const index = seasons.findIndex(item => item.season === Number(season));
+    if (index < 0) return null;
+    const nextEpisode = seasons[index].episodes.find(item => item > Number(episode));
+    if (nextEpisode !== undefined) return { season, episode: nextEpisode };
+    const nextSeason = seasons.slice(index + 1).find(item => item.episodes.length);
+    return nextSeason ? { season: nextSeason.season, episode: nextSeason.episodes[0] } : null;
+}
+
 function vidzyAvailable(ep) { return ep.vidzy !== false; }
 // Évite d’ouvrir un épisode sans source pour le lecteur actuellement sélectionné.
 function firstAvailableIndex(list) { const i = list.findIndex(ep => state.player === 'vidzy' ? vidzyAvailable(ep) : ep.sibnet || ep.uqload); return i === -1 ? 0 : i; }
@@ -191,6 +215,9 @@ function loadTwitterEmbed(el) {
 
 document.addEventListener('DOMContentLoaded', async function () {
     const episodesLoaded = await loadEpisodesData();
+    loadVidzyCatalog().then(() => {
+        if (state.player === 'vidzy' && vidzyPreferences.autonext) renderPlayer();
+    });
 
     if (episodesLoaded) {
         state.epIndex = firstAvailableIndex(currentList());
