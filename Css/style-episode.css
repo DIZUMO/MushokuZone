@@ -52,6 +52,7 @@ html { background-image: url("../Image/mushoku-tensei4.jpg"); }
 .player-wrapper-title { font-family:var(--font-display); font-size:.75rem; letter-spacing:.08em; text-transform:uppercase; color:var(--color-gold); padding:8px 12px; background:rgba(255,215,0,.08); border-bottom:1px solid rgba(255,215,0,.2); text-align:center; min-height:1.2em; }
 .player-placeholder { position:relative; width:100%; padding-bottom:56.25%; background:rgba(255,215,0,.03); display:flex; align-items:center; justify-content:center; }
 .player-placeholder span { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--font-display); font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; color:var(--color-text-muted); border:1.5px dashed rgba(255,215,0,.2); padding:16px 32px; border-radius:var(--radius-sm); white-space:nowrap; text-align:center; }
+.player-ep-special { margin:8px 0 0; color:var(--color-gold); font-size:.85rem; line-height:1.45; }
 
 /* NAVIGATION */
 .player-nav { display:flex; align-items:center; gap:12px; margin-top:18px; width:100%; box-sizing:border-box; }

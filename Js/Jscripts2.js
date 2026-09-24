@@ -4,6 +4,8 @@
 
 let EPISODES = {};
 const SEASON_LABELS = { s1: 'Saison 1', s2p1: 'Saison 2 — Cour 1', s2p2: 'Saison 2 — Cour 2', s3: 'Saison 3' };
+const VIDZY_SEASON_MAP = { s1: 1, s2p1: 2, s2p2: 2, s3: 3 };
+const VIDZY_LANGUAGE_MAP = { vo: 'vostfr', vf: 'vf' };
 let state = { season: 's1', version: 'vo', player: 'sibnet', epIndex: 0 };
 
 async function loadEpisodesData() {
@@ -21,8 +23,10 @@ async function loadEpisodesData() {
 function currentList() { return EPISODES[state.season]?.[state.version] || []; }
 function sibnetSrc(id) { return 'https://video.sibnet.ru/shell.php?videoid=' + id + '&share=0'; }
 function uqloadSrc(id) { return 'https://uqload.is/e/' + id; }
-function firstAvailableIndex(list) { const i = list.findIndex(ep => ep.sibnet || ep.uqload); return i === -1 ? 0 : i; }
-function lastAvailableIndex(list) { for (let i = list.length - 1; i >= 0; i--) if (list[i].sibnet || list[i].uqload) return i; return list.length - 1; }
+function vidzySrc(season, episode, language) { return `https://vidzy.org/serie/94664/${season}/${episode}/${language}?autoplay=1&info=title,year,rating,genres,duration,synopsis`; }
+function vidzyAvailable(ep) { return ep.vidzy !== false; }
+function firstAvailableIndex(list) { const i = list.findIndex(ep => state.player === 'vidzy' ? vidzyAvailable(ep) : ep.sibnet || ep.uqload); return i === -1 ? 0 : i; }
+function lastAvailableIndex(list) { for (let i = list.length - 1; i >= 0; i--) if (state.player === 'vidzy' ? vidzyAvailable(list[i]) : list[i].sibnet || list[i].uqload) return i; return list.length - 1; }
 
 function setSeason(season) { state.season = season; activateCtrlBtn('[data-season]', '[data-season="' + season + '"]'); state.epIndex = firstAvailableIndex(currentList()); refresh(); }
 function setVersion(version) { state.version = version; activateCtrlBtn('[data-version]', '[data-version="' + version + '"]'); state.epIndex = firstAvailableIndex(currentList()); refresh(); }
@@ -50,22 +54,27 @@ function renderPlayer() {
     document.getElementById('player-season-label').textContent = SEASON_LABELS[state.season];
     document.getElementById('player-ep-title').textContent = ep.title;
     document.getElementById('player-ep-date').textContent = ep.date;
+    const special = document.getElementById('player-ep-special');
+    special.hidden = !ep.special;
+    special.textContent = ep.special ? `Épisode spécial` : '';
 
     let activeSource = state.player;
-    if (!ep[activeSource]) {
+    if (activeSource !== 'vidzy' && !ep[activeSource]) {
         const other = activeSource === 'sibnet' ? 'uqload' : 'sibnet';
         if (ep[other]) activeSource = other;
     }
 
     const container = document.getElementById('player-video-active');
     const sourceLabel = document.getElementById('player-source-label');
-    if (activeSource && ep[activeSource]) {
-        const src = activeSource === 'sibnet' ? sibnetSrc(ep.sibnet) : uqloadSrc(ep.uqload);
-        container.innerHTML = `<iframe src="${src}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
-        sourceLabel.textContent = activeSource === 'sibnet' ? 'Sibnet' : 'Uqload';
+    if (activeSource && (activeSource === 'vidzy' ? vidzyAvailable(ep) : ep[activeSource])) {
+        const src = activeSource === 'sibnet' ? sibnetSrc(ep.sibnet) : activeSource === 'uqload' ? uqloadSrc(ep.uqload) : vidzySrc(VIDZY_SEASON_MAP[state.season], ep.vidzyEpisode || Number(ep.num), VIDZY_LANGUAGE_MAP[state.version]);
+        const attrs = activeSource === 'vidzy' ? 'width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen title="Vidzy — Mushoku Tensei"' : 'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen';
+        container.innerHTML = `<iframe src="${src}" ${attrs}></iframe>`;
+        sourceLabel.textContent = activeSource === 'sibnet' ? 'Sibnet' : activeSource === 'uqload' ? 'Uqload' : 'Vidzy';
     } else {
-        container.innerHTML = '<div class="player-placeholder"><span>Vidéo à venir</span></div>';
-        sourceLabel.textContent = '';
+        const message = state.player === 'vidzy' && ep.vidzy === false ? 'Épisode spécial — Indisponible sur Vidzy' : 'Vidéo à venir';
+        container.innerHTML = `<div class="player-placeholder"><span>${message}</span></div>`;
+        sourceLabel.textContent = state.player === 'vidzy' ? 'Vidzy' : '';
     }
 
     updatePlayerButtons(ep);
@@ -77,8 +86,10 @@ function renderPlayer() {
 function updatePlayerButtons(ep) {
     const sibnetBtn = document.querySelector('[data-player="sibnet"]');
     const uqloadBtn = document.querySelector('[data-player="uqload"]');
+    const vidzyBtn = document.querySelector('[data-player="vidzy"]');
     if (sibnetBtn) sibnetBtn.disabled = !ep.sibnet;
     if (uqloadBtn) uqloadBtn.disabled = !ep.uqload;
+    if (vidzyBtn) vidzyBtn.disabled = !vidzyAvailable(ep);
 }
 
 function renderEpisodeSelect(list) {

@@ -18,7 +18,7 @@
         {"num":"13","title":"Atarashii Sekai","date":"11 oct. 2021","sibnet":"4670930","uqload":""},
         {"num":"14","title":"Yakusoku","date":"18 oct. 2021","sibnet":"4670931","uqload":""},
         {"num":"15","title":"Murabito no Hazama","date":"25 oct. 2021","sibnet":"4670932","uqload":""},
-        {"num":"16","title":"Oya no Yasashisa","date":"1 nov. 2021","sibnet":"4670933","uqload":""},
+        {"num":"16","title":"Oya no Yasashisa","date":"1 nov. 2021","vidzy":{"vo":true},"sibnet":"4670933","uqload":""},
         {"num":"17","title":"Chichi no Isan","date":"8 nov. 2021","sibnet":"4670934","uqload":""},
         {"num":"18","title":"Eiyū no Modori","date":"15 nov. 2021","sibnet":"4670936","uqload":""},
         {"num":"19","title":"Akarui Mirai e no Ichibu","date":"22 nov. 2021","sibnet":"4670937","uqload":""},
@@ -26,7 +26,7 @@
         {"num":"21","title":"Atarashii Ketsui","date":"6 déc. 2021","sibnet":"4670939","uqload":""},
         {"num":"22","title":"Chinmoku no Kusari","date":"13 déc. 2021","sibnet":"4670940","uqload":""},
         {"num":"23","title":"Eiyū no Imi","date":"20 déc. 2021","sibnet":"4670942","uqload":""},
-        {"num":"24","title":"Épisode Spécial","date":"—","sibnet":"4670943","uqload":""}
+        {"num":"24","title":"Épisode Spécial","date":"—","special":true,"specialNote":"À regarder après l’épisode 16 de la saison 1 ou à la fin de la saison 1.","vidzyEpisode":1,"vidzy":{"vo":true},"sibnet":"4670943","uqload":""}
       ],
       "vf": [
         {"num":"01","title":"Réincarnation sans emploi","date":"—","sibnet":"4671027","uqload":""},
@@ -58,9 +58,9 @@
     "s2p1": {
       "label": "Saison 2 — Cour 1",
       "vo": [
-        {"num":"00","title":"Épisode Spécial","date":"2 juil. 2023","sibnet":"5186353","uqload":""},
-        {"num":"01","title":"Épisode 1","date":"9 juil. 2023","sibnet":"5193243","uqload":""},
-        {"num":"02","title":"Épisode 2","date":"16 juil. 2023","sibnet":"5199557","uqload":""},
+        {"num":"00","title":"Épisode Spécial","date":"2 juil. 2023","special":true,"specialNote":"Indisponible sur Vidzy","vidzy":false,"sibnet":"5186353","uqload":""},
+        {"num":"01","title":"Épisode 1","date":"9 juil. 2023","special":true,"vidzy":{"vo":true},"sibnet":"5193243","uqload":""},
+        {"num":"02","title":"Épisode 2","date":"16 juil. 2023","special":true,"vidzy":{"vo":true},"sibnet":"5199557","uqload":""},
         {"num":"03","title":"Épisode 3","date":"23 juil. 2023","sibnet":"5205966","uqload":""},
         {"num":"04","title":"Épisode 4","date":"30 juil. 2023","sibnet":"5212670","uqload":""},
         {"num":"05","title":"Épisode 5","date":"6 août 2023","sibnet":"5220585","uqload":""},
