@@ -3,12 +3,14 @@
  * Élimine la duplication HTML/JSON
  */
 
+// Fabrique les sections documentaires depuis les fichiers JSON partagés par les pages.
 class ContentGenerator {
     constructor() {
         this.cache = {};
         this.observerAnimations = null;
     }
 
+    // Un observateur unique évite d’allouer un observateur par élément généré.
     initAnimationObserver() {
         if (!window.IntersectionObserver) return;
         this.observerAnimations = new IntersectionObserver((entries) => {
@@ -64,6 +66,7 @@ class ContentGenerator {
         this.observeElements(container.querySelectorAll('.timeline__item'));
     }
 
+    // Convertit les types de section déclarés dans le JSON en structure HTML cohérente.
     async createSection(sectionConfig) {
         const section = document.createElement('section');
         section.classList.add('hidden');
@@ -99,6 +102,7 @@ class ContentGenerator {
     }
 
     /** Génère la page Personnages sans modifier le contenu stocké dans JSON. */
+    // Cette page combine les dossiers communs et les données dédiées de Sylphiette.
     async generatePersonnagesPage() {
         try {
             const detailed = await dataManager.load('characters-detailed.json');

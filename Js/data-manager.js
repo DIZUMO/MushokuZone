@@ -3,6 +3,7 @@
  * Charge tous les JSONs depuis Data/ avec cache, fallback et gestion d'erreurs
  */
 
+// Centralise les chargements JSON afin de partager cache, délai d’expiration et erreurs entre les pages.
 class DataManager {
     constructor() {
         this.baseUrl = this.detectBaseUrl();
@@ -120,6 +121,7 @@ class DataManager {
         }
     }
 
+    // Une requête en cours est partagée par load() ; cette méthode ne gère qu’un téléchargement effectif.
     async _fetchAndCache(filename) {
         const url = `${this.baseUrl}${filename}`;
         const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;

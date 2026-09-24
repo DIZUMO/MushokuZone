@@ -11,6 +11,7 @@
 // </div>
 // ============================================================
 
+// Prépare les zones marquées data-spoiler et mémorise leur état de révélation par navigateur.
 class SpoilerManager {
     constructor(options = {}) {
         this.storageKey = options.storageKey || 'mushokuzone-spoilers';
@@ -31,6 +32,7 @@ class SpoilerManager {
         });
     }
 
+    // Les contenus dynamiques reçoivent la même protection que le HTML initial.
     observeNewSpoilers() {
         if (!window.MutationObserver) return;
 
@@ -56,6 +58,7 @@ class SpoilerManager {
         });
     }
 
+    // Isole le contenu original derrière une surcouche accessible sans perdre sa structure.
     prepare(element) {
         if (element.dataset.spoilerReady === 'true') return;
         element.dataset.spoilerReady = 'true';

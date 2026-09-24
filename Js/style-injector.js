@@ -3,6 +3,7 @@
  * Centralise la gestion des images de fond et supprime la duplication CSS
  */
 
+// Applique les valeurs de présentation centralisées quand une page est prête.
 class StyleInjector {
     constructor() {
         this.pageId = this.detectPageId();
@@ -56,6 +57,7 @@ class StyleInjector {
     /**
      * Injecte l'image de fond appropriée
      */
+    // Résout le chemin selon la profondeur de la page pour rester compatible avec GitHub Pages.
     async injectBackgroundImage() {
         try {
             const backgrounds = await dataManager.load('backgrounds.json');

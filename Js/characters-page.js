@@ -4,6 +4,7 @@
  * Sylphiette utilise exclusivement son dossier analytique dédié.
  */
 
+// Assemble les dossiers de personnages et leurs interactions de sélection dans un seul composant.
 class CharactersPageGenerator {
     async loadData() {
         const [base, sylphiette] = await Promise.all([
@@ -19,6 +20,7 @@ class CharactersPageGenerator {
         return { characters };
     }
 
+    // Neutralise les valeurs textuelles injectées depuis les fichiers de données.
     escapeHTML(value) {
         const div = document.createElement('div');
         div.textContent = value ?? '';
@@ -119,6 +121,7 @@ class CharactersPageGenerator {
         return selector;
     }
 
+    // Charge les dossiers puis installe les interactions souris et clavier sur le sélecteur.
     async generate() {
         const container = document.getElementById('content-personnages');
         if (!container) return;

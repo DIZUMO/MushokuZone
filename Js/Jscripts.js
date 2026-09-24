@@ -2,6 +2,7 @@
 // NAVIGATION MANAGER
 // ============================================================
 
+// Construit la navigation depuis les données afin de garder les liens identiques sur toutes les pages.
 class NavigationManager {
     constructor() {
         this.nav = document.querySelector('.site-nav');
@@ -63,6 +64,7 @@ class NavigationManager {
 // BURGER MENU
 // ============================================================
 
+// Synchronise l’état visuel du menu mobile et son attribut d’accessibilité.
 class BurgerMenu {
     constructor() {
         this.burger = document.querySelector('.site-nav__burger');
@@ -93,6 +95,7 @@ class BurgerMenu {
 // UPDATE MANAGER
 // ============================================================
 
+// Met en cache les métadonnées de version pendant quinze minutes pour limiter les requêtes.
 class UpdateManager {
     constructor() {
         this.data = null;
@@ -217,6 +220,7 @@ class UpdateManager {
 // Le système est installé mais volontairement dormant.
 // Aucun élément existant n'utilise data-spoiler.
 
+// Charge le module à la demande : il reste inactif tant que la page ne contient aucun spoiler.
 class SpoilerSystemLoader {
     constructor() {
         this.basePath = this.isOtherPagesDirectory() ? '../' : '';
@@ -292,6 +296,7 @@ class BackToTop {
 // MEDIA LOADER
 // ============================================================
 
+// Ajoute un indicateur de chargement aux médias statiques et à ceux injectés ultérieurement.
 class MediaLoader {
     constructor() {
         this.init();
@@ -362,6 +367,7 @@ class MediaLoader {
 // SCROLL ANIMATIONS
 // ============================================================
 
+// Révèle progressivement les éléments observés sans bloquer les navigateurs sans IntersectionObserver.
 class ScrollAnimations {
     constructor() { this.init(); }
 
@@ -387,6 +393,7 @@ class ScrollAnimations {
 // ACCORDION MANAGER
 // ============================================================
 
+// Applique le même comportement accessible à tous les accordéons de la page.
 class AccordionManager {
     constructor() { this.init(); }
 

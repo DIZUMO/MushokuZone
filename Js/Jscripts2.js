@@ -2,12 +2,15 @@
 /* PLAYER VIDEO + MENU PERSONNAGES                        */
 /* ====================================================== */
 
+// Données chargées une fois puis lues selon la saison et la version actives.
 let EPISODES = {};
 const SEASON_LABELS = { s1: 'Saison 1', s2p1: 'Saison 2 — Cour 1', s2p2: 'Saison 2 — Cour 2', s3: 'Saison 3' };
+// La saison 2 est découpée visuellement en deux cours, mais Vidzy la traite comme une saison unique.
 const VIDZY_SEASON_MAP = { s1: 1, s2p1: 2, s2p2: 2, s3: 3 };
 const VIDZY_LANGUAGE_MAP = { vo: 'vostfr', vf: 'vf' };
 let state = { season: 's1', version: 'vo', player: 'vidzy', epIndex: 0 };
 
+// Charge le catalogue avant tout rendu afin que les contrôles reposent sur les mêmes données.
 async function loadEpisodesData() {
     try {
         const data = await dataManager.load('episodes.json');
@@ -23,6 +26,7 @@ async function loadEpisodesData() {
 function currentList() { return EPISODES[state.season]?.[state.version] || []; }
 function sibnetSrc(id) { return 'https://video.sibnet.ru/shell.php?videoid=' + id + '&share=0'; }
 function uqloadSrc(id) { return 'https://uqload.is/e/' + id; }
+// Clé isolée pour conserver les réglages Vidzy sans interférer avec les autres préférences du site.
 const VIDZY_PREFERENCES_KEY = 'mushokuzone-vidzy-preferences';
 let vidzyPreferences = loadVidzyPreferences();
 
@@ -37,6 +41,7 @@ function loadVidzyPreferences() {
 function saveVidzyPreferences() {
     try { localStorage.setItem(VIDZY_PREFERENCES_KEY, JSON.stringify(vidzyPreferences)); } catch (error) { /* stockage indisponible */ }
 }
+// Construit l’URL d’embed à la demande ; aucun lien Vidzy n’est stocké par épisode.
 function vidzySrc(season, episode, language) {
     const params = new URLSearchParams();
     if (vidzyPreferences.autoplay) params.set('autoplay', '1');
@@ -45,6 +50,7 @@ function vidzySrc(season, episode, language) {
     return `https://vidzy.org/serie/94664/${season}/${episode}/${language}?${params.toString()}`;
 }
 function vidzyAvailable(ep) { return ep.vidzy !== false; }
+// Évite d’ouvrir un épisode sans source pour le lecteur actuellement sélectionné.
 function firstAvailableIndex(list) { const i = list.findIndex(ep => state.player === 'vidzy' ? vidzyAvailable(ep) : ep.sibnet || ep.uqload); return i === -1 ? 0 : i; }
 function lastAvailableIndex(list) { for (let i = list.length - 1; i >= 0; i--) if (state.player === 'vidzy' ? vidzyAvailable(list[i]) : list[i].sibnet || list[i].uqload) return i; return list.length - 1; }
 
@@ -62,6 +68,7 @@ function activateCtrlBtn(groupSel, targetSel) {
 
 function refresh() { renderPlayer(); }
 
+// Met à jour immédiatement le switch et recrée uniquement l’iframe Vidzy active.
 function toggleVidzyOption(option) {
     vidzyPreferences[option] = !vidzyPreferences[option];
     saveVidzyPreferences();
@@ -69,6 +76,7 @@ function toggleVidzyOption(option) {
     if (state.player === 'vidzy') renderPlayer();
 }
 
+// Les réglages restent masqués pour ne pas suggérer une compatibilité avec Sibnet ou Uqload.
 function updateVidzyOptions() {
     const panel = document.getElementById('vidzy-options');
     if (!panel) return;
@@ -87,6 +95,7 @@ function updateVidzyOptions() {
 
 /* ---- Rendu du lecteur ---- */
 
+// Point de rendu unique : synchronise le titre, la source, les contrôles et l’iframe active.
 function renderPlayer() {
     const list = currentList();
     const ep = list[state.epIndex];
@@ -125,6 +134,7 @@ function renderPlayer() {
     setTimeout(wrapDynamicIframes, 0);
 }
 
+// Désactive seulement les sources qui ne proposent pas l’épisode courant.
 function updatePlayerButtons(ep) {
     const sibnetBtn = document.querySelector('[data-player="sibnet"]');
     const uqloadBtn = document.querySelector('[data-player="uqload"]');
@@ -134,6 +144,7 @@ function updatePlayerButtons(ep) {
     if (vidzyBtn) vidzyBtn.disabled = !vidzyAvailable(ep);
 }
 
+// Le sélecteur conserve les épisodes accessibles par au moins une source historique.
 function renderEpisodeSelect(list) {
     const select = document.getElementById('ep-select');
     if (!select) return;

@@ -3,6 +3,7 @@
  * Injecte description, og:*, twitter:* en fonction de la page actuelle
  */
 
+// Aligne les métadonnées de chaque page sur les configurations JSON partagées.
 class SEOInjector {
     constructor() {
         this.currentPageId = this.detectPageId();
@@ -55,6 +56,7 @@ class SEOInjector {
     /**
      * Injecte les métadonnées SEO
      */
+    // Met à jour les balises existantes avant d’en créer pour éviter les doublons dans head.
     async injectSEO() {
         try {
             // Charger la config générale et le site-config qui contient les métadonnées
