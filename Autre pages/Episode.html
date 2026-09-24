@@ -148,9 +148,9 @@
                 <div class="ctrl-group">
                     <span class="ctrl-label">Lecteur</span>
                     <div class="ctrl-btns" role="radiogroup" aria-label="Choisir le lecteur vidéo">
-                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-player="sibnet" onclick="setPlayer('sibnet')">Sibnet</button>
+                        <button class="ctrl-btn active" role="radio" aria-checked="true"  data-player="vidzy"  onclick="setPlayer('vidzy')">Vidzy</button>
+                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-player="sibnet" onclick="setPlayer('sibnet')">Sibnet</button>
                         <button class="ctrl-btn"        role="radio" aria-checked="false" data-player="uqload" onclick="setPlayer('uqload')">Uqload</button>
-                        <button class="ctrl-btn"        role="radio" aria-checked="false" data-player="vidzy"  onclick="setPlayer('vidzy')">Vidzy</button>
                     </div>
                 </div>
 
@@ -181,6 +181,22 @@
                 <!-- Actions supplémentaires -->
                 <div class="player-extra-actions">
                     <button class="ctrl-btn" onclick="goToLastAvailable()">&#9197; Dernier épisode disponible</button>
+                </div>
+
+                <div class="vidzy-options" id="vidzy-options" aria-label="Options du lecteur Vidzy" hidden>
+                    <span class="ctrl-label">Options Vidzy</span>
+                    <div class="vidzy-options__list">
+                        <button class="vidzy-toggle" id="vidzy-autoplay-toggle" type="button" role="switch" aria-checked="false" onclick="toggleVidzyOption('autoplay')">
+                            <span class="vidzy-toggle__label">Lecture automatique</span>
+                            <span class="vidzy-toggle__track" aria-hidden="true"><span class="vidzy-toggle__thumb"></span></span>
+                            <span class="vidzy-toggle__state">OFF</span>
+                        </button>
+                        <button class="vidzy-toggle" id="vidzy-autonext-toggle" type="button" role="switch" aria-checked="false" onclick="toggleVidzyOption('autonext')">
+                            <span class="vidzy-toggle__label">Épisode suivant automatique</span>
+                            <span class="vidzy-toggle__track" aria-hidden="true"><span class="vidzy-toggle__thumb"></span></span>
+                            <span class="vidzy-toggle__state">OFF</span>
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Lecteur vidéo -->

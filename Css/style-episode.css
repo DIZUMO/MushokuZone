@@ -53,6 +53,19 @@ html { background-image: url("../Image/mushoku-tensei4.jpg"); }
 .player-placeholder { position:relative; width:100%; padding-bottom:56.25%; background:rgba(255,215,0,.03); display:flex; align-items:center; justify-content:center; }
 .player-placeholder span { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-family:var(--font-display); font-size:.8rem; letter-spacing:.1em; text-transform:uppercase; color:var(--color-text-muted); border:1.5px dashed rgba(255,215,0,.2); padding:16px 32px; border-radius:var(--radius-sm); white-space:nowrap; text-align:center; }
 .player-ep-special { margin:8px 0 0; color:var(--color-gold); font-size:.85rem; line-height:1.45; }
+.vidzy-options { margin-top:18px; padding:14px 16px; border:1px solid var(--color-border); border-radius:var(--radius-md); background:rgba(0,0,0,.28); }
+.vidzy-options[hidden] { display:none; }
+.vidzy-options__list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:10px; }
+.vidzy-toggle { display:flex; align-items:center; gap:10px; min-width:0; padding:10px 12px; color:var(--color-text-muted); font:inherit; text-align:left; cursor:pointer; background:rgba(0,0,0,.25); border:1px solid var(--color-border); border-radius:var(--radius-sm); }
+.vidzy-toggle:hover, .vidzy-toggle:focus-visible { border-color:var(--color-gold); color:var(--color-text); outline:none; }
+.vidzy-toggle__label { flex:1; font-size:.82rem; }
+.vidzy-toggle__track { width:36px; height:20px; flex:0 0 36px; padding:2px; border-radius:999px; background:rgba(255,255,255,.15); transition:background var(--transition-fast); }
+.vidzy-toggle__thumb { display:block; width:16px; height:16px; border-radius:50%; background:var(--color-text-muted); transition:transform var(--transition-fast),background var(--transition-fast); }
+.vidzy-toggle__state { min-width:24px; color:var(--color-text-muted); font-family:var(--font-display); font-size:.65rem; letter-spacing:.08em; }
+.vidzy-toggle.is-on { border-color:rgba(255,215,0,.55); color:var(--color-text); background:rgba(255,215,0,.08); }
+.vidzy-toggle.is-on .vidzy-toggle__track { background:var(--color-gold); }
+.vidzy-toggle.is-on .vidzy-toggle__thumb { background:#201a08; transform:translateX(16px); }
+.vidzy-toggle.is-on .vidzy-toggle__state { color:var(--color-gold); }
 
 /* NAVIGATION */
 .player-nav { display:flex; align-items:center; gap:12px; margin-top:18px; width:100%; box-sizing:border-box; }
@@ -80,6 +93,7 @@ html { background-image: url("../Image/mushoku-tensei4.jpg"); }
     .character-menu-panel { position:relative; top:auto; right:auto; width:100%; margin-top:2px; }
     .character-menu-grid { grid-template-columns:1fr; }
     .players-container { gap:12px; margin-top:12px; margin-bottom:12px; }
+    .vidzy-options__list { grid-template-columns:1fr; }
     .player-video-wrapper { box-shadow:0 4px 16px rgba(0,0,0,.5); }
     .player-wrapper-title { font-size:.65rem; padding:6px 10px; }
     .player-nav-btn { width:38px; height:38px; font-size:1.3rem; }

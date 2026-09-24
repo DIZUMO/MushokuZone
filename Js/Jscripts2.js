@@ -6,7 +6,7 @@ let EPISODES = {};
 const SEASON_LABELS = { s1: 'Saison 1', s2p1: 'Saison 2 — Cour 1', s2p2: 'Saison 2 — Cour 2', s3: 'Saison 3' };
 const VIDZY_SEASON_MAP = { s1: 1, s2p1: 2, s2p2: 2, s3: 3 };
 const VIDZY_LANGUAGE_MAP = { vo: 'vostfr', vf: 'vf' };
-let state = { season: 's1', version: 'vo', player: 'sibnet', epIndex: 0 };
+let state = { season: 's1', version: 'vo', player: 'vidzy', epIndex: 0 };
 
 async function loadEpisodesData() {
     try {
@@ -23,7 +23,27 @@ async function loadEpisodesData() {
 function currentList() { return EPISODES[state.season]?.[state.version] || []; }
 function sibnetSrc(id) { return 'https://video.sibnet.ru/shell.php?videoid=' + id + '&share=0'; }
 function uqloadSrc(id) { return 'https://uqload.is/e/' + id; }
-function vidzySrc(season, episode, language) { return `https://vidzy.org/serie/94664/${season}/${episode}/${language}?autoplay=1&info=title,year,rating,genres,duration,synopsis`; }
+const VIDZY_PREFERENCES_KEY = 'mushokuzone-vidzy-preferences';
+let vidzyPreferences = loadVidzyPreferences();
+
+function loadVidzyPreferences() {
+    try {
+        const saved = JSON.parse(localStorage.getItem(VIDZY_PREFERENCES_KEY));
+        return { autoplay: Boolean(saved?.autoplay), autonext: Boolean(saved?.autonext) };
+    } catch (error) {
+        return { autoplay: false, autonext: false };
+    }
+}
+function saveVidzyPreferences() {
+    try { localStorage.setItem(VIDZY_PREFERENCES_KEY, JSON.stringify(vidzyPreferences)); } catch (error) { /* stockage indisponible */ }
+}
+function vidzySrc(season, episode, language) {
+    const params = new URLSearchParams();
+    if (vidzyPreferences.autoplay) params.set('autoplay', '1');
+    if (vidzyPreferences.autonext) params.set('autonext', '1');
+    params.set('info', 'title,year,rating,genres,duration,synopsis');
+    return `https://vidzy.org/serie/94664/${season}/${episode}/${language}?${params.toString()}`;
+}
 function vidzyAvailable(ep) { return ep.vidzy !== false; }
 function firstAvailableIndex(list) { const i = list.findIndex(ep => state.player === 'vidzy' ? vidzyAvailable(ep) : ep.sibnet || ep.uqload); return i === -1 ? 0 : i; }
 function lastAvailableIndex(list) { for (let i = list.length - 1; i >= 0; i--) if (state.player === 'vidzy' ? vidzyAvailable(list[i]) : list[i].sibnet || list[i].uqload) return i; return list.length - 1; }
@@ -41,6 +61,27 @@ function activateCtrlBtn(groupSel, targetSel) {
 }
 
 function refresh() { renderPlayer(); }
+
+function toggleVidzyOption(option) {
+    vidzyPreferences[option] = !vidzyPreferences[option];
+    saveVidzyPreferences();
+    updateVidzyOptions();
+    if (state.player === 'vidzy') renderPlayer();
+}
+
+function updateVidzyOptions() {
+    const panel = document.getElementById('vidzy-options');
+    if (!panel) return;
+    panel.hidden = state.player !== 'vidzy';
+    ['autoplay', 'autonext'].forEach(option => {
+        const toggle = document.getElementById('vidzy-' + option + '-toggle');
+        if (!toggle) return;
+        const enabled = vidzyPreferences[option];
+        toggle.classList.toggle('is-on', enabled);
+        toggle.setAttribute('aria-checked', String(enabled));
+        toggle.querySelector('.vidzy-toggle__state').textContent = enabled ? 'ON' : 'OFF';
+    });
+}
 
 
 
@@ -78,6 +119,7 @@ function renderPlayer() {
     }
 
     updatePlayerButtons(ep);
+    updateVidzyOptions();
     renderEpisodeSelect(list);
     updateNavButtons(list);
     setTimeout(wrapDynamicIframes, 0);
