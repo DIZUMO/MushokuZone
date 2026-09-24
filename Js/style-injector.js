@@ -44,6 +44,7 @@ class StyleInjector {
      * Les pages à la racine utilisent directement Image/..., tandis que
      * les pages de Autre pages/ doivent remonter d'un niveau.
      */
+    // Les chemins restent relatifs afin de fonctionner depuis la racine comme depuis Autre pages/.
     getAssetPath(path) {
         if (!path) return null;
 
@@ -81,6 +82,7 @@ class StyleInjector {
     /**
      * Injecte les styles spécifiques à la page (si nécessaire)
      */
+    // Injecte seulement les variables provenant de la configuration, pas une nouvelle feuille de styles.
     async injectPageSpecificStyles() {
         try {
             const config = await dataManager.load('site-config.json');

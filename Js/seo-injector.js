@@ -12,6 +12,7 @@ class SEOInjector {
     /**
      * Détecte l'ID de la page actuelle
      */
+    // Traduit le nom de fichier en identifiant de configuration, avec la racine comme repli.
     detectPageId() {
         const pathname = window.location.pathname;
         
@@ -137,6 +138,7 @@ class SEOInjector {
     /**
      * Helper : injecte une meta ou la crée
      */
+    // Centralise la mise à jour pour que chaque balise conserve un exemplaire unique.
     injectMetaOrCreate(head, name, content, isProperty = false) {
         const selector = isProperty ? `meta[property="${name}"]` : `meta[name="${name}"]`;
         const existing = head.querySelector(selector);

@@ -9,6 +9,7 @@ class NavigationManager {
         this.ul = this.nav?.querySelector('.site-nav__links');
     }
 
+    // Reconstruit les liens et aria-current depuis navigation.json selon le dossier courant.
     async build() {
         if (!this.ul) return;
 
@@ -108,6 +109,8 @@ class UpdateManager {
         return pathname.includes('/Autre pages/') ? '../Data/site.json' : 'Data/site.json';
     }
 
+    // Utilise d’abord le cache local encore valable, puis bascule vers la dernière valeur affichable.
+    // Le chargement est idempotent : il ne réinjecte pas le script de spoilers s’il est déjà disponible.
     async load() {
         const cached = this.getCachedData();
         if (cached) {
@@ -134,6 +137,7 @@ class UpdateManager {
         }
     }
 
+    // Invalide activement les données expirées pour éviter de les réutiliser au prochain chargement.
     getCachedData() {
         try {
             const raw = localStorage.getItem(this.storageKey);
@@ -325,6 +329,7 @@ class MediaLoader {
         iframes.forEach(iframe => this.wrapElement(iframe, 'IFRAME'));
     }
 
+    // Garantit un temps d’affichage minimal du chargeur, même pour les médias déjà en cache.
     wrapElement(el, type) {
         if (el.dataset.loaderWrapped === 'true') return;
         el.dataset.loaderWrapped = 'true';
@@ -415,6 +420,7 @@ class AccordionManager {
 // INITIALISATION
 // ============================================================
 
+// Initialise dans cet ordre les services dont les composants suivants dépendent.
 document.addEventListener('DOMContentLoaded', async () => {
     await new NavigationManager().build();
     new BurgerMenu();

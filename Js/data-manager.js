@@ -47,6 +47,7 @@ class DataManager {
         return mapping[filename] || 'index';
     }
 
+    // Le fond est chargé séparément des contenus pour rester disponible sur chaque page statique.
     async applyBackground() {
         try {
             const response = await fetch(`${this.baseUrl}backgrounds.json`, {
@@ -99,6 +100,7 @@ class DataManager {
         }
     }
 
+    // Mutualise les appels simultanés vers le même fichier, puis conserve la réponse en mémoire.
     async load(filename) {
         if (this.cache[filename]) {
             return this.cache[filename];
@@ -196,6 +198,7 @@ class DataManager {
         }
     }
 
+    // Le préchargement est tolérant aux erreurs : un fichier manquant ne bloque pas les autres.
     async preload(filenames) {
         const promises = filenames.map(f => this.load(f).catch(() => null));
         await Promise.all(promises);

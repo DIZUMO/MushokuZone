@@ -19,6 +19,7 @@ class SpoilerManager {
         this.initialized = false;
     }
 
+    // Évite une double initialisation lorsque le chargeur est exécuté plusieurs fois.
     init() {
         if (this.initialized) return;
         this.initialized = true;
@@ -118,6 +119,7 @@ class SpoilerManager {
         button.textContent = revealed ? revealedLabel : label;
     }
 
+    // La préférence globale prime sur l’état individuel mémorisé pour chaque bloc.
     isRevealed(id) {
         if (this.getRevealAll()) return true;
 
@@ -147,6 +149,7 @@ class SpoilerManager {
         }
     }
 
+    // Répercute le choix global sur les spoilers déjà rendus, sans recharger la page.
     setRevealAll(reveal) {
         try {
             localStorage.setItem(this.revealAllKey, String(Boolean(reveal)));

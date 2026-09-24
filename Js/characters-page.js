@@ -6,6 +6,7 @@
 
 // Assemble les dossiers de personnages et leurs interactions de sélection dans un seul composant.
 class CharactersPageGenerator {
+    // Fusionne les données générales avec le dossier détaillé maintenu séparément pour Sylphiette.
     async loadData() {
         const [base, sylphiette] = await Promise.all([
             dataManager.load('characters-detailed.json'),
@@ -27,6 +28,7 @@ class CharactersPageGenerator {
         return div.innerHTML;
     }
 
+    // Produit une fiche isolée afin que le sélecteur puisse n’en afficher qu’une à la fois.
     renderCharacter(character, id) {
         const article = document.createElement('section');
         article.className = 'character-dossier';
@@ -74,6 +76,7 @@ class CharactersPageGenerator {
         return article;
     }
 
+    // Le SVG et les boutons texte exposent la même sélection aux pointeurs et au clavier.
     createSelector() {
         const selector = document.createElement('section');
         selector.className = 'character-selector';

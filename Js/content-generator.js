@@ -23,6 +23,7 @@ class ContentGenerator {
         }, { threshold: 0.05 });
     }
 
+    // Préserve l’animation sur les fragments créés après le chargement initial.
     observeElements(elements) {
         if (!this.observerAnimations) this.initAnimationObserver();
         elements.forEach(el => {
@@ -35,6 +36,7 @@ class ContentGenerator {
         });
     }
 
+    // Génère les grilles génériques employées par plusieurs pages documentaires.
     async generateCardGrid(items, containerSelector) {
         const container = document.querySelector(containerSelector);
         if (!container || !items) return;
@@ -284,6 +286,7 @@ class ContentGenerator {
         }
     }
 
+    // Récupère le contenu spécifique à l’univers avant de remplacer le conteneur dédié.
     async generateUniversPage() {
         try {
             const data = await dataManager.load('pages-content.json');
@@ -310,6 +313,7 @@ class ContentGenerator {
         } catch (error) { console.error('Erreur génération Chronologie:', error); }
     }
 
+    // Les liens de sources sont rendus depuis JSON afin de rester centralisés et vérifiables.
     async generateSourcesContent(containerSelector) {
         try {
             const data = await dataManager.load('pages-content.json');
