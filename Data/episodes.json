@@ -122,8 +122,8 @@
     "s3": {
       "label": "Saison 3",
       "vo": [
-        {"num":"01","title":"Épisode 1","date":"4 juil. 2026","sibnet":"6234365","uqload":""},
-        {"num":"02","title":"Épisode 2","date":"4 juil. 2026","sibnet":"6234379","uqload":""},
+        {"num":"01","title":"Spécial d'Eris — Partie 1","date":"4 juil. 2026","special":true,"specialType":"eris","specialNote":"Épisode spécial d'Eris","sibnet":"6234365","uqload":""},
+        {"num":"02","title":"Spécial d'Eris — Partie 2","date":"4 juil. 2026","special":true,"specialType":"eris","specialNote":"Épisode spécial d'Eris","sibnet":"6234379","uqload":""},
         {"num":"03","title":"Épisode 3","date":"12 juil. 2026","sibnet":"6240509","uqload":""},
         {"num":"04","title":"Épisode 4","date":"19 juil. 2026","sibnet":"6246320","uqload":""},
         {"num":"05","title":"Épisode 5","date":"26 juil. 2026","sibnet":"6251934","uqload":"qzlvgp9xxz8c"},

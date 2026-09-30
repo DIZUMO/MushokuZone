@@ -10,6 +10,7 @@ const VIDZY_TMDB_ID = 94664;
 const VIDZY_API_URL = "https://vidzy.org/api/tmdb/94664";
 let vidzyCatalog = null;
 const VIDZY_THEME_COLOR = "#e6c000";
+const VIDZY_ERIS_THEME_COLOR = "#ef4444";
 const VIDZY_SEASON_MAP = { s1: 1, s2p1: 2, s2p2: 2, s3: 3 };
 const VIDZY_LANGUAGE_MAP = { vo: 'vostfr', vf: 'vf' };
 let state = { season: 's1', version: 'vo', player: 'vidzy', epIndex: 0 };
@@ -46,11 +47,11 @@ function saveVidzyPreferences() {
     try { localStorage.setItem(VIDZY_PREFERENCES_KEY, JSON.stringify(vidzyPreferences)); } catch (error) { /* stockage indisponible */ }
 }
 // Construit l’URL d’embed à la demande ; aucun lien Vidzy n’est stocké par épisode.
-function vidzySrc(season, episode, language) {
+function vidzySrc(season, episode, language, color = VIDZY_THEME_COLOR) {
     const params = new URLSearchParams();
     if (vidzyPreferences.autoplay) params.set('autoplay', '1');
     if (vidzyPreferences.autonext) { params.set('autonext', '1'); const next = getNextVidzyEpisode(season, episode); if (next) params.set('next', 'https://vidzy.org/serie/94664/' + next.season + '/' + next.episode + '/' + language); }
-    params.set('color', VIDZY_THEME_COLOR);
+    params.set('color', color);
     params.set('info', 'title,year,rating,genres,duration,synopsis');
     return `https://vidzy.org/serie/94664/${season}/${episode}/${language}?${params.toString()}`;
 }
@@ -73,7 +74,13 @@ function getNextVidzyEpisode(season, episode) {
     return nextSeason ? { season: nextSeason.season, episode: nextSeason.episodes[0] } : null;
 }
 
-function vidzyAvailable(ep) { return ep.vidzy !== false; }
+function vidzyEpisodeNumber(ep) {
+    const episode = Number(ep.vidzyEpisode || ep.num);
+    return state.season === 's2p2' ? episode + 12 : episode;
+}
+function vidzyAvailable(ep) {
+    return ep.vidzy !== false;
+}
 // Évite d’ouvrir un épisode sans source pour le lecteur actuellement sélectionné.
 function firstAvailableIndex(list) { const i = list.findIndex(ep => state.player === 'vidzy' ? vidzyAvailable(ep) : ep.sibnet || ep.uqload); return i === -1 ? 0 : i; }
 function lastAvailableIndex(list) { for (let i = list.length - 1; i >= 0; i--) if (state.player === 'vidzy' ? vidzyAvailable(list[i]) : list[i].sibnet || list[i].uqload) return i; return list.length - 1; }
@@ -130,7 +137,7 @@ function renderPlayer() {
     document.getElementById('player-ep-date').textContent = ep.date;
     const special = document.getElementById('player-ep-special');
     special.hidden = !ep.special;
-    special.textContent = ep.special ? `Épisode spécial` : '';
+    special.textContent = ep.special ? (ep.specialNote || 'Épisode spécial') : '';
 
     let activeSource = state.player;
     if (activeSource !== 'vidzy' && !ep[activeSource]) {
@@ -141,7 +148,8 @@ function renderPlayer() {
     const container = document.getElementById('player-video-active');
     const sourceLabel = document.getElementById('player-source-label');
     if (activeSource && (activeSource === 'vidzy' ? vidzyAvailable(ep) : ep[activeSource])) {
-        const src = activeSource === 'sibnet' ? sibnetSrc(ep.sibnet) : activeSource === 'uqload' ? uqloadSrc(ep.uqload) : vidzySrc(VIDZY_SEASON_MAP[state.season], ep.vidzyEpisode || Number(ep.num), VIDZY_LANGUAGE_MAP[state.version]);
+        const vidzyColor = ep.specialType === 'eris' ? VIDZY_ERIS_THEME_COLOR : VIDZY_THEME_COLOR;
+        const src = activeSource === 'sibnet' ? sibnetSrc(ep.sibnet) : activeSource === 'uqload' ? uqloadSrc(ep.uqload) : vidzySrc(VIDZY_SEASON_MAP[state.season], vidzyEpisodeNumber(ep), VIDZY_LANGUAGE_MAP[state.version], vidzyColor);
         const attrs = activeSource === 'vidzy' ? 'width="100%" height="100%" frameborder="0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen title="Vidzy — Mushoku Tensei"' : 'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen';
         container.innerHTML = `<iframe src="${src}" ${attrs}></iframe>`;
         sourceLabel.textContent = activeSource === 'sibnet' ? 'Sibnet' : activeSource === 'uqload' ? 'Uqload' : 'Vidzy';
@@ -168,11 +176,11 @@ function updatePlayerButtons(ep) {
     if (vidzyBtn) vidzyBtn.disabled = !vidzyAvailable(ep);
 }
 
-// Le sélecteur affiche aussi les épisodes dont les sources ne sont pas encore renseignées.
+// Le sélecteur ne conserve que les épisodes disponibles sur au moins un lecteur.
 function renderEpisodeSelect(list) {
     const select = document.getElementById('ep-select');
     if (!select) return;
-    const options = list.map((ep, index) => ({ ep, index }));
+    const options = list.map((ep, index) => ({ ep, index })).filter(({ ep }) => ep.sibnet || ep.uqload || vidzyAvailable(ep));
     if (!options.length) { select.innerHTML = '<option value="">Aucun épisode disponible</option>'; return; }
     select.innerHTML = options.map(({ ep, index }) => `<option value="${index}"${index === state.epIndex ? ' selected' : ''}>Épisode ${ep.num} — ${ep.title}</option>`).join('');
 }
@@ -216,7 +224,7 @@ function loadTwitterEmbed(el) {
 document.addEventListener('DOMContentLoaded', async function () {
     const episodesLoaded = await loadEpisodesData();
     loadVidzyCatalog().then(() => {
-        if (state.player === 'vidzy' && vidzyPreferences.autonext) renderPlayer();
+        if (episodesLoaded) renderPlayer();
     });
 
     if (episodesLoaded) {
