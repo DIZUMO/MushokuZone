@@ -738,6 +738,8 @@ Avant d'ajouter une image :
 * vérifier son utilisation ;
 * vérifier ses droits ou sa provenance lorsque pertinent.
 
+Les images locales référencées par le site doivent respecter une taille maximale de 1920 × 1080 pixels. Conserver les originaux si nécessaire, mais utiliser leurs copies réduites dans `Image/optimized/`.
+
 Ne pas remplacer massivement les images existantes sans raison.
 
 Ne pas inventer la provenance d'une image.

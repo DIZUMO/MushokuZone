@@ -1,5 +1,5 @@
 /* Fond d'écran spécifique à la page Épisodes */
-html { background-image: url("../Image/mushoku-tensei4.jpg"); }
+html { background-image: url("../Image/optimized/mushoku-tensei4.jpg"); }
 
 /* BARRE DE CONTRÔLES */
 .controls-bar { display:flex; flex-wrap:wrap; gap:20px 32px; margin:22px 0 26px; padding:18px 22px; background:rgba(0,0,0,0.35); border:1px solid var(--color-border); border-radius:var(--radius-md); backdrop-filter:blur(6px); width:100%; box-sizing:border-box; }

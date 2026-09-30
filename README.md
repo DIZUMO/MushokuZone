@@ -107,6 +107,12 @@ MushokuZone/
 │   └── universe.json
 │
 ├── Image/
+│   ├── optimized/
+│   │   ├── mushoku-tensei4.jpg
+│   │   ├── mushoku-tensei6.jpg
+│   │   ├── mushoku-tensei11.jpg
+│   │   ├── mushoku-tensei12.jpg
+│   │   └── mushoku-tensei13.jpg
 │   ├── Mushoku_Tensei_Logo_(japonais).png
 │   ├── bebe pas bo.jpg
 │   ├── mushoku-tensei1.jpg

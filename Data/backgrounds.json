@@ -1,12 +1,12 @@
 {
   "pages": {
-    "index": "Image/mushoku-tensei12.jpg",
-    "biographie": "Image/mushoku-tensei6.jpg",
-    "impact": "Image/mushoku-tensei11.jpg",
+    "index": "Image/optimized/mushoku-tensei12.jpg",
+    "biographie": "Image/optimized/mushoku-tensei6.jpg",
+    "impact": "Image/optimized/mushoku-tensei11.jpg",
     "univers": "Image/mushoku-tensei15.jpg",
     "personnages": "Image/mushoku-tensei15.jpg",
     "chronologie": "Image/mushoku-tensei15.jpg",
-    "episode": "Image/mushoku-tensei4.jpg",
+    "episode": "Image/optimized/mushoku-tensei4.jpg",
     "sources": "Image/mushoku-tensei15.jpg",
     "apropos": "Image/mushoku-tensei15.jpg"
   },
