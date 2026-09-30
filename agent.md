@@ -595,6 +595,12 @@ Ne pas supprimer des modifications utilisateur simplement pour obtenir un dépô
 
 # 17. Commits
 
+## Version du site
+
+À chaque modification ajoutée au site web, incrémenter la version de `+0.0.0.01`.
+Pour un changement important, incrémenter plutôt de `+0.0.1`.
+Mettre à jour la version dans sa source de données et dans tous les endroits où elle est affichée.
+
 Ne pas créer automatiquement un commit après chaque modification sauf si cela est explicitement demandé.
 
 Lorsque l'utilisateur demande un commit, utiliser un message clair et descriptif.
