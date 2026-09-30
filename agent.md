@@ -114,7 +114,6 @@ MushokuZone/
 │   ├── characters-detailed.json
 │   ├── characters.json
 │   ├── chronology.json
-│   ├── config.json
 │   ├── episodes.json
 │   ├── homepage.json
 │   ├── navigation.json
@@ -597,9 +596,9 @@ Ne pas supprimer des modifications utilisateur simplement pour obtenir un dépô
 
 ## Version du site
 
-À chaque modification ajoutée au site web, incrémenter la version de `+0.0.0.01`.
-Pour un changement important, incrémenter plutôt de `+0.0.1`.
-Mettre à jour la version dans sa source de données et dans tous les endroits où elle est affichée.
+À chaque modification ajoutée au site web, incrémenter la version de `+0.0.0.01` dans `Data/site.json`.
+Pour un changement important, incrémenter plutôt de `+0.0.1` dans ce même fichier.
+Les pages affichent automatiquement cette valeur : ne pas recopier la version dans les fichiers HTML ou d'autres JSON.
 
 Ne pas créer automatiquement un commit après chaque modification sauf si cela est explicitement demandé.
 

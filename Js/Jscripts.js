@@ -96,7 +96,7 @@ class BurgerMenu {
 // UPDATE MANAGER
 // ============================================================
 
-// Met en cache les métadonnées de version pendant quinze minutes pour limiter les requêtes.
+// Charge les métadonnées à jour et conserve le cache comme solution de secours hors ligne.
 class UpdateManager {
     constructor() {
         this.data = null;
@@ -113,12 +113,6 @@ class UpdateManager {
     // Le chargement est idempotent : il ne réinjecte pas le script de spoilers s’il est déjà disponible.
     async load() {
         const cached = this.getCachedData();
-        if (cached) {
-            this.data = cached;
-            this.render();
-            return;
-        }
-
         try {
             const response = await fetch(this.getDataUrl(), { cache: 'no-cache' });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -133,6 +127,11 @@ class UpdateManager {
             this.render();
         } catch (error) {
             console.warn('UpdateManager: impossible de charger les métadonnées ->', error);
+            if (cached) {
+                this.data = cached;
+                this.render();
+                return;
+            }
             this.renderFallback();
         }
     }
@@ -193,9 +192,10 @@ class UpdateManager {
 
     renderFallback() {
         const lastUpdateElement = document.getElementById('last-update');
-        const versionElement = document.getElementById('version');
         if (lastUpdateElement && !lastUpdateElement.textContent.trim()) lastUpdateElement.textContent = 'Indisponible';
-        if (versionElement && !versionElement.textContent.trim()) versionElement.textContent = 'Indisponible';
+        document.querySelectorAll('[data-site-version]').forEach(el => {
+            if (!el.textContent.trim()) el.textContent = 'Indisponible';
+        });
     }
 }
 

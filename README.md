@@ -94,7 +94,6 @@ MushokuZone/
 │   ├── characters-detailed.json
 │   ├── characters.json
 │   ├── chronology.json
-│   ├── config.json
 │   ├── episodes.json
 │   ├── homepage.json
 │   ├── navigation.json
@@ -305,10 +304,6 @@ Contient les données détaillées utilisées par le système de présentation d
 
 Contient les données utilisées pour la chronologie.
 
-## `config.json`
-
-Contient des éléments de configuration utilisés par le projet.
-
 ## `episodes.json`
 
 Contient les données relatives aux épisodes.
@@ -347,11 +342,11 @@ Contient les données détaillées relatives à Rudeus.
 
 ## `site-config.json`
 
-Contient des paramètres de configuration du site.
+Contient les paramètres communs du site, la navigation et les métadonnées SEO par page.
 
 ## `site.json`
 
-Contient des informations générales concernant le projet.
+Contient la version du site, sa date de mise à jour et son état.
 
 ## `sources.json`
 

@@ -60,12 +60,10 @@ class SEOInjector {
     // Met à jour les balises existantes avant d’en créer pour éviter les doublons dans head.
     async injectSEO() {
         try {
-            // Charger la config générale et le site-config qui contient les métadonnées
-            const legacyConfig = await dataManager.load('config.json');
             const config = await dataManager.load('site-config.json');
 
-            if (!legacyConfig || !config) {
-                console.warn('SEO: Unable to load config or site-config data');
+            if (!config) {
+                console.warn('SEO: Unable to load site configuration');
                 return;
             }
 
@@ -79,10 +77,10 @@ class SEOInjector {
             const head = document.head;
 
             // Déterminer les métadonnées à injecter
-            const pageKeywords = legacyConfig.keywords.pages[this.currentPageId] || legacyConfig.keywords.global;
-            const title = pageMetadata.title || legacyConfig.site.title;
-            const description = pageMetadata.description || legacyConfig.site.description;
-            const ogUrl = pageMetadata.canonical || legacyConfig.site.url;
+            const pageKeywords = pageMetadata.keywords;
+            const title = pageMetadata.title || config.site.title;
+            const description = pageMetadata.description || config.site.description;
+            const ogUrl = pageMetadata.canonical || config.site.url;
 
             // 1. Injecter description
             const existingDesc = head.querySelector('meta[name="description"]');
@@ -115,18 +113,18 @@ class SEOInjector {
             this.injectMetaOrCreate(head, 'og:title', pageMetadata.og?.title || title, true);
             this.injectMetaOrCreate(head, 'og:description', pageMetadata.og?.description || description, true);
             this.injectMetaOrCreate(head, 'og:url', ogUrl, true);
-            this.injectMetaOrCreate(head, 'og:site_name', legacyConfig.site.name, true);
-            this.injectMetaOrCreate(head, 'og:locale', legacyConfig.site.locale, true);
-            this.injectMetaOrCreate(head, 'og:type', legacyConfig.socialMedia.ogType, true);
-            this.injectMetaOrCreate(head, 'og:image', legacyConfig.socialMedia.ogImage, true);
-            this.injectMetaOrCreate(head, 'og:image:alt', legacyConfig.socialMedia.ogImageAlt, true);
+            this.injectMetaOrCreate(head, 'og:site_name', config.site.name, true);
+            this.injectMetaOrCreate(head, 'og:locale', config.site.locale, true);
+            this.injectMetaOrCreate(head, 'og:type', config.socialMedia.ogType, true);
+            this.injectMetaOrCreate(head, 'og:image', config.socialMedia.ogImage, true);
+            this.injectMetaOrCreate(head, 'og:image:alt', config.socialMedia.ogImageAlt, true);
 
             // 5. Twitter Card
-            this.injectMetaOrCreate(head, 'twitter:card', legacyConfig.socialMedia.twitterCard);
+            this.injectMetaOrCreate(head, 'twitter:card', config.socialMedia.twitterCard);
             this.injectMetaOrCreate(head, 'twitter:title', pageMetadata.twitter?.title || title);
             this.injectMetaOrCreate(head, 'twitter:description', pageMetadata.twitter?.description || description);
-            this.injectMetaOrCreate(head, 'twitter:image', legacyConfig.socialMedia.ogImage);
-            this.injectMetaOrCreate(head, 'twitter:image:alt', legacyConfig.socialMedia.ogImageAlt);
+            this.injectMetaOrCreate(head, 'twitter:image', config.socialMedia.ogImage);
+            this.injectMetaOrCreate(head, 'twitter:image:alt', config.socialMedia.ogImageAlt);
 
             console.log(`SEO: Metadata injected for page "${this.currentPageId}"`);
 
