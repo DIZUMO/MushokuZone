@@ -359,8 +359,9 @@ a:hover { color: var(--color-gold); text-shadow: 0 0 10px var(--color-gold-glow)
 }
 .site-footer__inner {
     max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
 }
+.site-footer__meta { padding-right: 28px; }
 .site-footer__brand h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--color-gold); margin: 0 0 8px; text-shadow: 0 0 14px var(--color-gold-glow); }
 .site-footer__brand p { font-size: 0.82rem; color: var(--color-text-muted); line-height: 1.55; max-width: none; margin: 0; }
 .site-footer__nav h4 { font-family: var(--font-display); font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); margin: 0 0 12px; }
@@ -433,6 +434,7 @@ html { background-image: url("../Image/bc57eead3176837e41f1235a4737aac3.jpg"); }
     th, td { padding: 8px 10px; white-space: nowrap; }
     p { max-width: 100%; }
     .site-footer__inner { grid-template-columns: 1fr; gap: 24px; }
+    .site-footer__meta { padding-right: 0; }
     .site-footer__bottom { flex-direction: column; text-align: center; }
     .cards-grid { grid-template-columns: 1fr; }
     #back-to-top { right: 16px; bottom: 70px; }
