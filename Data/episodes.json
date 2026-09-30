@@ -58,7 +58,7 @@
     "s2p1": {
       "label": "Saison 2 — Cour 1",
       "vo": [
-        {"num":"00","title":"Épisode Spécial","date":"2 juil. 2023","special":true,"specialNote":"OAV spécial sur Sylphiette — indisponible sur Vidzy","vidzy":false,"sibnet":"5186353","uqload":""},
+        {"num":"00","title":"Épisode Spécial","date":"2 juil. 2023","special":true,"specialNote":"OAV spécial sur Sylphiette","vidzy":false,"sibnet":"5186353","uqload":""},
         {"num":"01","title":"Le mage au cœur brisé","date":"9 juil. 2023","special":true,"vidzy":{"vo":true},"sibnet":"5193243","uqload":""},
         {"num":"02","title":"Excursion nocturne en forêt","date":"16 juil. 2023","special":true,"vidzy":{"vo":true},"sibnet":"5199557","uqload":""},
         {"num":"03","title":"Rapprochement rapide.","date":"23 juil. 2023","sibnet":"5205966","uqload":""},
@@ -73,7 +73,7 @@
         {"num":"12","title":"Ce que je veux te dire","date":"24 sep. 2023","sibnet":"5260491","uqload":""}
       ],
       "vf": [
-        {"num":"00","title":"Épisode Spécial","date":"—","special":true,"specialNote":"OAV spécial sur Sylphiette — indisponible sur Vidzy","vidzy":false,"sibnet":"5243279","uqload":""},
+        {"num":"00","title":"Épisode Spécial","date":"—","special":true,"specialNote":"OAV spécial sur Sylphiette","vidzy":false,"sibnet":"5243279","uqload":""},
         {"num":"01","title":"Le mage au cœur brisé","date":"—","sibnet":"5243289","uqload":""},
         {"num":"02","title":"Excursion nocturne en forêt","date":"—","sibnet":"5249507","uqload":""},
         {"num":"03","title":"Rapprochement rapide.","date":"—","sibnet":"5249510","uqload":""},
