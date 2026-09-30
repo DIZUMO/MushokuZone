@@ -136,7 +136,9 @@ class DataManager {
         }
 
         try {
-            const response = await fetch(url, { signal });
+            const fetchOptions = { signal };
+            if (filename === 'episodes.json') fetchOptions.cache = 'no-cache';
+            const response = await fetch(url, fetchOptions);
 
             if (!response.ok) {
                 const msg = `HTTP ${response.status}: ${response.statusText}`;

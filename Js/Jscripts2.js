@@ -168,11 +168,11 @@ function updatePlayerButtons(ep) {
     if (vidzyBtn) vidzyBtn.disabled = !vidzyAvailable(ep);
 }
 
-// Le sélecteur conserve les épisodes accessibles par au moins une source historique.
+// Le sélecteur affiche aussi les épisodes dont les sources ne sont pas encore renseignées.
 function renderEpisodeSelect(list) {
     const select = document.getElementById('ep-select');
     if (!select) return;
-    const options = list.map((ep, index) => ({ ep, index })).filter(item => item.ep.sibnet || item.ep.uqload);
+    const options = list.map((ep, index) => ({ ep, index }));
     if (!options.length) { select.innerHTML = '<option value="">Aucun épisode disponible</option>'; return; }
     select.innerHTML = options.map(({ ep, index }) => `<option value="${index}"${index === state.epIndex ? ' selected' : ''}>Épisode ${ep.num} — ${ep.title}</option>`).join('');
 }
