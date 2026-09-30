@@ -11,7 +11,7 @@ const VIDZY_API_URL = "https://vidzy.org/api/tmdb/94664";
 let vidzyCatalog = null;
 const VIDZY_THEME_COLOR = "#e6c000";
 const VIDZY_ERIS_THEME_COLOR = "#ef4444";
-const VIDZY_SEASON_MAP = { s1: 1, s2p1: 2, s2p2: 2, s3: 3 };
+const VIDZY_SEASON_MAP = { s1: 0, s2p1: 2, s2p2: 2, s3: 3 };
 const VIDZY_LANGUAGE_MAP = { vo: 'vostfr', vf: 'vf' };
 let state = { season: 's1', version: 'vo', player: 'vidzy', epIndex: 0 };
 
@@ -75,14 +75,16 @@ function getNextVidzyEpisode(season, episode) {
 }
 
 function vidzyEpisodeNumber(ep) {
-    const episode = Number(ep.vidzyEpisode || ep.num);
+    if (ep.vidzyEpisode != null) return Number(ep.vidzyEpisode);
+    const episode = Number(ep.num);
+    if (state.season === 's1') return episode + 1;
     return state.season === 's2p2' ? episode + 12 : episode;
 }
 function vidzyAvailable(ep) {
-    return ep.vidzy !== false;
+    return ep.vidzy !== false && ep.vidzy?.[state.version] !== false;
 }
 // Évite d’ouvrir un épisode sans source pour le lecteur actuellement sélectionné.
-function firstAvailableIndex(list) { const i = list.findIndex(ep => state.player === 'vidzy' ? vidzyAvailable(ep) : ep.sibnet || ep.uqload); return i === -1 ? 0 : i; }
+function firstAvailableIndex(list) { const i = list.findIndex(ep => state.player === 'vidzy' ? vidzyAvailable(ep) || ep.sibnet || ep.uqload : ep.sibnet || ep.uqload); return i === -1 ? 0 : i; }
 function lastAvailableIndex(list) { for (let i = list.length - 1; i >= 0; i--) if (state.player === 'vidzy' ? vidzyAvailable(list[i]) : list[i].sibnet || list[i].uqload) return i; return list.length - 1; }
 
 function setSeason(season) { state.season = season; activateCtrlBtn('[data-season]', '[data-season="' + season + '"]'); state.epIndex = firstAvailableIndex(currentList()); refresh(); }
@@ -108,10 +110,10 @@ function toggleVidzyOption(option) {
 }
 
 // Les réglages restent masqués pour ne pas suggérer une compatibilité avec Sibnet ou Uqload.
-function updateVidzyOptions() {
+function updateVidzyOptions(activePlayer = state.player) {
     const panel = document.getElementById('vidzy-options');
     if (!panel) return;
-    panel.hidden = state.player !== 'vidzy';
+    panel.hidden = activePlayer !== 'vidzy';
     ['autoplay', 'autonext'].forEach(option => {
         const toggle = document.getElementById('vidzy-' + option + '-toggle');
         if (!toggle) return;
@@ -140,6 +142,7 @@ function renderPlayer() {
     special.textContent = ep.special ? (ep.specialNote || 'Épisode spécial') : '';
 
     let activeSource = state.player;
+    if (activeSource === 'vidzy' && !vidzyAvailable(ep) && ep.sibnet) activeSource = 'sibnet';
     if (activeSource !== 'vidzy' && !ep[activeSource]) {
         const other = activeSource === 'sibnet' ? 'uqload' : 'sibnet';
         if (ep[other]) activeSource = other;
@@ -147,6 +150,7 @@ function renderPlayer() {
 
     const container = document.getElementById('player-video-active');
     const sourceLabel = document.getElementById('player-source-label');
+    activateCtrlBtn('[data-player]', '[data-player="' + activeSource + '"]');
     if (activeSource && (activeSource === 'vidzy' ? vidzyAvailable(ep) : ep[activeSource])) {
         const vidzyColor = ep.specialType === 'eris' ? VIDZY_ERIS_THEME_COLOR : VIDZY_THEME_COLOR;
         const src = activeSource === 'sibnet' ? sibnetSrc(ep.sibnet) : activeSource === 'uqload' ? uqloadSrc(ep.uqload) : vidzySrc(VIDZY_SEASON_MAP[state.season], vidzyEpisodeNumber(ep), VIDZY_LANGUAGE_MAP[state.version], vidzyColor);
@@ -160,7 +164,7 @@ function renderPlayer() {
     }
 
     updatePlayerButtons(ep);
-    updateVidzyOptions();
+    updateVidzyOptions(activeSource);
     renderEpisodeSelect(list);
     updateNavButtons(list);
     setTimeout(wrapDynamicIframes, 0);
