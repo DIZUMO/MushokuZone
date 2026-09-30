@@ -182,32 +182,13 @@ class UpdateManager {
     }
 
     renderFooterMeta(lastUpdate, version) {
-        document.querySelectorAll('.site-footer__meta').forEach(meta => {
-            if (meta.querySelector('[data-update-manager]')) return;
+        const meta = document.querySelector('.site-footer__meta');
+        if (!meta || meta.querySelector('#last-update, #version, [data-site-last-update], [data-site-version], .site-footer__release')) return;
 
-            const container = document.createElement('div');
-            container.setAttribute('data-update-manager', 'true');
-            container.style.cssText = 'margin-top:16px;padding-top:12px;border-top:1px solid var(--color-border, rgba(255,215,0,.22));font-size:.85rem;line-height:1.6';
-
-            const title = document.createElement('strong');
-            title.textContent = 'Mise à jour du site';
-            title.style.color = 'var(--color-gold, #ffd700)';
-
-            const date = document.createElement('span');
-            date.textContent = `Dernière mise à jour : ${lastUpdate}`;
-            const release = document.createElement('span');
-            release.textContent = `Version : ${version}`;
-
-            container.append(title, document.createElement('br'), date, document.createElement('br'), release);
-
-            if (this.data.verified) {
-                const verified = document.createElement('span');
-                verified.textContent = ` ✓ ${this.data.verifiedLabel || 'Données vérifiées'}`;
-                verified.style.color = 'var(--color-gold, #ffd700)';
-                container.appendChild(verified);
-            }
-            meta.appendChild(container);
-        });
+        const release = document.createElement('p');
+        release.className = 'site-footer__release';
+        release.textContent = `Dernière mise à jour : ${lastUpdate} | Version : ${version}`;
+        meta.appendChild(release);
     }
 
     renderFallback() {
@@ -236,6 +217,8 @@ class SpoilerSystemLoader {
     }
 
     async load() {
+        if (!document.querySelector('[data-spoiler]')) return;
+
         this.loadStylesheet();
 
         if (window.spoilerManager) {

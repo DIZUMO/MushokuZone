@@ -11,7 +11,9 @@ Site documentaire consacré à l'univers de **Mushoku Tensei : Isekai Ittara Hon
 
 # Statut du projet
 
-**Version actuelle : Bêta / développement actif**
+**Statut : Bêta / développement actif**  
+**Version du site : 0.1.2.03**  
+**Dernière mise à jour : 30 septembre 2026**
 
 MushokuZone est actuellement en phase de développement.
 
