@@ -76,6 +76,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .spoiler__content,
     .spoiler__button {
         transition: none;

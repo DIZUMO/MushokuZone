@@ -155,7 +155,7 @@ class UpdateManager {
     saveCachedData(data) {
         try {
             localStorage.setItem(this.storageKey, JSON.stringify({ timestamp: Date.now(), data }));
-        } catch {}
+        } catch { }
     }
 
     formatDate(dateString) {

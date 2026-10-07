@@ -13,10 +13,10 @@
     padding: 1px 24px 60px;
 }
 
-#content-personnages > .character-wiki-intro,
-#content-personnages > .character-dossier,
-#content-personnages > .character-wiki-error,
-#content-personnages > .character-selector {
+#content-personnages>.character-wiki-intro,
+#content-personnages>.character-dossier,
+#content-personnages>.character-wiki-error,
+#content-personnages>.character-selector {
     float: none;
     clear: both;
     box-sizing: border-box;
@@ -41,7 +41,7 @@
     margin-top: 0;
 }
 
-.character-wiki-intro__content > p:not(.character-wiki-note) {
+.character-wiki-intro__content>p:not(.character-wiki-note) {
     max-width: none;
 }
 
@@ -49,7 +49,7 @@
     max-width: none !important;
     margin-top: 18px;
     padding: 12px 16px;
-    background: rgba(255,215,0,0.07);
+    background: rgba(255, 215, 0, 0.07);
     border-left: 3px solid var(--color-gold);
 }
 
@@ -109,23 +109,34 @@
 }
 
 .character-selector__pane path:first-child {
-    stroke: rgba(255,255,255,0.22);
+    stroke: rgba(255, 255, 255, 0.22);
     stroke-width: 2;
 }
 
-.character-selector__pane--roxy { color: #35caff; }
-.character-selector__pane--sylphiette { color: #68dc65; }
-.character-selector__pane--eris { color: #ff5b60; }
-.character-selector__pane--rudeus { color: #f3b54f; }
+.character-selector__pane--roxy {
+    color: #35caff;
+}
+
+.character-selector__pane--sylphiette {
+    color: #68dc65;
+}
+
+.character-selector__pane--eris {
+    color: #ff5b60;
+}
+
+.character-selector__pane--rudeus {
+    color: #f3b54f;
+}
 
 .character-selector__shine {
-    fill: rgba(255,255,255,0.12);
+    fill: rgba(255, 255, 255, 0.12);
     pointer-events: none;
 }
 
 .character-selector__outline {
     fill: none;
-    stroke: rgba(255,255,255,0.32);
+    stroke: rgba(255, 255, 255, 0.32);
     stroke-width: 2;
     pointer-events: none;
 }
@@ -152,10 +163,10 @@
 
 .character-selector__name {
     appearance: none;
-    border: 1px solid rgba(255,255,255,0.13);
+    border: 1px solid rgba(255, 255, 255, 0.13);
     border-radius: 999px;
     padding: 8px 13px;
-    background: rgba(0,0,0,0.25);
+    background: rgba(0, 0, 0, 0.25);
     cursor: pointer;
     font-family: var(--font-display);
     font-size: 0.68rem;
@@ -168,15 +179,26 @@
 .character-selector__name:focus-visible,
 .character-selector__name.is-active {
     transform: translateY(-2px);
-    background: rgba(255,255,255,0.07);
+    background: rgba(255, 255, 255, 0.07);
     box-shadow: 0 0 12px currentColor;
     outline: none;
 }
 
-.character-selector__name--roxy { color: #35caff; }
-.character-selector__name--sylphiette { color: #68dc65; }
-.character-selector__name--eris { color: #ff5b60; }
-.character-selector__name--rudeus { color: #f3b54f; }
+.character-selector__name--roxy {
+    color: #35caff;
+}
+
+.character-selector__name--sylphiette {
+    color: #68dc65;
+}
+
+.character-selector__name--eris {
+    color: #ff5b60;
+}
+
+.character-selector__name--rudeus {
+    color: #f3b54f;
+}
 
 .character-selector__status {
     max-width: none;
@@ -202,7 +224,7 @@
 
 .character-dossier__header {
     display: grid;
-    grid-template-columns: 76px minmax(0,1fr);
+    grid-template-columns: 76px minmax(0, 1fr);
     gap: 24px;
     width: 100%;
     align-items: start;
@@ -219,7 +241,7 @@
     flex: 0 0 76px;
     border: 1px solid var(--color-border);
     border-radius: 50%;
-    background: rgba(0,0,0,0.30);
+    background: rgba(0, 0, 0, 0.30);
     font-size: 2.4rem;
     box-shadow: 0 0 22px var(--color-gold-glow);
 }
@@ -263,7 +285,7 @@
     padding: 0 0 26px;
     background: transparent;
     border: 0;
-    border-bottom: 1px solid rgba(255,215,0,0.10);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.10);
     border-radius: 0;
     box-shadow: none;
 }
@@ -272,7 +294,7 @@
 .character-dossier__relations h3 {
     margin-top: 0;
     padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,215,0,0.14);
+    border-bottom: 1px solid rgba(255, 215, 0, 0.14);
 }
 
 .character-dossier__section p {
@@ -285,7 +307,7 @@
     width: 100%;
     margin: 28px 0 0;
     padding: 20px;
-    background: rgba(0,0,0,0.30);
+    background: rgba(0, 0, 0, 0.30);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-md);
 }
@@ -333,6 +355,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .character-selector__pane,
     .character-selector__name {
         transition: none;
