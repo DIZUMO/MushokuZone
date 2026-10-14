@@ -28,7 +28,7 @@ Il n'utilise actuellement pas de framework JavaScript majeur.
 
 ---
 
-# 1. Règles générales pour Codex
+# 1. Règles générales pour les I.A
 
 ## 1.1 Lire avant de modifier
 
